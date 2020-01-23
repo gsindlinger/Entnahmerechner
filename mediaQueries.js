@@ -102,12 +102,6 @@ function funcSmartphone() {
 
     }
 
-
-
-
-    if(smartphone[1].matches) {
-
-    }
 }
 
 

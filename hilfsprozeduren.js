@@ -106,7 +106,8 @@ function closePopup(i) {
 }
 
 function resizeChart() {
-  updateValue(false)
+  console.log("Test")
+  updateValue()
   funcSmartphone()
 }
 

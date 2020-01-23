@@ -85,7 +85,7 @@ for (binding of bindings) {
 
 
 window.addEventListener("orientationchange", updateValue)
-window.addEventListener("resize", updateValue)
+window.addEventListener("resize", resizeChart)
 
 
 
