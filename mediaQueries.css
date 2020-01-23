@@ -1,3 +1,5 @@
+/* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
+
 /* 
   ##Device = Desktops
   ##Screen = 1281px to higher resolution desktops
@@ -162,10 +164,16 @@
 
     #headerSpecial {
         position: fixed;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
         height: 8rem;
-        align-items: center;
-        justify-content: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
         font-size: 2.8rem;
         top: 12rem;
         left: 0;
@@ -181,9 +189,16 @@
 
     .smartphoneHeaderContainer {
         width: 16.6666666666666667%;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        flex-direction: column;
-        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
         text-align: center;
         height: 8rem;
         position: relative;
@@ -194,10 +209,19 @@
     .smartphoneHeaderBox{
         width: 100%;
         height: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
     }
 
     .smartphoneHeaderBox p {
@@ -205,17 +229,31 @@
     }
 
     .smartphoneHeaderText {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-grow: 1;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        -webkit-box-flex: 1;
+            -ms-flex-positive: 1;
+                flex-grow: 1;
     }
 
     .smartphoneIcons {
         width: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        justify-content: center;
-        align-items: center;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
         height: 3.2rem;
         padding-top: 1rem;
     }
@@ -314,12 +352,17 @@
     }
 
     #Standardabweichung {
-        flex-direction: column;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
     }
 
     #popupDeviationSpecialHeader {
         font-size: 5rem;
-        transform: rotate(90deg);
+        -webkit-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+                transform: rotate(90deg);
         width: 5rem;
         height: 5rem;
         padding-left: 3rem;
@@ -395,9 +438,11 @@
 
 
     #viz1{
+        -ms-grid-columns: auto 1fr;
         grid-template-columns: auto 1fr;
+        -ms-grid-rows: auto;
         grid-template-rows: auto;
-        grid-template-areas: 
+            grid-template-areas: 
             "textGood smileyGood"
             "textGood percGood"
             "textMedium smileyMedium"
@@ -416,7 +461,10 @@
     }
 
     .vizHeaderIconPlusText {
-        flex-direction: column;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
         text-align: center;
     }
 
@@ -431,6 +479,76 @@
     #rente p {
         padding-left: 1rem;
         padding-right: 1rem;
+    }
+
+}
+
+@media (orientation: portrait) {
+
+
+    #vizTopGood{
+        -ms-grid-row: 1;
+        -ms-grid-row-span: 2;
+        -ms-grid-column: 1;
+
+    }
+
+
+    #vizTopMedium{
+        -ms-grid-row: 3;
+        -ms-grid-row-span: 2;
+        -ms-grid-column: 1;
+
+    }
+
+
+    #vizTopBad{
+        -ms-grid-row: 5;
+        -ms-grid-row-span: 2;
+        -ms-grid-column: 1;
+
+    }
+
+
+    #good{
+        -ms-grid-row: 1;
+        -ms-grid-column: 2;
+
+    }
+
+
+    #medium{
+        -ms-grid-row: 3;
+        -ms-grid-column: 2;
+
+    }
+
+
+    #bad{
+        -ms-grid-row: 5;
+        -ms-grid-column: 2;
+
+    }
+
+
+    #textGood{
+        -ms-grid-row: 2;
+        -ms-grid-column: 2;
+
+    }
+
+
+    #textMedium{
+        -ms-grid-row: 4;
+        -ms-grid-column: 2;
+
+    }
+
+
+    #textBad{
+        -ms-grid-row: 6;
+        -ms-grid-column: 2;
+
     }
 
 }
@@ -452,10 +570,19 @@
 
     #headerSpecial {
         position: fixed;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-evenly;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        -webkit-box-pack: space-evenly;
+            -ms-flex-pack: space-evenly;
+                justify-content: space-evenly;
         font-size: 2.8rem;
         top: 12rem;
         bottom: 0;
@@ -477,7 +604,9 @@
     }
 
     .smartphoneHeaderText {
-        flex-grow: 0;
+        -webkit-box-flex: 0;
+            -ms-flex-positive: 0;
+                flex-grow: 0;
     }
 
     .triangle {
@@ -500,7 +629,8 @@
 
     .popupHeaderSpecial {
         width: 50vw;
-        box-shadow: 1rem 1rem 1rem rgba(0,0,0,0.75);
+        -webkit-box-shadow: 1rem 1rem 1rem rgba(0,0,0,0.75);
+                box-shadow: 1rem 1rem 1rem rgba(0,0,0,0.75);
 
     }
 
@@ -537,7 +667,6 @@
         top: auto;
     }
 
-
     #main{
         top: 12rem;
         z-index: -1;
@@ -551,22 +680,68 @@
 
 @media (pointer: coarse) {
     .changeSlide {
+        -webkit-transition: 0;
+        -o-transition: 0;
         transition: 0;
     }
 }
 
 @media (min-width: 900px) and (min-aspect-ratio: 6/2) {
     #container {
-        align-items: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
     }
 
     #inputVariables{
         width: 30%;
+        -ms-grid-rows: 33.33% 33.33% 33.33%;
         grid-template-rows: 33.33% 33.33% 33.33%;
+        -ms-grid-columns: 40% 1rem 40%;
         grid-template-columns: 40% 40%;
         grid-column-gap: 1rem;
-        justify-content: center;
-        align-items: center;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+
+    }
+
+    #inputVariables > *:nth-child(1){
+        -ms-grid-row: 1;
+        -ms-grid-column: 1;
+
+    }
+
+    #inputVariables > *:nth-child(2){
+        -ms-grid-row: 1;
+        -ms-grid-column: 3;
+
+    }
+
+    #inputVariables > *:nth-child(3){
+        -ms-grid-row: 2;
+        -ms-grid-column: 1;
+
+    }
+
+    #inputVariables > *:nth-child(4){
+        -ms-grid-row: 2;
+        -ms-grid-column: 3;
+
+    }
+
+    #inputVariables > *:nth-child(5){
+        -ms-grid-row: 3;
+        -ms-grid-column: 1;
+
+    }
+
+    #inputVariables > *:nth-child(6){
+        -ms-grid-row: 3;
+        -ms-grid-column: 3;
 
     }
 
