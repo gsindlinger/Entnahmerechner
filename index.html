@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <!-- CSS-Skripte-->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="rangeSlider.css">
+    <link rel="stylesheet" type="text/css" href="onOffSwitch.css">
+    <link rel="stylesheet" type="text/css" href="root.css">
+    <link rel="stylesheet" type="text/css" href="table.css">
+    <link rel="stylesheet" type="text/css" href="mediaQueries.css">
+
+
+    
+
+
+    
+
+    <!--Title-->
+    <title>Rentenrechner</title>
+
+</head>
+<body onresize="resizeChart()">
+    <header id="header">
+        <div id="headerNormal">
+            <div id="title">
+                    <h1>Berechne Sie Ihren optimalen Entnahmeplan</h1>
+                    <div id="subtitle">
+                        <p>Wie lange reichen Ihre angesparten Mittel?</p>
+                    </div>
+            </div>
+            <div id="logo">
+                <img id="imgLogo" src="Uni_ulm_logo.svg" alt="Logo der Universität Ulm">
+            </div>
+        </div>
+        <div id="headerSpecial">
+            <div class="smartphoneHeaderContainer">
+                <div class="smartphoneHeaderBox" onclick="openSliderPopup(0)">
+                    <div class="smartphoneIcons">
+                        <i class="fas fa-step-backward"></i>
+                    </div>
+                    <div class="smartphoneHeaderText"><p>Beginn der Entnahme</p></div>
+                </div>
+                <div id="popupStartEntnahme" class="popupSmartphone">
+                    <div class="triangle"></div>
+                    <div class="popupHeaderSpecial move10Left">
+                        <div class="headerPopup"><i class="fas fa-times clickIcon" style="text-shadow: 0rem;" onclick="closeSliderPopup(0)"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="smartphoneHeaderContainer">
+                <div class="smartphoneHeaderBox" onclick="openSliderPopup(1)">
+                    <div class="smartphoneIcons">
+                        <i class="fas fa-step-forward"></i>
+                    </div>
+                    <div class="smartphoneHeaderText"><p>Ende der <br> Entnahme</p></div>
+                </div>
+                <div id="popupEndeEntnahme" class="popupSmartphone">
+                    <div class="triangle"></div>
+                    <div class="popupHeaderSpecial move30Left">
+                        <div class="headerPopup"><i class="fas fa-times clickIcon" style="text-shadow: 0rem;" onclick="closeSliderPopup(1)"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="smartphoneHeaderContainer">
+                <div class="smartphoneHeaderBox" onclick="openSliderPopup(2)">
+                    <div class="smartphoneIcons">
+                        <i class="fas fa-money-check-alt"></i>
+                    </div>
+                    <div class="smartphoneHeaderText"><p>Startkapital</p></div>
+                </div>
+                <div id="popupStartkapital" class="popupSmartphone">
+                    <div class="triangle"></div>
+                    <div class="popupHeaderSpecial move150Left">
+                        <div class="headerPopup"><i class="fas fa-times clickIcon" style="text-shadow: 0rem;" onclick="closeSliderPopup(2)"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="smartphoneHeaderContainer">
+                <div class="smartphoneHeaderBox" onclick="openSliderPopup(3)">
+                    <div class="smartphoneIcons">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <div class="smartphoneHeaderText"><p>Monatliche Entnahme</p></div>
+                </div>
+                <div id="popupMonatlicheEntnahme" class="popupSmartphone">
+                    <div class="triangle"></div>
+                    <div class="popupHeaderSpecial move150Right">
+                        <div class="headerPopup"><i class="fas fa-times clickIcon" style="text-shadow: 0rem;" onclick="closeSliderPopup(3)"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="smartphoneHeaderContainer">
+                <div class="smartphoneHeaderBox" onclick="openSliderPopup(5)">
+                    <div class="smartphoneIcons">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="smartphoneHeaderText"><p>Rendite</p></div>
+                </div>
+                <div id="popupRendite" class="popupSmartphone">
+                    <div class="triangle"></div>
+                    <div class="popupHeaderSpecial move30Right">
+                        <div class="headerPopup"><i class="fas fa-times clickIcon" style="text-shadow: 0rem;" onclick="closeSliderPopup(5)"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="smartphoneHeaderContainer">
+                <div class="smartphoneHeaderBox" onclick="openSliderPopup(4)">
+                    <div class="smartphoneIcons">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="smartphoneHeaderText"><p>Risiko</p></div>
+                </div>
+                <div id="popupRisiko" class="popupSmartphone">
+                    <div class="triangle"></div>
+                    <div class="popupHeaderSpecial move10Right">
+                        <div class="headerPopup"><i class="fas fa-times clickIcon" style="text-shadow: 0rem;" onclick="closeSliderPopup(4)"></i></div>
+                        <div class="centerContent">
+                            <a id="popupDeviationSpecialHeader" class="changeSlide" onclick="openPopup(0)">&#10095;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div id="main">
+        <div id="container">
+            <div id="inputVariables" class="centerContent">
+                <div id="Renteneintrittsalter" class="inputBoxen">
+                    <div class="titleInputbox">Beginn der Entnahme</div>
+                    <div class="formBox">
+                        <div class="sliderText">
+                            <p><span id="textRenteneintrittsalter">90</span> Jahre</p>
+                        </div>
+                        <div class="sliderContainer">
+                            <a class="inputSlide inputPrev" onclick="changeRangeValue('rangeRenteneintrittsalter',-1)">&#10094;</a>
+                            <input type="range" min="50" max="99" value="67"
+                                id="rangeRenteneintrittsalter">
+                            <a class="inputSlide inputNext" onclick="changeRangeValue('rangeRenteneintrittsalter',1)">&#10095;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="Rentenaustrittsalter" class="inputBoxen">
+                    <div class="titleInputbox">Ende der Entnahme</div>
+                    <div class="formBox">
+                        <div class="sliderText">
+                            <p><span id="textRentenaustrittsalter">90</span> Jahre</p></div>
+                        <div class="sliderContainer">
+                            <a class="inputSlide inputPrev" onclick="changeRangeValue('rangeRentenaustrittsalter',-1)">&#10094;</a>
+                            <input type="range" min="60" max="120" value="90"
+                                id="rangeRentenaustrittsalter">
+                            <a class="inputSlide inputNext" onclick="changeRangeValue('rangeRentenaustrittsalter',1)">&#10095;</a>
+
+                        </div>
+                    </div>
+                </div>  
+                
+                <div id="Einmalbetrag" class="inputBoxen">
+                    <div class="titleInputbox">Startkapital</div>
+                    <div class="formBox">
+                        <div class="sliderText">
+                            <p><span id="textEinmalbetrag">100000</span></p>
+                        </div>
+                        <div class="sliderContainer">
+                            <a class="inputSlide inputPrev" onclick="changeRangeValue('rangeEinmalbetrag',-1)">&#10094;</a>
+                            <input type="range" min="5000" max="1000000" value="100000" step="5000" class="slider" 
+                                id="rangeEinmalbetrag">
+                            <a class="inputSlide inputNext" onclick="changeRangeValue('rangeEinmalbetrag',1)">&#10095;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="Rente" class="inputBoxen">
+                    <div class="titleInputbox">Monatliche Entnahme</div>
+                    <div class="formBox">
+                        <div class="sliderText">
+                            <p><span id="textRente">5000</span></p> 
+                        </div>
+                        <div class="sliderContainer">
+                            <a class="inputSlide inputPrev" onclick="changeRangeValue('rangeRente',-1)">&#10094;</a>
+                            <input type="range" min="1000" max="1000000" value="100000" step="5000" class="slider" 
+                                id="rangeRente">
+                            <a class="inputSlide inputNext" onclick="changeRangeValue('rangeRente',1)">&#10095;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="Renditeerwartung" class="inputBoxen">
+                    <div class="titleInputbox">Rendite</div>
+                    <div class="formBox">
+                    <div class="sliderText">
+                        <p><span id="textRenditeerwartung">4 %</span></p> 
+                    </div>
+                        <div class="sliderContainer">
+                            <a class="inputSlide inputPrev" onclick="changeRangeValue('rangeRenditeerwartung',-1)">&#10094;</a>
+                            <input type="range" min="0" max="10" value="4" class="slider" 
+                                id="rangeRenditeerwartung">
+                            <a class="inputSlide inputNext" onclick="changeRangeValue('rangeRenditeerwartung',1)">&#10095;</a>
+                        </div>
+                    </div>
+                </div>
+                <div id="Standardabweichung" class="inputBoxen">
+                        <div class="titleInputbox">Risiko</div>
+                        <div class="centerContent flexRow" style="height: 80%;">
+                            <div class="centerContent flexColumn alignCenter">
+                                <div class="sliderText" style="margin-left: 1rem"> 
+                                    <p><span id="textStandardabweichung">Kein Risiko</span></p> 
+                                </div>
+                                <div class="sliderContainer sliderPopup">
+                                    <a class="inputSlide inputPrev buttonStandardabweichung buttonDeviation" onclick="changeRangeValue('rangeStandardabweichung',-1)">&#10094;</a>
+                                    <input type="range" min="0" max="4" value="0" class="slider" 
+                                        id="rangeStandardabweichung">
+                                    <a class="inputSlide inputNext buttonStandardabweichung buttonDeviation" onclick="changeRangeValue('rangeStandardabweichung',1)">&#10095;</a>
+                                </div>
+                            </div>
+                            <div class="centerContent alignCenter" style="width: 1.5rem">
+                                <a class="changeSlide" onclick="openPopup(0)" style="font-size: 2.5rem; margin-right: 0.5rem;;">&#10095;</a>
+                            </div>
+                        </div>
+
+
+
+                        <div id="popupDeviation" class="popup boxShadowSmall">
+                            <div class="headerPopup"><i class="fas fa-times clickIcon" style="text-shadow: 0rem;" onclick="closePopup(0)"></i></div>
+                            <div id="mainPopupDeviation" class="mainPopup">  
+                                <p>Der <b>Wert des Risikos</b> hängt von der gewählten Rendite ab.</p>
+                                <p>Möchten Sie das Risiko selbständig auswählen?</p>
+        
+                                <!-- made with https://proto.io/freebies/onoff/ -->
+                                <div class="centerContent" style="padding-top: 1rem;">
+                                    <div class="onoffswitch" onclick="activateSigma()" onload="defaultCheckbox()">
+                                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="checkboxMuSigma">
+                                        <label class="onoffswitch-label" for="checkboxMuSigma">
+                                            <span class="onoffswitch-inner"></span>
+                                            <span class="onoffswitch-switch"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>  
+                        </div>
+                </div>
+
+                
+            </div>
+            <div id="display" class="noShrink">
+                <div id="vizHeader">
+                    <div class="vizHeaderIconPlusText">
+                        <div class="vizHeaderIcon">
+                            <img src="svg/rente.svg" alt="Rente Icon">
+                        </div>
+                        <div id="rente">
+                            <span id="calcRente" class="fontHeader"></span>
+                            <p>Vorschlag für eine optimale monatliche Entnahme</p> 
+                        </div>
+                    </div>
+                    <div class="vizHeaderIconPlusText">
+                            <div class="vizHeaderIcon">
+                                <img src="svg/lebenserwartung.svg" alt="Rente Icon">
+                            </div>
+                            <div id="lebenserwartung">
+                                <p style="width: 30rem;"> <span id="prefixPercentageRentenaustrittsalter">ca.</span> <span id="percentageRentenaustrittsalter" class="fontHeader">50%</span> aller Deutschen <br>
+                                erreichen das Alter von 
+                                <span id="headerRentenaustrittsalter" class="fontHeader" style="font-size: 1.9rem">90 Jahren</span>
+                                </p> 
+                            </div>
+                    </div>
+                </div>
+				<div id="vizMain">
+					<div id="vizSlide">
+						<a class="prev changeSlide" onclick="plusSlides(-1)" style="font-size: 2.5rem;">&#10094;</a>
+						<div id="viz1" class="slideshow fade">
+
+							<!-- Titel für die Visualisierungen -->
+							<div id="vizTopGood" class="fontVizSmiley" style="margin: auto 0 auto 0;">Geld <b>bleibt übrig</b></div>
+							<div id="vizTopMedium" class="fontVizSmiley" style="margin: auto 0 auto 0;">Geld <b>reicht</b> passend</div>
+							<div id="vizTopBad" class="fontVizSmiley" style="margin: auto 0 auto 0;">Geld reicht <b>nicht</b></div>
+							
+							<!-- Visualisierungen selbst -->
+							<div id="good" class="centerContentGrid">
+								<img class="centerContent boxShadowBig" src="svg/good.svg" alt="Smiley Good">
+							</div>
+							<div id="medium" class="centerContentGrid">
+								<img class="centerContent boxShadowBig" src="svg/medium.svg" alt="Smiley Medium">
+							</div>
+							<div id="bad" class="centerContentGrid">
+								<img class="centerContent boxShadowBig" src="svg/bad.svg" alt="Smiley Bad">
+							</div>
+
+							<!-- Prozentzahlen der Visualisierungen -->
+							<div id="textGood" class="fontHeader textSmiley centerContent"></div>
+							<div id="textMedium" class="fontHeader textSmiley centerContent"></div>
+							<div id="textBad" class="fontHeader textSmiley centerContent"></div>
+                        </div>
+                        
+                        <div id="viz3" class="slideshow fade flexColumn">
+                            <div id="viz3Header" class="centerContent alignCenter">
+                                    <h2>Reicht das Geld um ein bestimmtes Alter zu erreichen?</h2>
+                            </div>
+                            <div id="viz3Percentages" class="centerContent flexRow"></div>
+                        </div>
+
+						<div id="viz2" class="slideshow fade flexColumn">
+                            <div id="viz2Header" class="centerContent alignCenter"><h2><b></b> Wie lange reicht das Geld?</h2></div>
+                            <div id="viz2Display" class="centerContent alignCenter">
+                                <div id="viz2Histogram" class="centerContent alignCenter"></div>
+                            </div>
+                        </div>
+						
+						<a class="next changeSlide" onclick="plusSlides(1)" style="font-size: 2.5rem;">&#10095;</a>
+					</div>
+					<div id="vizSlideIcons">
+						<div class="vizSlideIconsDetail hoverPage activePage" onclick="currentSlide(1)">
+							<i class="fas fa-smile slideIcon"></i>
+                        </div>
+						<div class="vizSlideIconsDetail hoverPage" onclick="currentSlide(2)">
+                            <i class="fas fa-chart-pie slideIcon"></i>
+                        </div>
+						<div class="vizSlideIconsDetail hoverPage" onclick="currentSlide(3)">
+                            <i class="far fa-chart-bar slideIcon"></i>
+                        </div>
+						<!-- <div>Icons made by <a href="https://www.flaticon.com/authors/kiranshastry" title="Kiranshastry">Kiranshastry</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>-->
+					</div>
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+<div id="copyright">&copy; Copyright 2019 Johannes Gabriel Sindlinger</div>
+<i class="fas fa-info-circle"></i>
+</footer>
+
+
+
+<script src="https://kit.fontawesome.com/530dbece4c.js" crossorigin="anonymous"></script>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="http://davidbau.com/encode/seedrandom-min.js"></script>
+<script src="swiped-events.min.js"></script>
+<script src="variables.js"></script>
+<script src="mediaQueries.js"></script>
+<script src="pageSlider.js"></script>
+<script src="hilfsprozeduren.js"></script>
+<script src="renteBerechnen.js"></script>
+<script src="blackScholesModel.js"></script>
+<script src="vizFunctions.js"></script>
+<script src="main.js"></script>
+
+
+
+
+
+
+
+</body>
+</html>
+
+
+

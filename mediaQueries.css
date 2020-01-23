@@ -1,0 +1,583 @@
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+  
+    
+}
+  
+/* 
+##Device = Laptops, Desktops
+##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+    html {
+        font-size: 8.5px
+    }
+
+}
+
+/* 
+##Device = Tablets, Ipads (portrait)
+##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    html{
+        font-size: 9px;
+    }
+
+}
+
+
+/*Schriftgrößen anpassen bei Landscape-Darstellung*/
+
+@media (max-width: 1500px) and (orientation: landscape) and (pointer: coarse) {
+    html {
+        font-size: 12px;
+    }
+}
+
+
+
+@media (max-width: 1100px) and (orientation: landscape) and (pointer: coarse) {
+    html {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 1024px) and (orientation: landscape) and (pointer: coarse){
+    html {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 950px) and (orientation: landscape){
+    html {
+        font-size: 9px;
+    }
+}
+
+@media (max-width: 900px) and (orientation: landscape){
+    html {
+        font-size: 8px;
+    }
+}
+
+@media (max-width: 850px) and (orientation: landscape){
+    html {
+        font-size: 7px;
+    }
+}
+
+@media (max-width: 800px) and (orientation: landscape){
+    html {
+        font-size: 6px;
+    }
+}
+
+
+
+
+
+/*Schriftgrößen anpassen bei Portraitdarstellung*/
+
+@media (max-width: 1000px) and (orientation: portrait) {
+    html {
+        font-size: 9px;
+    }
+}
+
+@media (max-width: 850px) and (orientation: portrait) {
+    html {
+        font-size: 8px;
+    }
+}
+
+
+@media (max-width: 600px) and (orientation: portrait) {
+    html {
+        font-size: 7px;
+    }
+}
+
+@media (max-width: 480px) and (orientation: portrait){
+    html {
+        font-size: 6px;
+    }
+}
+
+@media (max-width: 350px) and (orientation: portrait){
+    html {
+        font-size: 5px;
+    }
+}
+
+@media (max-width: 270px) and (orientation: portrait){
+    html {
+        font-size: 4.5px;
+    }
+}
+
+@media (max-width: 230px) and (orientation: portrait){
+    html {
+        font-size: 4px;
+    }
+}
+
+@media (min-width: 200px) and (max-width: 480px) {
+
+    #vizSlideIcons {
+        height: 6rem;
+    }
+    
+    .vizSlideIconsDetail {
+        width: 4rem;
+        height: 4rem;
+        font-size: 2.5rem;
+        margin: auto 0.5vw auto 0.5vw;
+    }
+}
+
+
+
+
+@media (orientation: portrait), (max-width: 1024px), (pointer: coarse) and (orientation: landscape) {
+    
+    :root{
+        --height-slider-track: 1rem;
+        --height-slider-thumb: 3rem;
+    }
+
+    #header{
+        height: 17rem;
+    }
+
+    #headerNormal{
+        height: 12rem;
+    }
+
+    #headerSpecial {
+        position: fixed;
+        display: flex;
+        height: 8rem;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.8rem;
+        top: 12rem;
+        left: 0;
+        width: 100%;
+        background-color: var(--color-uni);
+        color: white; 
+        z-index: 1;
+    }
+
+    #inputVariables {
+        display: none;
+    }
+
+    .smartphoneHeaderContainer {
+        width: 16.6666666666666667%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        height: 8rem;
+        position: relative;
+    }
+
+
+
+    .smartphoneHeaderBox{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .smartphoneHeaderBox p {
+        padding-top: 1rem;
+    }
+
+    .smartphoneHeaderText {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+    }
+
+    .smartphoneIcons {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 3.2rem;
+        padding-top: 1rem;
+    }
+
+    .activeInput {
+        background-color: var(--color-uni-dark);
+    }
+
+
+
+    #headerSpecial svg {
+        fill: white;
+        height: 3.2rem;
+        width: auto;
+    }
+
+    #headerSpecial i {
+        text-align: center;
+    }
+
+    .popupSmartphone {
+        display: none;
+    }
+
+    .popupHeaderSpecial {
+        position: absolute;
+        width: 70vw;
+        padding-bottom: 1rem;
+        top: calc(100% + 1rem);
+        background-color: var(--color-uni-dark);
+        z-index: 10;
+        border-radius: 2rem;
+    }
+
+    .triangle {
+        position: absolute;
+        top: 100%;
+        left: 30%;
+        width: 0; 
+        height: 0; 
+        border-left: 2rem solid transparent;
+        border-right: 2rem solid transparent;
+        border-bottom: 2rem solid white;
+    }
+
+    .move10Left {
+        left: 10%;
+    }
+
+    .move30Left {
+        left: -30%;
+    }
+
+    .move150Left {
+        left: -150%;
+    }
+
+    .move150Right {
+        right: -150%;
+    }
+
+    .move30Right {
+        right: -30%;
+    }
+
+    .move10Right {
+        right: 10%;
+    }
+
+    .headerPopup {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .sliderText p{
+        font-size: 1.5rem;
+        font-style: normal;
+      }
+      
+      .sliderText span{
+        font-size: 3rem;
+      }
+
+    .inputSlide {
+        font-size: 3rem;
+        width: 6rem;
+    }
+
+    #textStandardabweichung {
+        font-size: 2rem;
+    }
+      
+
+    input[type=range] {
+        height: 4rem;
+    }
+
+    #Standardabweichung {
+        flex-direction: column;
+    }
+
+    #popupDeviationSpecialHeader {
+        font-size: 5rem;
+        transform: rotate(90deg);
+        width: 5rem;
+        height: 5rem;
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+
+    #mainPopupDeviation {
+        display: none;
+        font-size: 1.3rem;
+    }
+
+    #main{
+        top: 20rem;
+        z-index: -1;
+    }
+
+    #display{
+        width: 98%;
+    }
+
+
+    .slideshow{
+        width: 85%;
+    }
+
+    .changeSlide{
+        font-size: 5rem;
+        font-weight: bold;
+    }
+
+    .changeSlide:hover{
+        color: #363636;
+    }
+
+}
+
+@media (orientation: portrait) {
+    #vizTopGood {
+        grid-area: textGood;
+    }
+
+    #vizTopMedium {
+        grid-area: textMedium;
+    }
+
+    #vizTopBad {
+        grid-area: textBad;
+    }
+
+    #good {
+        grid-area: smileyGood;
+    }
+
+    #medium {
+        grid-area: smileyMedium;
+    }
+
+    #bad {
+        grid-area: smileyBad;
+    }
+
+    #textGood {
+        grid-area: percGood;
+    }
+
+    #textMedium {
+        grid-area: percMedium;
+    }
+    
+    #textBad {
+        grid-area: percBad;
+    }
+
+
+    #viz1{
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto;
+        grid-template-areas: 
+            "textGood smileyGood"
+            "textGood percGood"
+            "textMedium smileyMedium"
+            "textMedium percMedium"
+            "textBad smileyBad"
+            "textBad percBad";
+
+    }
+
+    #viz2Header{
+        height: 7rem;
+    }
+
+    #vizHeader{
+        height: 15rem;
+    }
+
+    .vizHeaderIconPlusText {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .vizHeaderIcon img {
+        height: 5rem;
+    }
+
+    .vizHeaderIcon{
+        height: 6rem;
+    }
+
+    #rente p {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+}
+
+
+@media (orientation: landscape) and (max-width: 1024px), (pointer: coarse) and (orientation: landscape) {
+    :root{
+        --height-slider-track: 1rem;
+        --height-slider-thumb: 3rem;
+    }
+
+    #header{
+        height: 12rem;
+    }
+
+    #headerNormal{
+        height: 12rem;
+    }
+
+    #headerSpecial {
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        font-size: 2.8rem;
+        top: 12rem;
+        bottom: 0;
+        left: 0;
+        height: auto;
+        width: 10rem;
+        background-color: var(--color-uni);
+        color: white; 
+        z-index: 1;
+    }
+
+    #inputVariables {
+        display: none;
+    }
+
+    .smartphoneHeaderContainer {
+        width: 10rem;
+        height: 16.66666667%;
+    }
+
+    .smartphoneHeaderText {
+        flex-grow: 0;
+    }
+
+    .triangle {
+        position: absolute;
+        top: calc(50% - 1.5rem);
+        left: 100%;
+        width: 0; 
+        height: 0; 
+        border-right: 1.5rem solid white;
+        border-top: 1.5rem solid transparent;
+        border-bottom: 1.5rem solid transparent;
+        border-left: 0;
+
+    }
+
+    .colorUni {
+        background-color: var(--color-uni);
+    }
+
+
+    .popupHeaderSpecial {
+        width: 50vw;
+        box-shadow: 1rem 1rem 1rem rgba(0,0,0,0.75);
+
+    }
+
+    .move10Left {
+        left: calc(100% + 1.5rem);
+        top: calc(50% - 2.4rem);
+    }
+
+    .move30Left {
+        left: calc(100% + 1.5rem);
+        top: calc(50% - 2.4rem);
+    }
+
+    .move150Left {
+        left: calc(100% + 1.5rem);
+        top: calc(50% - 2.4rem);
+    }
+
+    .move150Right {
+        left: calc(100% + 1.5rem);
+        bottom: calc(50% - 2.4rem);
+        top: auto;
+    }
+
+    .move30Right {
+        left: calc(100% + 1.5rem);
+        bottom: calc(50% - 2.4rem);
+        top: auto;
+    }
+
+    .move10Right {
+        left: calc(100% + 1.5rem);
+        bottom: calc(50% - 2.4rem);
+        top: auto;
+    }
+
+
+    #main{
+        top: 12rem;
+        z-index: -1;
+        left: 10rem;
+        width: calc(100% - 10rem);
+    }
+
+
+}
+
+
+@media (pointer: coarse) {
+    .changeSlide {
+        transition: 0;
+    }
+}
+
+@media (min-width: 900px) and (min-aspect-ratio: 6/2) {
+    #container {
+        align-items: center;
+    }
+
+    #inputVariables{
+        width: 30%;
+        grid-template-rows: 33.33% 33.33% 33.33%;
+        grid-template-columns: 40% 40%;
+        grid-column-gap: 1rem;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    #display{
+        width: 70%;
+    }
+
+    .inputBoxen {
+        height: 80%;
+    }
+
+
+    
+}

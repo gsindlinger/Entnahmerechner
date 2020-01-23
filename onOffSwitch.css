@@ -1,0 +1,47 @@
+/*made by https://proto.io/freebies/onoff/*/
+
+.onoffswitch {
+    position: relative; width: 85px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #999999; border-radius: 45px;
+}
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 36px; padding: 0; line-height: 36px;
+    font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+    content: "JA";
+    padding-left: 10px;
+    background-color: #FFFFFF; color: #303841;
+}
+.onoffswitch-inner:after {
+    content: "NEIN";
+    padding-right: 10px;
+    background-color: #303841; color: #7A99AC;
+    text-align: right;
+}
+.onoffswitch-switch {
+    display: block; width: 18px; margin: 9px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 45px;
+    border: 2px solid #999999; border-radius: 45px;
+    transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px; 
+}
