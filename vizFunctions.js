@@ -419,8 +419,9 @@ function vizDifferentAges(agesArr, numbersAgesArr, iterations) {
         mainDiv.appendChild(header)
 
         let viz = document.createElement("div")
+        viz.className = "centerContent"
         viz.style.width = 1/agesArr.length*width2 + "px"
-        viz.style.height = height2*0.8 + "px"
+        viz.style.height = height2-header.clientHeight + "px"
         mainDiv.appendChild(viz)
 
         /*Erstellung des SVG-Pie Charts*/
@@ -431,42 +432,178 @@ function vizDifferentAges(agesArr, numbersAgesArr, iterations) {
 
         // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
         var radius = Math.min(width, height) / 2 - margin
-
-        var svg = d3.select(viz)
-        .append("svg")
-        .attr("width", width)
-        .attr("height", height)
-        .append("g")
-        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-
         // Compute the position of each group on the pie:
         var pie = d3.pie()
         .value(function(d) {return d.value; })
         .sort(null);
         var data_ready = pie(d3.entries(helpArray))
+        console.log(data_ready)
+ 
 
-        // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
-        svg
-        .selectAll('whatever')
-        .data(data_ready)
-        .enter()
-        .append('path')
-        .attr('d', d3.arc()
-        .innerRadius(0.6*radius)
-        .outerRadius(radius)
-        )
-        .attr('fill', function(d){ 
-            if(d.data.key == 0) {
-                return '#1a9850'
-            }else{
-                return '#d73027'
+
+        var svg = d3.select(viz)
+        
+        svg.append("svg")
+        .attr("width", Math.min(width, height))
+        .attr("height", Math.min(width, height))
+        
+        svg = svg.select("svg")
+        
+        svg.append("defs")
+        
+        var defs = svg.select("defs")
+            defs.append("mask")
+                .attr("id", "innerbevel")
+            mask = defs.select("#innerbevel")
+            mask.append("rect")
+                .attr("width", "100%")
+                .attr("height", "100%")
+                .attr("fill", "black")
+            mask.append("circle")
+                .attr("cx", "0")
+                .attr("cy", "0")
+                .attr("r", 0.8*radius)
+                .attr("fill", "white")
+
+            defs.append("mask")
+                .attr("id", "centrehole")
+            mask = defs.select("#centrehole")
+            mask.append("rect")
+                .attr("x", "-100%")
+                .attr("y", "-100%")
+                .attr("width", "200%")
+                .attr("height", "200%")
+                .attr("fill", "white")
+            mask.append("circle")
+                .attr("cx", "0")
+                .attr("cy", "0")
+                .attr("r", 0.6*radius)
+                .attr("fill", "white")
+
+        svg.append("g")
+            .attr("transform", "translate(" + (radius+margin) + "," + (radius+margin) + ")")
+            .attr("mask", "url(#centrehole)")
+
+        var mainG = svg.select("g")
+            //first G
+            mainG.append("g")
+                .attr("id", "firstG")
+            var g = mainG.select("#firstG")
+            
+            g
+            .selectAll('whatever')
+            .data(data_ready)
+            .enter()
+            .append('path')
+            
+            .attr('d', d3.arc()
+            .innerRadius(0.8*radius)
+            .outerRadius(radius)
+            )
+
+            .attr('fill', function(d){ 
+                if(d.data.key == 0) {
+                    return '#1a9850'
+                }else{
+                    return '#d73027'
+                }
+            })
+
+            if (!(Math.round(numbersAgesArr[j]) < 5 || Math.round(numbersAgesArr[j]) > 95)) {
+                g
+                .selectAll('whatever')
+                .data(data_ready)
+                .enter()
+                .append('circle')
+                .attr("cx", function(d) {
+                    var help = d3.arc()
+                                .innerRadius(0.6*radius)
+                                .outerRadius(0.8*radius)
+                    var helpStr = help(d).split(",")
+                    return helpStr[6]
+                })
+                .attr("cy", function(d) {
+                    var help = d3.arc()
+                                .innerRadius(0.6*radius)
+                                .outerRadius(0.8*radius)
+                    var helpStr = help(d).split(",")
+                    return helpStr[7].substr(0,helpStr[7].indexOf("L"))
+                })
+                .attr("r", 0.2*radius)
+                .attr('fill', function(d){ 
+                    if(d.data.key == 0) {
+                        return '#1a9850'
+                    }else{
+                        return '#d73027'
+                    }
+                })
+
             }
-         })
-        .attr("stroke", "white")
-        .style("stroke-width", "0.2rem")
+
+            //2nd G
+
+            mainG.append("g")
+                .attr("id", "scndG")
+                .attr("mask", "url(#innerbevel)")
+            g = mainG.select("#scndG")
+            
+            g
+            .selectAll('whatever')
+            .data(data_ready)
+            .enter()
+            .append('path')
+            .attr('d', d3.arc()
+            .innerRadius(0.6*radius)
+            .outerRadius(0.8*radius)
+            )
+
+            .attr('fill', function(d){ 
+                if(d.data.key == 0) {
+                    return '#0B4022'
+                }else{
+                    return '#400E0B'
+                }
+            })
 
 
-        svg.append("text")
+            if (!(Math.round(numbersAgesArr[j]) < 5 || Math.round(numbersAgesArr[j]) > 95)) {
+
+                g
+                .selectAll('whatever')
+                .data(data_ready)
+                .enter()
+                .append('circle')
+                .attr("cx", function(d) {
+                    var help = d3.arc()
+                                .innerRadius(0.6*radius)
+                                .outerRadius(0.8*radius)
+                    var helpStr = help(d).split(",")
+                    return helpStr[6]
+                })
+                .attr("cy", function(d) {
+                    var help = d3.arc()
+                                .innerRadius(0.6*radius)
+                                .outerRadius(0.8*radius)
+                    
+                    var helpStr = help(d).split(",")
+                    return helpStr[7].substr(0,helpStr[7].indexOf("L"))
+                })
+                .attr("r", 0.2*radius)
+                .attr('fill', function(d){ 
+                    if(d.data.key == 0) {
+                        return '#0B4022'
+                    }else{
+                        return '#400E0B'
+                    }
+                })
+            }
+            
+
+    
+        
+
+
+        mainG.append("text")
         .attr("text-anchor", "middle")
         .attr("dominant-baseline", "middle")
         .text(Math.round(numbersAgesArr[j]) + "%")
