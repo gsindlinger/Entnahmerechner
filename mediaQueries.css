@@ -634,10 +634,31 @@
 
     }
 
+    #popupDeviationSpecialHeader {
+        -webkit-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+                transform: rotate(0deg);
+    }
+
     .move10Left {
         left: calc(100% + 1.5rem);
         top: calc(50% - 2.4rem);
     }
+
+    .move10Right > div:nth-child(2) {
+        width: 90%;
+    }
+
+    .move10Right > div:nth-child(3) {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 10%;
+        height: calc(100% - 4rem);
+        align-items: center;
+    }
+       
+       
 
     .move30Left {
         left: calc(100% + 1.5rem);
@@ -667,6 +688,19 @@
         top: auto;
     }
 
+    #mainPopupDeviation {
+        display: none;
+        font-size: 1.3rem;
+        position: absolute;
+        background-color: var(--color-uni-dark);
+        left: calc(100% + 1rem);
+        width: 50%;
+        top: -11%;
+        height: 16rem;
+        border-radius: 1rem;
+        box-shadow: 1rem 1rem 1rem rgba(0,0,0,0.75);
+    }
+
     #main{
         top: 8rem;
         z-index: -1;
@@ -684,6 +718,29 @@
         -o-transition: 0;
         transition: 0;
     }
+
+    .inputSlide:hover{
+        background-color: auto;
+        color: auto;
+      }
+
+      .buttonStandardabweichung:hover{
+        color: auto;
+        background-color: auto;
+      }
+
+      .clickIcon:hover {
+        color: auto;
+      }
+
+      .changeSlide:hover{
+        color: auto;
+    }
+
+    .vizSlideIconsDetail:hover{
+        background-color:auto;
+        color: auto;
+      }
 }
 
 @media (min-width: 900px) and (min-aspect-ratio: 6/2) {

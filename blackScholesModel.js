@@ -114,7 +114,7 @@ function calculateViz(performance, sigma, einmalbetrag,
     kontrolle = new Array()
     kontrolle2 = new Array()
     const toleranz = 1
-    const iterations = 10000
+    const iterations = 4000
     const laufzeit = alterEnde-alterStart
     let renteVal = renteRange.input.value*12
 

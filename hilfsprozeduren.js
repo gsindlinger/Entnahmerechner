@@ -83,8 +83,9 @@ function numberWithPoints (x) {
 
   function openPopup(i) {
     var popup
+    let arrow
+    arrow = document.getElementById("popupDeviationSpecialHeader")
     if(smartphone[0].matches) {
-      let arrow = document.getElementById("popupDeviationSpecialHeader")
       if(arrow.style.transform == "rotate(90deg)") {
         mainPopupDeviation.style.display = "inline-block"
         arrow.style.transform = "rotate(270deg)"
@@ -92,7 +93,17 @@ function numberWithPoints (x) {
         mainPopupDeviation.style.display = "none"
         arrow.style.transform = "rotate(90deg)"
       }
-      
+    
+    }else if(smartphone[0].matches || smartphone[1].matches) {
+      console.log("test")
+      if(arrow.style.transform == "rotate(0deg)") {
+        mainPopupDeviation.style.display = "inline-block"
+        arrow.style.transform = "rotate(180deg)"
+      }else{
+        mainPopupDeviation.style.display = "none"
+        arrow.style.transform = "rotate(0deg)"
+      }
+    
     }else{
       popup = document.getElementsByClassName("popup")
       popup[i].style.display = "flex"
@@ -106,7 +117,6 @@ function closePopup(i) {
 }
 
 function resizeChart() {
-  console.log("Test")
   updateValue()
   funcSmartphone()
 }
@@ -153,7 +163,6 @@ function sigmaFromPerformance(performance) {
 //Ermöglicht das Bearbeiten/Bzw. verhindert das Bearbeiten der Volatilität
 function activateSigma() {
   let buttons = document.querySelectorAll(".buttonDeviation")
-  console.log(buttons)
   
   //let slider =  document.querySelector(".sliderPopup")
 

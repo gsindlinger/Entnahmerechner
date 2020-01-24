@@ -437,7 +437,6 @@ function vizDifferentAges(agesArr, numbersAgesArr, iterations) {
         .value(function(d) {return d.value; })
         .sort(null);
         var data_ready = pie(d3.entries(helpArray))
-        console.log(data_ready)
  
 
 

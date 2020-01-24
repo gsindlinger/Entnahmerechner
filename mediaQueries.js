@@ -44,7 +44,6 @@ function funcSmartphone() {
             //fragment.appendChild(parent)
             
             let headerBox = headerSpecial[i].querySelector(".popupHeaderSpecial")
-            console.log(headerBox)
             headerBox.appendChild(parent)
             if(i == 4) {
                 let extraChild = headerBox.children[1]
