@@ -117,20 +117,41 @@ function vizSmiley(arr) {
 
 function vizHistogram(arr, deviation, pensionStart, pensionEnd, tolerance) {
 
+    var viz2 = d3.select("#viz2")
+    .html("")
+
+    viz2.append("div")
+    .attr("id", "viz2Header")
+    .attr("class", "centerContent alignCenter")
+    .append("h2")
+    .text("Wie lange reicht das Geld?")
+
+
+    viz2.append("div")
+    .attr("id", "viz2Display")
+    .attr("class", "centerContent alignCenter")
+    .append("div")
+    .attr("id", "viz2Histogram")
+    .attr("class", "centerContent alignCenter")
 
 
     let container = document.getElementById("vizSlide")
     let changeVizIcons = container.lastElementChild
     let width2 = Math.round(container.clientWidth - 2*changeVizIcons.clientWidth);
-    let height2
-    if(smartphone[0].matches) {
+
+    //console.log(document.getElementById("viz2Header").clientHeight)
+
+    let helpStr = window.getComputedStyle(d3.select("#viz2Header").node()).height
+    let height2 = container.clientHeight - parseInt(helpStr.substr(0,helpStr.length - 2))
+        
+    /*if(smartphone[0].matches) {
         height2 = Math.round(container.clientHeight*0.95);
     }else if(smartphone[1].matches){
         height2 = Math.round(container.clientHeight*0.98);
     }else{
         height2 = Math.round(container.clientHeight)*0.9;    
-    } 
-    let helpStr = "0 0 " + width2 + " " + height2
+    } */
+    helpStr = "0 0 " + width2 + " " + height2
 
     
     
@@ -145,7 +166,6 @@ function vizHistogram(arr, deviation, pensionStart, pensionEnd, tolerance) {
 
     var max = d3.max(arr)
     var min = d3.min(arr)
-
 
     var svg = d3.select("#viz2Histogram")
     .html("")
