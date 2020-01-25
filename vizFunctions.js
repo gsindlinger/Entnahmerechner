@@ -165,9 +165,14 @@ function vizHistogram(arr, deviation, pensionStart, pensionEnd, tolerance) {
     
     /*let width = 960
     let height = 300*/
+    let helpMargin
+    if(smartphone[5].matches) {
+        helpMargin = Math.max(Math.min(height2*0.15,50), 25)
+    }else{
+        helpMargin = Math.min(height2*0.1,50)
+    }
 
-
-    let margin = {top: 0, right: 0, bottom: Math.max(Math.min(height2*0.1,50), 25), left: Math.min(width2*0.15,70)}
+    let margin = {top: 0, right: 0, bottom: helpMargin, left: Math.min(width2*0.15,70)}
     width = width2 - margin.left - margin.right,
     height = height2 - margin.top - margin.bottom;
 
@@ -357,7 +362,20 @@ function vizHistogram(arr, deviation, pensionStart, pensionEnd, tolerance) {
 
     svg.append('text')
         .attr('x', width / 2 - margin.left/2)
-        .attr('y', height + margin.bottom*1.1)
+        .attr('y', function(){
+            if(smartphone[5].matches){
+                if(smartphone[1].matches) {
+                    return height + margin.bottom*1.15
+                }else{
+                    return height + margin.bottom
+                }
+                
+            }else if(smartphone[0].matches) {
+                return height + margin.bottom*1
+            }else{
+                return height + margin.bottom*0.8
+            }
+        })
         .attr('text-anchor', 'middle')
         .text('Alter in Jahren')
 
@@ -374,9 +392,15 @@ function vizDifferentAges(agesArr, numbersAgesArr, iterations) {
 
 
 
-    let container = document.getElementById("viz3")
-    let width2 = Math.round(container.parentNode.clientWidth)*0.95;
-    let height2 = Math.round(container.parentNode.clientHeight)*0.3;
+    let container = document.getElementById("vizSlide")
+    let width2 = container.clientWidth;
+    let height2
+    if(smartphone[4].matches) {
+        height2 = (container.clientHeight - sizeHistogramHelper)*0.8
+    }else{
+        height2 = (container.clientHeight - sizeHistogramHelper)*0.4;
+    }
+    
     //let helpStr = "0 0 " + width2 + " " + height2
     let helpArray = new Array(2)
    
