@@ -555,6 +555,45 @@
 }
 
 
+@media (min-aspect-ratio: 2/1) and (max-width: 899px){
+    body #headerSpecial {
+        width: 17rem;
+    }
+
+    body #main{
+        left: 17rem;
+        width: calc(100% - 17rem);
+    }
+
+    body .smartphoneHeaderContainer{
+        width: 17rem;
+    }
+
+    body #headerSpecial{
+        font-size: 2rem;
+    }
+
+    body .smartphoneIcons{
+        padding-top: 0.5rem;
+        height: 2.5rem;
+    }
+
+    body .smartphoneHeaderBox p{
+        padding-top: 0.4rem;
+        font-size: 1.3rem;
+    }
+
+    body .move10Right{
+        bottom: calc(50% - 2rem);
+    }
+
+    body #mainPopupDeviation {
+        bottom: 0;
+        top: auto;
+    }
+}
+
+
 @media (orientation: landscape) and (max-width: 1024px), (pointer: coarse) and (orientation: landscape) {
     :root{
         --height-slider-track: 1rem;
@@ -633,9 +672,9 @@
     }
 
     #popupDeviationSpecialHeader {
-        -webkit-transform: rotate(0deg);
-            -ms-transform: rotate(0deg);
-                transform: rotate(0deg);
+        -webkit-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+                transform: rotate(180deg);
     }
 
     .move10Left {

@@ -166,7 +166,8 @@ function vizHistogram(arr, deviation, pensionStart, pensionEnd, tolerance) {
     /*let width = 960
     let height = 300*/
 
-    let margin = {top: 0, right: 0, bottom: Math.min(height2*0.1,50), left: Math.min(width2*0.15,70)}
+
+    let margin = {top: 0, right: 0, bottom: Math.max(Math.min(height2*0.1,50), 25), left: Math.min(width2*0.15,70)}
     width = width2 - margin.left - margin.right,
     height = height2 - margin.top - margin.bottom;
 
@@ -346,7 +347,13 @@ function vizHistogram(arr, deviation, pensionStart, pensionEnd, tolerance) {
     .attr('y', -margin.left/1.5)
     .attr('transform', 'rotate(-90)')
     .attr('text-anchor', 'middle')
-    .text('Wahrscheinlichkeit in %')
+    .text(function(){
+        if(smartphone[4].matches) {
+            return 'Prob. in %'
+        }else{
+            return "Wahrscheinlichkeit in %"
+        }
+    })
 
     svg.append('text')
         .attr('x', width / 2 - margin.left/2)
