@@ -36,6 +36,9 @@ body {
     background-image: linear-gradient(to bottom, rgba(256,256,256,0.4) 
       0%,rgba(256,256,256,0.4) 100%), url(Hintergrund.jpg);
     background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     color: black;
