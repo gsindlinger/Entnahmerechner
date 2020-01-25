@@ -995,6 +995,14 @@ img  {
   color: #363636;
 }
 
+#viz2Test{
+  position: absolute;
+  top: -1000px;
+  left: -1000px;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
 footer{
   height: 3rem;
   position: fixed;

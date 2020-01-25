@@ -102,4 +102,5 @@ const headerNormal = [
 const headerSpecialParent = document.getElementById("headerSpecial").children
 const mainPopupDeviation = document.getElementById("mainPopupDeviation")
 
-//Input-Formen
+//globale Variable zur optimalen Bestimmung der Größe des Histograms
+let sizeHistogramHelper

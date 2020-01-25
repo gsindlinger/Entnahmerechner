@@ -116,6 +116,15 @@ function vizSmiley(arr) {
 
 
 function vizHistogram(arr, deviation, pensionStart, pensionEnd, tolerance) {
+    
+    
+    let elem = document.getElementById("viz2Test")
+    if(elem != null) {
+        sizeHistogramHelper = elem.offsetHeight
+        d3.select("#viz2Test").remove()
+    }
+    
+
 
     var viz2 = d3.select("#viz2")
     .html("")
@@ -140,10 +149,9 @@ function vizHistogram(arr, deviation, pensionStart, pensionEnd, tolerance) {
     let width2 = Math.round(container.clientWidth - 2*changeVizIcons.clientWidth);
 
     //console.log(document.getElementById("viz2Header").clientHeight)
-
-    let helpStr = window.getComputedStyle(d3.select("#viz2Header").node()).height
-    let height2 = container.clientHeight - parseInt(helpStr.substr(0,helpStr.length - 2))
-        
+    let height2 = container.clientHeight - sizeHistogramHelper
+    //d3.select("#viz2Test").remove()
+    
     /*if(smartphone[0].matches) {
         height2 = Math.round(container.clientHeight*0.95);
     }else if(smartphone[1].matches){
@@ -151,7 +159,7 @@ function vizHistogram(arr, deviation, pensionStart, pensionEnd, tolerance) {
     }else{
         height2 = Math.round(container.clientHeight)*0.9;    
     } */
-    helpStr = "0 0 " + width2 + " " + height2
+    let helpStr = "0 0 " + width2 + " " + height2
 
     
     
