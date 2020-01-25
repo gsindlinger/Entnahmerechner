@@ -4,9 +4,9 @@
 for (binding of bindings) {
   const input = binding.input
   const output = binding.output
-  
 
-  function updateValue() {
+
+  function updateDisplay() {
 
     let renteAlterStart = parseInt(renteneintrittsalter.input.value)
     let renteAlterEnde = parseInt(rentenaustrittsalter.input.value)
@@ -52,7 +52,7 @@ for (binding of bindings) {
         }
         output.innerText = input.value
         renteAlterEnde = parseInt(input.value)
-
+  
         renteneintrittsalter.input.max = Math.min(parseInt(input.value) - 1,75)
         fillPercentageHeader(renteAlterEnde)
         
@@ -60,7 +60,7 @@ for (binding of bindings) {
       }else{
       output.innerText = input.value
     }
-
+  
       /*Ersetzen des Textes in den Boxen*/
     
     if (input.id != "rangeRente") {
@@ -72,14 +72,19 @@ for (binding of bindings) {
         output.innerText = numberWithPoints(input.value) + "€"
       }
     }
-
-    calculateViz(getPerformance(),getDeviation(), getEinmalbetrag(),
-    renteAlterStart,renteAlterEnde)
     
   }
+  
+  function updateValue() {
+    calculateViz(getPerformance(),getDeviation(), getEinmalbetrag(),
+    getStartAge(),getEndAge())
+  }
 
-  input.addEventListener('input', updateValue)
+  input.addEventListener('change', updateValue)
+  input.addEventListener('input', updateDisplay)
+  updateDisplay()
   updateValue()
+  
   
 }
 
@@ -87,6 +92,10 @@ for (binding of bindings) {
 window.addEventListener("orientationchange", updateValue)
 window.addEventListener("resize", resizeChart)
 window.addEventListener("DOMContentLoad", updateValue)
+
+
+
+
 
 
 

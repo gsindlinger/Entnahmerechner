@@ -5,8 +5,16 @@ function numberWithPoints (x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
   }
   
+  function getStartAge() {
+    return parseInt(renteneintrittsalter.input.value)
+  }
+
+  function getEndAge() {
+    return parseInt(rentenaustrittsalter.input.value)
+  }
+
   function calcLaufzeit() {
-    return parseInt(rentenaustrittsalter.input.value)-parseInt(renteneintrittsalter.input.value)
+    return parseInt(rentenaustrittsalter.input.value) - parseInt(renteneintrittsalter.input.value)
   }
 
   function getPerformance() {
@@ -52,33 +60,6 @@ function numberWithPoints (x) {
 
   function roundDigitsNum(x, num) {
     return (Math.round(x * Math.pow(10,num))/Math.pow(10,num))
-  }
-
-
-  function fillLebenserwartung(sex, startAge) {
-    let helpAge
-    if(sex == 1) {
-      helpAge = 83
-      
-      //parseInt(age)+parseInt(sterbetafelW[age])
-    }else{
-      helpAge = 78 
-      //parseInt(age)+parseInt(sterbetafelM[age])
-    }
-
-    if(startAge > helpAge) {
-      window.alert("Das Renteneintrittsalter liegt über der Lebenserwartung! Bitte zunächst das Renteneintrittsalter anpassen!")
-      if(sex == 1) {
-        activateSex(0)
-      }else{
-        activateSex(1)
-      }
-      
-      return
-    }
-    lebenserwartung.innerText = helpAge + " Jahre"
-    rentenaustrittsalter.input.value = helpAge
-    rentenaustrittsalter.output.innerText = helpAge
   }
 
   function openPopup(i) {
