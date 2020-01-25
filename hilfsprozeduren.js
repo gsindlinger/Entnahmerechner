@@ -153,7 +153,7 @@ function activateSigma() {
     for(let i = 0; i < buttons.length; i++) {
       buttons[i].classList.remove("buttonStandardabweichung")
     }
-
+    updateValue()
 
   }else{
     standardabweichung.input.disabled = true
@@ -171,7 +171,7 @@ function activateSigma() {
 
   }
 
-  updateValue()
+  
 
 }
 

@@ -116,6 +116,9 @@ function openSliderPopup(n) {
 }
 
 function closeSliderPopup(n) {
+    if(n == 4) {
+        openPopup()
+    }
     headerSpecial[n].style.display = "none"
     headerSpecial[n].parentNode.classList.remove("activeInput")
 }
