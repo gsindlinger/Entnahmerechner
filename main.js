@@ -72,6 +72,11 @@ for (binding of bindings) {
         output.innerText = numberWithPoints(input.value) + "€"
       }
     }
+
+
+    if(!smartphone[3].matches) {
+      updateValue()
+    }
     
   }
   
@@ -80,7 +85,9 @@ for (binding of bindings) {
     getStartAge(),getEndAge())
   }
 
-  input.addEventListener('change', updateValue)
+  if(smartphone[3].matches) {
+    input.addEventListener('change', updateValue)
+  }
   input.addEventListener('input', updateDisplay)
   updateDisplay()
   updateValue()
@@ -91,7 +98,12 @@ for (binding of bindings) {
 
 window.addEventListener("orientationchange", updateValue)
 window.addEventListener("resize", resizeChart)
-window.addEventListener("DOMContentLoad", updateValue)
+window.addEventListener("DOMContentLoaded", function() {
+  updateValue
+  if(smartphone[0].matches || smartphone[1].matches || smartphone[2].matches) {
+    openSliderPopup(0)
+  }
+})
 
 
 

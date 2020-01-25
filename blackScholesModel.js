@@ -114,7 +114,16 @@ function calculateViz(performance, sigma, einmalbetrag,
     kontrolle = new Array()
     kontrolle2 = new Array()
     const toleranz = 1
-    const iterations = 4000
+    
+
+    //Abhängig vom Device soll die Anzahl der Iterationen angepasst werden
+    let iterations
+    if(smartphone[3].matches) {
+        iterations = 4000
+    }else{
+        iterations = 8000
+    }
+    
     const laufzeit = alterEnde-alterStart
     let renteVal = renteRange.input.value*12
 

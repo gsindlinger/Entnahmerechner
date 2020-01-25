@@ -43,11 +43,11 @@ function showSlides(n) {
 //Swipe-Gesten
 
 function swipeLeft() {
-  plusSlides(-1)
+  plusSlides(1)
 }
 
 function swipeRight() {
-  plusSlides(1)
+  plusSlides(-1)
 }
 
 //slide.setAttribute("data-swipe-threshold", slide.clientWidth*0.5)
