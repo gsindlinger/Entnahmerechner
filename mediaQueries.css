@@ -286,6 +286,8 @@
         background-color: var(--color-uni-dark);
         z-index: 10;
         border-radius: 2rem;
+        -webkit-box-shadow: 1rem 1rem 1rem rgba(0,0,0,0.75);
+                box-shadow: 1rem 1rem 1rem rgba(0,0,0,0.75);
     }
 
     .triangle {
@@ -628,9 +630,6 @@
 
     .popupHeaderSpecial {
         width: 50vw;
-        -webkit-box-shadow: 1rem 1rem 1rem rgba(0,0,0,0.75);
-                box-shadow: 1rem 1rem 1rem rgba(0,0,0,0.75);
-
     }
 
     #popupDeviationSpecialHeader {

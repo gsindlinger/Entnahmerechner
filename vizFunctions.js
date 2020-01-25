@@ -116,20 +116,18 @@ function vizSmiley(arr) {
 
 function vizHistogram(arr, deviation, pensionStart, pensionEnd, tolerance) {
 
-    let ageDiff = pensionEnd-pensionStart
 
 
-
-
-    let container = document.getElementById("viz2")
-    let width2 = Math.round(container.parentNode.clientWidth);
+    let container = document.getElementById("vizSlide")
+    let changeVizIcons = container.lastElementChild
+    let width2 = Math.round(container.clientWidth - 2*changeVizIcons.clientWidth);
     let height2
     if(smartphone[0].matches) {
-        height2 = Math.round(container.parentNode.clientHeight*0.95);
+        height2 = Math.round(container.clientHeight*0.95);
     }else if(smartphone[1].matches){
-        height2 = Math.round(container.parentNode.clientHeight*0.98);
+        height2 = Math.round(container.clientHeight*0.98);
     }else{
-        height2 = Math.round(container.parentNode.clientHeight)*0.9;    
+        height2 = Math.round(container.clientHeight)*0.9;    
     } 
     let helpStr = "0 0 " + width2 + " " + height2
 
@@ -295,7 +293,7 @@ function vizHistogram(arr, deviation, pensionStart, pensionEnd, tolerance) {
             
     })
     .attr("width", function(d) {
-        return x(d.x1) - x(d.x0) -1;   
+        return Math.max(x(d.x1) - x(d.x0) -1, 0);   
     })
     .attr("height", function(d) { 
             return height - y(d.length/arr.length*100) 
