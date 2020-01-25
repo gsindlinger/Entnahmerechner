@@ -718,8 +718,8 @@
     }
 
     .inputSlide:hover{
-        background-color: auto;
-        color: auto;
+        background-color: blue;
+        color: white;
       }
 
       .buttonStandardabweichung:hover{
