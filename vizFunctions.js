@@ -166,7 +166,7 @@ function vizHistogram(arr, deviation, pensionStart, pensionEnd, tolerance) {
     /*let width = 960
     let height = 300*/
 
-    let margin = {top: 10, right: 30, bottom: 50, left: 70}
+    let margin = {top: 0, right: 0, bottom: Math.min(height2*0.1,50), left: Math.min(width2*0.15,70)}
     width = width2 - margin.left - margin.right,
     height = height2 - margin.top - margin.bottom;
 
@@ -343,14 +343,14 @@ function vizHistogram(arr, deviation, pensionStart, pensionEnd, tolerance) {
 
     svg.append('text')
     .attr('x', -(height / 2)-margin.top)
-    .attr('y', -50)
+    .attr('y', -margin.left/1.5)
     .attr('transform', 'rotate(-90)')
     .attr('text-anchor', 'middle')
     .text('Wahrscheinlichkeit in %')
 
     svg.append('text')
-        .attr('x', width / 2)
-        .attr('y', height+ 40)
+        .attr('x', width / 2 - margin.left/2)
+        .attr('y', height + margin.bottom*1.1)
         .attr('text-anchor', 'middle')
         .text('Alter in Jahren')
 
