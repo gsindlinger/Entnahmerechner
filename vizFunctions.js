@@ -153,10 +153,23 @@ function vizHistogram(arr, deviation, pensionStart, pensionEnd, tolerance) {
     .attr("viewBox", helpStr)
     .append("g")
     .attr('transform', 'translate('+ margin.left +', '+ margin.top +')');
+
+    /*var svg = d3.select('#viz2Histogram')
+    .html("")
+    .append("svg")
+    //.attr("width", width + margin.left + margin.right)
+    //.attr("height", width + margin.left + margin.right)
+    .attr('viewBox','0 0 ' + width + ' ' + height)
+    .attr('preserveAspectRatio','xMinYMin meet')
+    .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")")*/
+
     
     
     var x = d3.scaleLinear()
         .domain([min-1,max+1])
+        //.nice(numTicks)  
         .range([0, width]);
 
     
@@ -172,7 +185,28 @@ function vizHistogram(arr, deviation, pensionStart, pensionEnd, tolerance) {
 
     
     var bins = histogram(arr)
+    //console.log(bins)
+
    
+
+    /*let count = 0
+    for(let i = 0; i < bins.length; i++) {
+        if (bins[i] === undefined || bins[i].length == 0) {
+            count++
+        }
+    }
+
+    if(count <= 4) {
+        count-=2
+    }*/
+
+    
+
+
+    /*if(deviation == 0) {
+        bins[1]["x0"] -= 0.5
+        bins[1]["x1"] -= 0.5
+    }*/
     var ymax = d3.max(bins, (d) => Math.max((d.length))/arr.length*100+5,100)
 
     var y = d3.scaleLinear()
@@ -284,6 +318,7 @@ function vizHistogram(arr, deviation, pensionStart, pensionEnd, tolerance) {
 
              tooltip.transition()
              .duration('200')
+             //.style("display", "inline-block");
              .style("opacity", '1')
              
     })
@@ -301,8 +336,20 @@ function vizHistogram(arr, deviation, pensionStart, pensionEnd, tolerance) {
 
         tooltip.transition()
         .duration('200')
+        //.style("display", "none");
         .style("opacity", '0')
     });
+    /*    .style("fill", function(d) {
+        let retColor
+        if(d.x0 < pensionEnd - tolerance) {
+            retColor = "#FF8975"
+        }else if (d.x0 > pensionEnd + tolerance) {
+            retColor = "#7CCC7D"
+        }else{
+            retColor = "#FFC10E"
+        }
+        return retColor
+    })*/
 
     svg.append("svg:line")
     .attr("x1", x(pensionEnd))
