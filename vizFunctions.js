@@ -150,8 +150,9 @@ function vizHistogram(arr, deviation, pensionStart, pensionEnd, tolerance) {
     var svg = d3.select("#viz2Histogram")
     .html("")
     .append("svg")
-    .attr("width", width2)
-    .attr("height", height2)
+    .attr("viewBox", helpStr)
+    .attr("width", "100%")
+    .attr("height","100%")
     .append("g")
     .attr('transform', 'translate('+ margin.left +', '+ margin.top +')');
     
