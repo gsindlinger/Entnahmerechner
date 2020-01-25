@@ -76,7 +76,6 @@ function numberWithPoints (x) {
       }
     
     }else if(smartphone[0].matches || smartphone[1].matches) {
-      console.log("test")
       if(arrow.style.transform == "rotate(0deg)") {
         mainPopupDeviation.style.display = "inline-block"
         arrow.style.transform = "rotate(180deg)"
