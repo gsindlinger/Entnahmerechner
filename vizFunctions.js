@@ -1,6 +1,12 @@
 
 
 function vizSmiley(arr) {
+    //Größenbestimmung - viz2Test hat Größe 6rem
+    let elem = document.getElementById("viz2Test")
+    sizeHistogramHelper = elem.offsetHeight
+
+
+
     let sum = arr[0] + arr[1] + arr[2]
     let max = arr.indexOf(Math.max(...arr))
     
@@ -8,20 +14,28 @@ function vizSmiley(arr) {
     let varMedium = Math.round(arr[1]/sum*100)
     let varGood = Math.round(arr[2]/sum*100)
 
-    let container = document.getElementById("vizMain")
+    let container = document.getElementById("vizSlide")
     let help = document.getElementById("vizTopGood")
     let help2 = document.getElementById("textGood")
-    let slideIcons = document.getElementById("vizSlideIcons")
-    let help3 = document.getElementById("vizTopGood")
 
 
     let height
     let heightStart
     if(smartphone[0].matches) {
-        height = (container.clientHeight - slideIcons.clientHeight - 3*help2.clientHeight)/3
+        if(help2.clientHeight = 0) {
+            height = (container.clientHeight - 3*sizeHistogramHelper)/3
+        }else{
+            height = (container.clientHeight - 3*help2.clientHeight)/3
+        }
+        
         heightStart = height*0.95
     }else{
-        height = container.clientHeight - slideIcons.clientHeight - help.clientHeight - help2.clientHeight
+        if(help.clientWidth == 0) {
+            height = container.clientHeight - 4/3*sizeHistogramHelper - 2/3*sizeHistogramHelper
+        }else{
+            height = container.clientHeight - help.clientHeight - help2.clientHeight
+        }
+        
         heightStart = height*0.85
         heightStart = Math.min(heightStart, container.clientWidth/3)
     }
@@ -116,13 +130,7 @@ function vizSmiley(arr) {
 
 
 function vizHistogram(arr, deviation, pensionStart, pensionEnd, tolerance) {
-    
-    
-    let elem = document.getElementById("viz2Test")
-    if(elem != null) {
-        sizeHistogramHelper = elem.offsetHeight
-        d3.select("#viz2Test").remove()
-    }
+
     
 
 
@@ -166,13 +174,10 @@ function vizHistogram(arr, deviation, pensionStart, pensionEnd, tolerance) {
     /*let width = 960
     let height = 300*/
     let helpMargin
-    if(smartphone[5].matches) {
-        helpMargin = Math.max(Math.min(height2*0.15,50), 25)
-    }else{
-        helpMargin = Math.min(height2*0.1,50)
-    }
+    console.log("sizeHelper: " + sizeHistogramHelper)
+    helpMargin = 0.8*sizeHistogramHelper
 
-    let margin = {top: 0, right: 0, bottom: helpMargin, left: Math.min(width2*0.15,70)}
+    let margin = {top: 0, right: 0, bottom: helpMargin, left: 1.2*helpMargin}
     width = width2 - margin.left - margin.right,
     height = height2 - margin.top - margin.bottom;
 
@@ -185,8 +190,8 @@ function vizHistogram(arr, deviation, pensionStart, pensionEnd, tolerance) {
     .html("")
     .append("svg")
     .attr("viewBox", helpStr)
-    .attr("width", "100%")
-    .attr("height","100%")
+    .attr("width", width2)
+    .attr("height", height2)
     .append("g")
     .attr('transform', 'translate('+ margin.left +', '+ margin.top +')');
     
@@ -349,7 +354,7 @@ function vizHistogram(arr, deviation, pensionStart, pensionEnd, tolerance) {
 
     svg.append('text')
     .attr('x', -(height / 2)-margin.top)
-    .attr('y', -margin.left/1.5)
+    .attr('y', -margin.left/1.4)
     .attr('transform', 'rotate(-90)')
     .attr('text-anchor', 'middle')
     .text(function(){
@@ -362,20 +367,7 @@ function vizHistogram(arr, deviation, pensionStart, pensionEnd, tolerance) {
 
     svg.append('text')
         .attr('x', width / 2 - margin.left/2)
-        .attr('y', function(){
-            if(smartphone[5].matches){
-                if(smartphone[1].matches) {
-                    return height + margin.bottom*1.15
-                }else{
-                    return height + margin.bottom
-                }
-                
-            }else if(smartphone[0].matches) {
-                return height + margin.bottom*1
-            }else{
-                return height + margin.bottom*0.8
-            }
-        })
+        .attr('y', height + helpMargin)
         .attr('text-anchor', 'middle')
         .text('Alter in Jahren')
 

@@ -104,3 +104,5 @@ const mainPopupDeviation = document.getElementById("mainPopupDeviation")
 
 //globale Variable zur optimalen Bestimmung der Größe des Histograms
 let sizeHistogramHelper
+
+
