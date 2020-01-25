@@ -718,26 +718,21 @@
     }
 
     .inputSlide:hover{
-        background-color: blue;
+        background-color: var(--slider-track-color);
         color: white;
       }
 
-      .buttonStandardabweichung:hover{
-        color: auto;
-        background-color: auto;
-      }
-
       .clickIcon:hover {
-        color: auto;
+        color: #363636;
       }
 
       .changeSlide:hover{
-        color: auto;
+        color: #363636;
     }
 
     .vizSlideIconsDetail:hover{
-        background-color:auto;
-        color: auto;
+        background-color: white;
+        color: #363636;
       }
 }
 
