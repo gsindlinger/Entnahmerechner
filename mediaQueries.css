@@ -156,6 +156,7 @@
 
     #header{
         height: 17rem;
+        z-index: 10;
     }
 
     #headerNormal{
@@ -180,7 +181,6 @@
         width: 100%;
         background-color: var(--color-uni);
         color: white; 
-        z-index: 1;
     }
 
     #inputVariables {
@@ -343,6 +343,14 @@
         font-size: 3rem;
         width: 6rem;
     }
+
+    #viz3SelectAge .inputSlide {
+        font-size: 3rem;
+        height: 5rem;
+        width: 8rem;
+    }
+
+
 
     #textStandardabweichung {
         font-size: 2rem;
@@ -550,6 +558,11 @@
         -ms-grid-row: 6;
         -ms-grid-column: 2;
 
+    }
+
+    #viz3SelectAge {
+        flex-direction: column;
+        padding-top: 0;
     }
 
 }
@@ -853,3 +866,4 @@
 
     
 }
+

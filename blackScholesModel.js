@@ -155,8 +155,9 @@ function calculateViz(performance, sigma, einmalbetrag,
 
     let agesArray = new Array()
     let agesArray2 = new Array()
+    viz3SelectAgesArray.length = 0
+    viz3SelectAgesArray2.length = 0
 
-    
     let startAgePercentage = Math.ceil((alterStart + 6)/5)*5
     let endAgePercentage = Math.ceil((alterEnde+11)/5)*5
     if(endAgePercentage-startAgePercentage > 25) {
@@ -169,6 +170,12 @@ function calculateViz(performance, sigma, einmalbetrag,
             agesArray.push(j)
             agesArray2.push(0)
         }
+    }
+
+
+    for(let j = alterStart + 1; j <= endAgePercentage; j++) {
+        viz3SelectAgesArray.push(j)
+        viz3SelectAgesArray2.push(0)
     }
     
     
@@ -223,12 +230,23 @@ function calculateViz(performance, sigma, einmalbetrag,
             }
         }
 
+        for(let j = 0; j < viz3SelectAgesArray.length; j++) {
+            if (compVal + alterStart >= viz3SelectAgesArray[j]) {
+                viz3SelectAgesArray2[j]++
+            }
+        }
+
     }
 
     
     vizSmiley(smileyArray)
     vizHistogram(histogramArray, sigma, alterStart, alterEnde, toleranz)
     vizDifferentAges(agesArray, agesArray2, iterations)
+    /*if(!smartphone[4].matches) {
+        console.log(viz3SelectAgesArray2)
+        console.log(viz3SelectAgesArray)
+        vizDifferentAgesSelect(viz3SelectAgesArray, viz3SelectAgesArray2, iterations)
+    }*/
     
 }
 

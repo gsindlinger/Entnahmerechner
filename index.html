@@ -304,6 +304,24 @@
                                     <h2>Reicht das Geld um ein bestimmtes Alter zu erreichen?</h2>
                             </div>
                             <div id="viz3Percentages" class="centerContent flexRow"></div>
+                            <div id="viz3SelectAgeContainer" class="centerContent">
+                                <div id="viz3SelectAge" class="centerContent">
+                                    <div id="viz3SelectAgeHeader" class="centerContent alignCenter">
+                                        <h2>Wählen Sie ihr gewünschtes Alter...</h2>
+                                    </div>
+                                    
+                                        <div id="viz3SelectAgeDisplay" class="centerContent flexColumn">
+                                        <div id="viz3SelectAgeDonut" class="centerContent flexColumn alignCenter"></div>
+                                        <div class="sliderContainer">
+                                            <a class="inputSlide inputPrev inputSelectAge" onclick="changeRangeValue('rangeRentenaustrittsalter',-1)">&#10094;</a>
+                                            <input type="range" min="60" max="120" value="90"
+                                                id="viz3SelectAgeRange">
+                                            <a class="inputSlide inputNext inputSelectAge" onclick="changeRangeValue('rangeRentenaustrittsalter',1)">&#10095;</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
                         </div>
 
 						<div id="viz2" class="slideshow fade flexColumn"></div>

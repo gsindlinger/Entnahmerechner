@@ -154,7 +154,7 @@ function vizHistogram(arr, deviation, pensionStart, pensionEnd, tolerance) {
 
     let container = document.getElementById("vizSlide")
     let changeVizIcons = container.lastElementChild
-    let width2 = Math.round(container.clientWidth - 2*changeVizIcons.clientWidth);
+    let width2 = container.clientWidth - 2*changeVizIcons.clientWidth;
 
     //console.log(document.getElementById("viz2Header").clientHeight)
     let height2 = container.clientHeight - sizeHistogramHelper
@@ -174,7 +174,6 @@ function vizHistogram(arr, deviation, pensionStart, pensionEnd, tolerance) {
     /*let width = 960
     let height = 300*/
     let helpMargin
-    console.log("sizeHelper: " + sizeHistogramHelper)
     helpMargin = 0.8*sizeHistogramHelper
 
     let margin = {top: 0, right: 0, bottom: helpMargin, left: 1.2*helpMargin}
@@ -385,12 +384,30 @@ function vizDifferentAges(agesArr, numbersAgesArr, iterations) {
 
 
     let container = document.getElementById("vizSlide")
-    let width2 = container.clientWidth;
+    let changeVizIcons = container.lastElementChild
+    let width2 = container.clientWidth - 2*changeVizIcons.clientWidth;
     let height2
-    if(smartphone[4].matches) {
+    let height3
+    let width3
+    let bool = true
+    document.getElementById("viz3SelectAgeContainer").style.display = "flex"
+    if(smartphone[6].matches) {
         height2 = (container.clientHeight - sizeHistogramHelper)*0.8
+        bool = false
+        document.getElementById("viz3SelectAgeContainer").style.display = "none"
     }else{
-        height2 = (container.clientHeight - sizeHistogramHelper)*0.4;
+        height2 = (container.clientHeight - sizeHistogramHelper)*0.3
+        if(smartphone[0].matches) {
+            height3 = (container.clientHeight - sizeHistogramHelper)*0.7 - 3*sizeHistogramHelper
+        }else{
+            height3 = (container.clientHeight - sizeHistogramHelper)*0.7 - 2*sizeHistogramHelper
+        }
+        if (height3 < height2) {
+            bool = false
+            document.getElementById("viz3SelectAgeContainer").style.display = "none"
+            height2 = (container.clientHeight - sizeHistogramHelper)*0.9
+        }
+        width3 = Math.min(height3, width2)
     }
     
     //let helpStr = "0 0 " + width2 + " " + height2
@@ -399,10 +416,274 @@ function vizDifferentAges(agesArr, numbersAgesArr, iterations) {
     for(let j = 0; j < agesArr.length; j++) {
         helpArray[0] = numbersAgesArr[j]
         helpArray[1] = iterations-numbersAgesArr[j]
+        numbersAgesArr[j] = Math.round(numbersAgesArr[j]/iterations*100)
 
-        if(j == 2) {
-            //console.log(helpArray)
-        }
+        
+        let mainDiv = document.createElement("div")
+        mainDiv.className = "centerContent flexColumn"
+        mainDiv.style.width = 1/agesArr.length*width2 + "px"
+        mainDiv.style.height = height2
+
+        displayDonut(agesArr, numbersAgesArr, mainDiv, j, width2, height2, helpArray, j)
+
+       
+
+        viz3Percentage.appendChild(mainDiv)
+
+    }
+
+
+    //Erstellen des Divs zum Auswählen des Alters
+    if(!smartphone[4].matches && bool == true) {
+
+        let container2 = document.getElementById("viz3SelectAgeDonut")
+        container2.innerHTML = ""
+        let j = Math.round((viz3SelectAgesArray.length-1)/2)
+        helpArray[0] = viz3SelectAgesArray2[j]
+        helpArray[1] = iterations - viz3SelectAgesArray2[j]
+
+        let mainDiv = document.createElement("div")
+        mainDiv.className = "centerContent flexColumn"
+        mainDiv.style.width = width3 + "px"
+        mainDiv.style.height = height3
+
+
+        agesArr = [viz3SelectAgesArray[j]]
+        console.log(agesArr)
+        numbersAgesArr =  [Math.round(viz3SelectAgesArray2[j]/iterations*100)]
+    
+        displayDonut(agesArr, numbersAgesArr, mainDiv, 0, width3, height3, helpArray, -1)
+        
+        container2.appendChild(mainDiv)
+
+    }
+    
+    
+
+
+}
+
+function displayDonut(agesArr, numbersAgesArr, mainDiv, j, width2, height2, helpArray, index) {
+
+    /*Erstellen des Divs für den Titel und die Grafiken. Je nach
+        Länge des übergebenen Arrays und in Abhängigkeit der Displaygröße
+        wird für jedes Alter ein solches Div erstellt. Anschließend wird
+        der Titel für das Alter und das SVG-Element angehängt*/
+
+
+        let header = document.createElement("div")
+        header.className = "fontViz"
+        header.innerText = Math.round(agesArr[j]) + " Jahre"
+        header.style.width = "100%"
+        mainDiv.appendChild(header)
+
+        let viz = document.createElement("div")
+        viz.className = "centerContent"
+        viz.style.width = 1/agesArr.length*width2 + "px"
+        viz.style.height = height2-header.clientHeight + "px"
+        mainDiv.appendChild(viz)
+
+        /*Erstellung des SVG-Pie Charts*/
+        // set the dimensions and margins of the graph
+        var width =  Math.min(1/agesArr.length*width2, height2)
+        var height = width
+        let margin = 0.05*Math.min(width, height)
+
+        let innerBevel = "innerbevel" + index
+
+        // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
+        var radius = Math.min(width, height)/ 2 - margin
+        // Compute the position of each group on the pie:
+        var pie = d3.pie()
+        .value(function(d) {return d.value; })
+        .sort(null);
+        var data_ready = pie(d3.entries(helpArray))
+ 
+
+
+        var svg = d3.select(viz)
+        
+        svg.append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        //.attr("viewBox", 0 + " " + 0 + " " + width + " " + height)
+        
+        svg = svg.select("svg")
+        
+        svg.append("defs")
+        
+        var defs = svg.select("defs")
+            defs.append("mask")
+                .attr("id", innerBevel)
+            mask = defs.select("#" + innerBevel)
+            mask.append("rect")
+                .attr("width", "200%")
+                .attr("height", "200%")
+                .attr("fill", "black")
+            mask.append("circle")
+                .attr("cx", "0")
+                .attr("cy", "0")
+                .attr("r", 0.8*radius)
+                .attr("fill", "white")
+                
+        svg.append("g")
+            .attr("transform", "translate(" + (radius+margin) + "," + (radius+margin) + ")")
+
+        var mainG = svg.select("g")
+            //first G
+            mainG.append("g")
+                .attr("id", "firstG")
+            var g = mainG.select("#firstG")
+            
+            g
+            .selectAll('whatever')
+            .data(data_ready)
+            .enter()
+            .append('path')
+            
+            .attr('d', d3.arc()
+            .innerRadius(0.8*radius)
+            .outerRadius(radius)
+            )
+
+            .attr('fill', function(d){ 
+                if(d.data.key == 0) {
+                    return '#1a9850'
+                }else{
+                    return '#d73027'
+                }
+            })
+
+            if (!(Math.round(numbersAgesArr[j]) < 5 || Math.round(numbersAgesArr[j]) > 95)) {
+                g
+                .selectAll('whatever')
+                .data(data_ready)
+                .enter()
+                .append('circle')
+                .attr("cx", function(d) {
+                    var help = d3.arc()
+                                .innerRadius(0.6*radius)
+                                .outerRadius(0.8*radius)
+                    var helpStr = help(d).split(",")
+                    return helpStr[6]
+                })
+                .attr("cy", function(d) {
+                    var help = d3.arc()
+                                .innerRadius(0.6*radius)
+                                .outerRadius(0.8*radius)
+                    var helpStr = help(d).split(",")
+                    return helpStr[7].substr(0,helpStr[7].indexOf("L"))
+                })
+                .attr("r", 0.2*radius)
+                .attr('fill', function(d){ 
+                    if(d.data.key == 0) {
+                        return '#1a9850'
+                    }else{
+                        return '#d73027'
+                    }
+                })
+
+            }
+
+            //2nd G
+
+            mainG.append("g")
+                .attr("id", "scndG")
+                .attr("mask", "url(#" + innerBevel + ")")
+            g = mainG.select("#scndG")
+            
+            g
+            .selectAll('whatever')
+            .data(data_ready)
+            .enter()
+            .append('path')
+            .attr('d', d3.arc()
+            .innerRadius(0.6*radius)
+            .outerRadius(radius)
+            )
+
+            
+
+
+            .attr('fill', function(d){ 
+                if(d.data.key == 0) {
+                    return '#0B4022'
+                }else{
+                    return '#400E0B'
+                }
+            })
+            console.log("2: ", 0.8*radius)
+
+            if (!(Math.round(numbersAgesArr[j]) < 5 || Math.round(numbersAgesArr[j]) > 95)) {
+
+                g
+                .selectAll('whatever')
+                .data(data_ready)
+                .enter()
+                .append('circle')
+                .attr("cx", function(d) {
+                    var help = d3.arc()
+                                .innerRadius(0.6*radius)
+                                .outerRadius(0.8*radius)
+                    var helpStr = help(d).split(",")
+                    return helpStr[6]
+                })
+                .attr("cy", function(d) {
+                    var help = d3.arc()
+                                .innerRadius(0.6*radius)
+                                .outerRadius(0.8*radius)
+                    
+                    var helpStr = help(d).split(",")
+                    return helpStr[7].substr(0,helpStr[7].indexOf("L"))
+                })
+                .attr("r", 0.2*radius)
+                .attr('fill', function(d){ 
+                    if(d.data.key == 0) {
+                        return '#0B4022'
+                    }else{
+                        return '#400E0B'
+                    }
+                })
+            }
+            
+
+        mainG.append("text")
+        .attr("text-anchor", "middle")
+        .attr("dominant-baseline", "middle")
+        .text(Math.round(numbersAgesArr[j]) + "%")
+        .attr("class", "fontHeader")
+        .style("font-size", "1.7rem")
+        .style("padding-top", "1rem")
+
+
+
+}
+
+
+function vizDifferentAgesSelect(agesArr, numbersAgesArr, iterations) {
+    let vizSelect = document.getElementById("viz3SelectAge")
+    
+    while (vizSelect.firstChild) {
+        vizSelect.removeChild(vizSelect.firstChild);
+    }
+
+    //console.log(numbersAgesArr)
+
+
+
+    let container = document.getElementById("vizSlide")
+    let changeVizIcons = container.lastElementChild
+    let width2 = container.clientWidth - 2*changeVizIcons.clientWidth;
+    let height2
+    height2 = (container.clientHeight - sizeHistogramHelper)*0.5
+    let j = Math.round((agesArr.length - 1)/2)
+    
+    //let helpStr = "0 0 " + width2 + " " + height2
+    let helpArray = new Array(2)
+   
+    helpArray[0] = numbersAgesArr[j]
+    helpArray[1] = iterations-numbersAgesArr[j]
+
         numbersAgesArr[j] = Math.round(numbersAgesArr[j]/iterations*100)
         
 
@@ -414,7 +695,7 @@ function vizDifferentAges(agesArr, numbersAgesArr, iterations) {
 
         let mainDiv = document.createElement("div")
         mainDiv.className = "centerContent flexColumn"
-        mainDiv.style.width = 1/agesArr.length*width2 + "px"
+        mainDiv.style.width = 1/2*width2 + "px"
         mainDiv.style.height = height2
 
         let header = document.createElement("div")
@@ -424,15 +705,15 @@ function vizDifferentAges(agesArr, numbersAgesArr, iterations) {
 
         let viz = document.createElement("div")
         viz.className = "centerContent"
-        viz.style.width = 1/agesArr.length*width2 + "px"
+        viz.style.width = 1/2*width2 + "px"
         viz.style.height = height2-header.clientHeight + "px"
         mainDiv.appendChild(viz)
 
         /*Erstellung des SVG-Pie Charts*/
         // set the dimensions and margins of the graph
-        var width =  1/agesArr.length*width2
-        var height = height2
-        margin = 0.05*Math.min(width, height)
+        var width =  width2*0.1
+        var height = height2*0.7
+        let margin = 0.05*Math.min(width, height)
 
         // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
         var radius = Math.min(width, height) / 2 - margin
@@ -442,7 +723,8 @@ function vizDifferentAges(agesArr, numbersAgesArr, iterations) {
         .sort(null);
         var data_ready = pie(d3.entries(helpArray))
  
-
+        var radiusInner = 0.8*radius
+        console.log(radiusInner)
 
         var svg = d3.select(viz)
         
@@ -458,15 +740,16 @@ function vizDifferentAges(agesArr, numbersAgesArr, iterations) {
             defs.append("mask")
                 .attr("id", "innerbevel")
             mask = defs.select("#innerbevel")
-            mask.append("rect")
-                .attr("width", "100%")
-                .attr("height", "100%")
-                .attr("fill", "black")
+            
             mask.append("circle")
                 .attr("cx", "0")
                 .attr("cy", "0")
-                .attr("r", 0.8*radius)
+                .attr("r", 0.8*height)
                 .attr("fill", "white")
+
+            mask.append("rect")
+                .attr("fill", "black")
+            
 
             defs.append("mask")
                 .attr("id", "centrehole")
@@ -639,10 +922,11 @@ function vizDifferentAges(agesArr, numbersAgesArr, iterations) {
         text.innerText = numbersAgesArr[j] +"%"
         main.appendChild(text)*/
 
-        viz3Percentage.appendChild(mainDiv)
+        vizSelect.appendChild(mainDiv)
 
-    }
 }
+
+        
     
 
 

@@ -105,4 +105,7 @@ const mainPopupDeviation = document.getElementById("mainPopupDeviation")
 //globale Variable zur optimalen Bestimmung der Größe des Histograms
 let sizeHistogramHelper
 
+let viz3SelectAgesArray = new Array()
+let viz3SelectAgesArray2 = new Array()
+
 

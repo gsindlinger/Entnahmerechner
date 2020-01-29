@@ -3,7 +3,8 @@ const smartphone = [window.matchMedia("(orientation: portrait)"),
                     window.matchMedia("(pointer: coarse) and (orientation: landscape)"),
                     window.matchMedia("(pointer: coarse)"),
                     window.matchMedia("(min-aspect-ratio: 2/1) and (max-width: 899px)"),
-                    window.matchMedia("(min-aspect-ratio: 15/9)")]
+                    window.matchMedia("(min-aspect-ratio: 15/9)"),
+                    window.matchMedia("(min-aspect-ratio: 2/1) and (max-width: 1600px)")]
 
 
 for (let i = 0; i < smartphone.length; i++) {
