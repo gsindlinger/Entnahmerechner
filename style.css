@@ -33,10 +33,10 @@
     font-weight: 400;
     line-height: 1.4;
     z-index: -1;
-    background-size: cover;
+    /*background-size: cover;
     -moz-background-size: cover;
     -webkit-background-size: cover;
-    -o-background-size: cover;
+    -o-background-size: cover;*/
     background-repeat: no-repeat;
     background-position: center;
     color: black;
