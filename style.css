@@ -33,6 +33,7 @@
     font-weight: 400;
     line-height: 1.4;
     z-index: -1;
+    background-size: 100% auto;
     /*background-size: cover;
     -moz-background-size: cover;
     -webkit-background-size: cover;
