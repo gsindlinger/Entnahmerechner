@@ -409,7 +409,7 @@ function vizDifferentAges(agesArr, numbersAgesArr, iterations) {
         document.getElementById("viz3SelectAgeContainer").style.display = "none"
         document.getElementById("viz3").style.alignItems = "space-evenly"
     }else{
-        height2 = (container.clientHeight - sizeHistogramHelper)*0.25
+        height2 = (container.clientHeight - sizeHistogramHelper)*0.31
         if(smartphone[0].matches) {
             height3 = (container.clientHeight - sizeHistogramHelper)*0.75 - 2.8*sizeHistogramHelper
             heightComp = (container.clientHeight - sizeHistogramHelper)*0.75 - 2*sizeHistogramHelper
@@ -722,6 +722,8 @@ function displayDonut(agesArr, numbersAgesArr, mainDiv, j, width2, height2, help
                 return "1rem"
             }else if(agesArr.length > 4){
                 return "1.2rem"
+            }else if(index == -1 && 0.4*radius < sizeHistogramHelper/6*1.7) {
+                return "1rem"
             }else{
                 return "1.7rem"
             }
