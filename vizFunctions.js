@@ -402,7 +402,7 @@ function vizDifferentAges(agesArr, numbersAgesArr, iterations) {
         }else{
             height3 = (container.clientHeight - sizeHistogramHelper)*0.7 - 2*sizeHistogramHelper
         }
-        if (height3 < height2) {
+        if (height3*1.1 < height2) {
             bool = false
             document.getElementById("viz3SelectAgeContainer").style.display = "none"
             height2 = (container.clientHeight - sizeHistogramHelper)*0.9
@@ -525,7 +525,7 @@ function displayDonut(agesArr, numbersAgesArr, mainDiv, j, width2, height2, help
                 .attr("cy", "0")
                 .attr("r", 0.8*radius)
                 .attr("fill", "white")
-                
+
         svg.append("g")
             .attr("transform", "translate(" + (radius+margin) + "," + (radius+margin) + ")")
 
@@ -684,7 +684,7 @@ function vizDifferentAgesSelect(agesArr, numbersAgesArr, iterations) {
     helpArray[0] = numbersAgesArr[j]
     helpArray[1] = iterations-numbersAgesArr[j]
 
-        numbersAgesArr[j] = Math.round(numbersAgesArr[j]/iterations*100)
+        let textPercentage = Math.round(numbersAgesArr[j]/iterations*100)
         
 
 
@@ -795,7 +795,7 @@ function vizDifferentAgesSelect(agesArr, numbersAgesArr, iterations) {
                 }
             })
 
-            if (!(Math.round(numbersAgesArr[j]) < 5 || Math.round(numbersAgesArr[j]) > 95)) {
+            if (!(Math.round(textPercentage) < 5 || Math.round(textPercentage) > 95)) {
                 g
                 .selectAll('whatever')
                 .data(data_ready)
@@ -852,7 +852,7 @@ function vizDifferentAgesSelect(agesArr, numbersAgesArr, iterations) {
             })
 
 
-            if (!(Math.round(numbersAgesArr[j]) < 5 || Math.round(numbersAgesArr[j]) > 95)) {
+            if (!(Math.round(textPercentage) < 5 || Math.round(textPercentage) > 95)) {
 
                 g
                 .selectAll('whatever')
@@ -892,7 +892,7 @@ function vizDifferentAgesSelect(agesArr, numbersAgesArr, iterations) {
         mainG.append("text")
         .attr("text-anchor", "middle")
         .attr("dominant-baseline", "middle")
-        .text(Math.round(numbersAgesArr[j]) + "%")
+        .text(Math.round(textPercentage) + "%")
         .attr("class", "fontHeader")
         .style("font-size", "1.7rem")
         .style("padding-top", "1rem")
