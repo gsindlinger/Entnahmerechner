@@ -1,3 +1,12 @@
+window.addEventListener("orientationchange", updateValue)
+window.addEventListener("resize", resizeChart)
+window.addEventListener("DOMContentLoaded", function() {
+  updateValue()
+  if(smartphone[0].matches || smartphone[1].matches || smartphone[2].matches) {
+    openSliderPopup(0)
+  }
+})
+
 for (binding of bindings) {
   const input = binding.input
   const output = binding.output
@@ -8,16 +17,6 @@ for (binding of bindings) {
   input.addEventListener('input', updateDisplay.bind(binding))
   updateDisplay.apply(binding, [true])
 }
-
-
-window.addEventListener("orientationchange", updateValue)
-window.addEventListener("resize", resizeChart)
-window.addEventListener("DOMContentLoaded", function() {
-  updateValue()
-  if(smartphone[0].matches || smartphone[1].matches || smartphone[2].matches) {
-    openSliderPopup(0)
-  }
-})
 
 function updateValue() {
   calculateViz(getPerformance(),getDeviation(), getEinmalbetrag(),

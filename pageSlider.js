@@ -50,6 +50,6 @@ function swipeRight() {
   plusSlides(-1)
 }
 
-//slide.setAttribute("data-swipe-threshold", slide.clientWidth*0.5)
+slide.setAttribute("data-swipe-threshold", slide.clientWidth*0.5)
 slide.addEventListener('swiped-left', swipeLeft)
 slide.addEventListener('swiped-right', swipeRight)
