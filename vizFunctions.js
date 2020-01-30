@@ -409,12 +409,12 @@ function vizDifferentAges(agesArr, numbersAgesArr, iterations) {
         document.getElementById("viz3SelectAgeContainer").style.display = "none"
         document.getElementById("viz3").style.alignItems = "space-evenly"
     }else{
-        height2 = (container.clientHeight - sizeHistogramHelper)*0.3
+        height2 = (container.clientHeight - sizeHistogramHelper)*0.25
         if(smartphone[0].matches) {
-            height3 = (container.clientHeight - sizeHistogramHelper)*0.7 - 2.8*sizeHistogramHelper
-            heightComp = (container.clientHeight - sizeHistogramHelper)*0.7 - 2*sizeHistogramHelper
+            height3 = (container.clientHeight - sizeHistogramHelper)*0.75 - 2.8*sizeHistogramHelper
+            heightComp = (container.clientHeight - sizeHistogramHelper)*0.75 - 2*sizeHistogramHelper
         }else{
-            height3 = (container.clientHeight - sizeHistogramHelper)*0.7 - 2*sizeHistogramHelper
+            height3 = (container.clientHeight - sizeHistogramHelper)*0.75 - 2*sizeHistogramHelper
             heightComp = height3
         }
         if (heightComp < height2) {
@@ -717,7 +717,15 @@ function displayDonut(agesArr, numbersAgesArr, mainDiv, j, width2, height2, help
         .attr("dominant-baseline", "middle")
         .text(Math.round(numbersAgesArr[j]) + "%")
         .attr("class", "fontHeader")
-        .style("font-size", "1.7rem")
+        .style("font-size", function() {
+            if(agesArr.length > 6) {
+                return "1rem"
+            }else if(agesArr.length > 4){
+                return "1.2rem"
+            }else{
+                return "1.7rem"
+            }
+        })
         .style("padding-top", "1rem")
 
 
