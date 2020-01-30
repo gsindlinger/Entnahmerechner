@@ -97,6 +97,7 @@ function closePopup(i) {
 }
 
 function resizeChart() {
+  slide.setAttribute("data-swipe-threshold", slide.clientWidth*0.5)
   updateValue()
   funcSmartphone()
 }
