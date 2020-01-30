@@ -388,6 +388,7 @@ function vizDifferentAges(agesArr, numbersAgesArr, iterations) {
     let width2 = container.clientWidth - 2*changeVizIcons.clientWidth;
     let height2
     let height3
+    let heightComp
     let width3
     let bool = true
     document.getElementById("viz3SelectAgeContainer").style.display = "flex"
@@ -398,11 +399,13 @@ function vizDifferentAges(agesArr, numbersAgesArr, iterations) {
     }else{
         height2 = (container.clientHeight - sizeHistogramHelper)*0.3
         if(smartphone[0].matches) {
-            height3 = (container.clientHeight - sizeHistogramHelper)*0.7 - 3*sizeHistogramHelper
+            height3 = (container.clientHeight - sizeHistogramHelper)*0.7 - 2.8*sizeHistogramHelper
+            heightComp = (container.clientHeight - sizeHistogramHelper)*0.7 - 2*sizeHistogramHelper
         }else{
             height3 = (container.clientHeight - sizeHistogramHelper)*0.7 - 2*sizeHistogramHelper
+            heightComp = height3
         }
-        if (height3*1.1 < height2) {
+        if (heightComp < height2) {
             bool = false
             document.getElementById("viz3SelectAgeContainer").style.display = "none"
             height2 = (container.clientHeight - sizeHistogramHelper)*0.9
@@ -422,9 +425,9 @@ function vizDifferentAges(agesArr, numbersAgesArr, iterations) {
         let mainDiv = document.createElement("div")
         mainDiv.className = "centerContent flexColumn"
         mainDiv.style.width = 1/agesArr.length*width2 + "px"
-        mainDiv.style.height = height2
+        mainDiv.style.height = Math.min(height2, 1/agesArr.length*width2)
 
-        displayDonut(agesArr, numbersAgesArr, mainDiv, j, width2, height2, helpArray, j)
+        displayDonut(agesArr, numbersAgesArr, mainDiv, j, width2,  Math.min(height2, 1/agesArr.length*width2), helpArray, j)
 
        
 
