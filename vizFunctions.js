@@ -409,12 +409,12 @@ function vizDifferentAges(agesArr, numbersAgesArr, iterations) {
         document.getElementById("viz3SelectAgeContainer").style.display = "none"
         document.getElementById("viz3").style.alignItems = "space-evenly"
     }else{
-        height2 = (container.clientHeight - sizeHistogramHelper)*0.31
+        height2 = (container.clientHeight - sizeHistogramHelper)*0.33
         if(smartphone[0].matches) {
-            height3 = (container.clientHeight - sizeHistogramHelper)*0.75 - 2.8*sizeHistogramHelper
-            heightComp = (container.clientHeight - sizeHistogramHelper)*0.75 - 2*sizeHistogramHelper
+            height3 = (container.clientHeight - sizeHistogramHelper)*0.8 - 2.8*sizeHistogramHelper
+            heightComp = (container.clientHeight - sizeHistogramHelper)*0.8 - 2*sizeHistogramHelper
         }else{
-            height3 = (container.clientHeight - sizeHistogramHelper)*0.75 - 2*sizeHistogramHelper
+            height3 = (container.clientHeight - sizeHistogramHelper)*0.8 - 2*sizeHistogramHelper
             heightComp = height3
         }
         if (heightComp < height2) {
@@ -475,8 +475,9 @@ function vizDifferentAges(agesArr, numbersAgesArr, iterations) {
 
         let mainDiv = document.createElement("div")
         mainDiv.className = "centerContent flexColumn"
-        mainDiv.style.width = width3 + "px"
+        mainDiv.style.width = "100%"
         mainDiv.style.height = height3
+        mainDiv.style.alignItems = "center"
         mainDiv.id = "donutInputDiv"
 
 
