@@ -306,4 +306,3 @@ function changeRangeValue(idRangeName, plusMinus) {
   parseInt(renteneintrittsalter.input.value), parseInt(rentenaustrittsalter.input.value))
 }
 
-
