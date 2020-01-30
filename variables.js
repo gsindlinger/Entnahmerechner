@@ -32,9 +32,6 @@ const renteRange = {
 
 const bindings = [renteneintrittsalter,rentenaustrittsalter,einmalbetrag, renteRange,
       standardabweichung, renditeerwartung]
-
-//Geschlecht: männlich = 0, weiblich = 1
-let sex = 1
   
 //Text Visualisation Header (Rente, Lebenserwartung)
 const rente = document.getElementById("calcRente")
@@ -105,6 +102,11 @@ const mainPopupDeviation = document.getElementById("mainPopupDeviation")
 //globale Variable zur optimalen Bestimmung der Größe des Histograms
 let sizeHistogramHelper
 
+
+//RangeSlider für DonutChart
+const donutChartSlider = document.getElementById("viz3SelectAgeRange")
+
+//Array zum Speichern der Werte für Donut Chart
 let viz3SelectAgesArray = new Array()
 let viz3SelectAgesArray2 = new Array()
 

@@ -305,3 +305,5 @@ function changeRangeValue(idRangeName, plusMinus) {
   calculateViz(getPerformance(),getDeviation(), getEinmalbetrag(),
   parseInt(renteneintrittsalter.input.value), parseInt(rentenaustrittsalter.input.value))
 }
+
+

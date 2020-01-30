@@ -1,3 +1,14 @@
+//Abhängig vom Device soll die Anzahl der Iterationen angepasst werden
+let iterations
+if(smartphone[3].matches) {
+    iterations = 4000
+}else{
+    iterations = 8000
+}
+
+let widthHelper = 0
+let heightHelper = 0
+
 
 
 function vizSmiley(arr) {
@@ -387,15 +398,16 @@ function vizDifferentAges(agesArr, numbersAgesArr, iterations) {
     let changeVizIcons = container.lastElementChild
     let width2 = container.clientWidth - 2*changeVizIcons.clientWidth;
     let height2
+    let width3
     let height3
     let heightComp
-    let width3
     let bool = true
     document.getElementById("viz3SelectAgeContainer").style.display = "flex"
     if(smartphone[6].matches) {
         height2 = (container.clientHeight - sizeHistogramHelper)*0.8
         bool = false
         document.getElementById("viz3SelectAgeContainer").style.display = "none"
+        document.getElementById("viz3").style.alignItems = "space-evenly"
     }else{
         height2 = (container.clientHeight - sizeHistogramHelper)*0.3
         if(smartphone[0].matches) {
@@ -409,6 +421,13 @@ function vizDifferentAges(agesArr, numbersAgesArr, iterations) {
             bool = false
             document.getElementById("viz3SelectAgeContainer").style.display = "none"
             height2 = (container.clientHeight - sizeHistogramHelper)*0.9
+            document.getElementById("viz3").style.alignItems = "space-evenly"
+        }else{
+            if(smartphone[0].matches) {
+                document.getElementById("viz3").style.justifyContent = "center"
+            }else{
+                document.getElementById("viz3").style.alignItems = "center"
+            }
         }
         width3 = Math.min(height3, width2)
     }
@@ -435,6 +454,10 @@ function vizDifferentAges(agesArr, numbersAgesArr, iterations) {
 
     }
 
+    widthHelper = width3
+    heightHelper = height3
+    console.log(heightHelper)
+
 
     //Erstellen des Divs zum Auswählen des Alters
     if(!smartphone[4].matches && bool == true) {
@@ -445,14 +468,20 @@ function vizDifferentAges(agesArr, numbersAgesArr, iterations) {
         helpArray[0] = viz3SelectAgesArray2[j]
         helpArray[1] = iterations - viz3SelectAgesArray2[j]
 
+        //Anpassen der Grenzen für den Slider
+        donutChartSlider.min = viz3SelectAgesArray[0]
+        donutChartSlider.max = viz3SelectAgesArray[viz3SelectAgesArray.length-1]
+        donutChartSlider.value = viz3SelectAgesArray[j]
+
         let mainDiv = document.createElement("div")
         mainDiv.className = "centerContent flexColumn"
         mainDiv.style.width = width3 + "px"
         mainDiv.style.height = height3
+        mainDiv.id = "donutInputDiv"
+
 
 
         agesArr = [viz3SelectAgesArray[j]]
-        console.log(agesArr)
         numbersAgesArr =  [Math.round(viz3SelectAgesArray2[j]/iterations*100)]
     
         displayDonut(agesArr, numbersAgesArr, mainDiv, 0, width3, height3, helpArray, -1)
@@ -461,10 +490,43 @@ function vizDifferentAges(agesArr, numbersAgesArr, iterations) {
 
     }
     
-    
 
 
 }
+
+//donutChartSlider.addEventListener('input', changeDonutValue(0))
+
+function changeDonutValue(n) {
+    if(n == 1) {
+        donutChartSlider.value = parseInt(donutChartSlider.value) + 1
+    }else if(n == -1) {
+        donutChartSlider.value = parseInt(donutChartSlider.value) - 1
+    }
+
+    let j = viz3SelectAgesArray.indexOf(parseInt(donutChartSlider.value))
+    let helpArray = new Array(2)
+    helpArray[0] = viz3SelectAgesArray2[j]
+    helpArray[1] = iterations - viz3SelectAgesArray2[j]
+
+    let inputDiv = document.getElementById("donutInputDiv")
+    if(inputDiv != null) {
+        let width = widthHelper
+        let height = heightHelper
+        console.log(heightHelper)
+        inputDiv.innerHTML = ""
+
+        console.log(width, height)
+
+        let numbersAgesArr = [Math.round(viz3SelectAgesArray2[j]/iterations*100)]
+
+        displayDonut([viz3SelectAgesArray[j]], numbersAgesArr, 
+            inputDiv, 0, width, height, helpArray, -1)
+    }
+    
+}
+
+
+
 
 function displayDonut(agesArr, numbersAgesArr, mainDiv, j, width2, height2, helpArray, index) {
 
@@ -483,7 +545,7 @@ function displayDonut(agesArr, numbersAgesArr, mainDiv, j, width2, height2, help
         let viz = document.createElement("div")
         viz.className = "centerContent"
         viz.style.width = 1/agesArr.length*width2 + "px"
-        viz.style.height = height2-header.clientHeight + "px"
+        viz.style.height = height2 + "px"
         mainDiv.appendChild(viz)
 
         /*Erstellung des SVG-Pie Charts*/
@@ -557,7 +619,7 @@ function displayDonut(agesArr, numbersAgesArr, mainDiv, j, width2, height2, help
                 }
             })
 
-            if (!(Math.round(numbersAgesArr[j]) < 5 || Math.round(numbersAgesArr[j]) > 95)) {
+            if (!(Math.round(numbersAgesArr[j]) > 91)) {
                 g
                 .selectAll('whatever')
                 .data(data_ready)
@@ -617,7 +679,7 @@ function displayDonut(agesArr, numbersAgesArr, mainDiv, j, width2, height2, help
             })
             console.log("2: ", 0.8*radius)
 
-            if (!(Math.round(numbersAgesArr[j]) < 5 || Math.round(numbersAgesArr[j]) > 95)) {
+            if (!(Math.round(numbersAgesArr[j]) > 91)) {
 
                 g
                 .selectAll('whatever')
