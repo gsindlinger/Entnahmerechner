@@ -875,7 +875,7 @@
     
 }
 
-@media (max-aspect-ratio: 2/3) and (max-width: 500px) {
+@media (max-aspect-ratio: 2/2.5) and (max-width: 500px) {
     body #viz3Header {
         padding-top: 0;
         padding-bottom: 0;
