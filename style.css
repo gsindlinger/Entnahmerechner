@@ -1067,6 +1067,13 @@ footer{
   padding-right: 1rem;
 }
 
+#infoFooter {
+  position: relative;
+}
+
+#infoPopup {
+  
+}
 
 
 
