@@ -507,8 +507,6 @@ function changeDonutValue(n) {
         let height = heightHelper
         inputDiv.innerHTML = ""
 
-        console.log(width, height)
-
         let numbersAgesArr = [Math.round(viz3SelectAgesArray2[j]/iterations*100)]
 
         displayDonut([viz3SelectAgesArray[j]], numbersAgesArr, 

@@ -101,6 +101,7 @@ function changeArrowRotationOnOrientationChange() {
   arrow = document.getElementById("popupDeviationSpecialHeader")
   console.log(arrow.style.transform)
   if(smartphone[0].matches) {
+    console.log("Test")
     if(arrow.style.transform == "rotate(180deg)") {
       arrow.style.transform = "rotate(270deg)"
     }else{

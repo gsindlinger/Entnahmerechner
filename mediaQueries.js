@@ -80,13 +80,10 @@ function funcSmartphone() {
                 box = headerSpecial[i].querySelector(".popupHeaderSpecial")
                 if(i == 4) {
                     
-                    console.log(box.children)
                     document.getElementById("popupDeviation").append(mainPopupDeviation)
                     
                     let extraChild = box.children[1]
                     headerNormal[i].children[1].prepend(extraChild)
-                    console.log("")
-                    console.log(box.children[1])
                     let extraChild2 = box.children[1]
                     box.append(extraChild2)
 
