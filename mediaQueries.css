@@ -794,7 +794,6 @@
         left: calc(100% + 1rem);
         width: 50%;
         top: -11%;
-        height: 16rem;
         border-radius: 1rem;
         box-shadow: 1rem 1rem 1rem rgba(0,0,0,0.75);
     }
