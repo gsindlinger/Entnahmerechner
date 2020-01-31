@@ -727,6 +727,10 @@ img  {
   z-index: 100;
 }
 
+#viz3 {
+  justify-content: center;
+}
+
 
 #viz3Header{
   padding-bottom: 2rem;

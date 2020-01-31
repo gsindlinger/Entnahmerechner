@@ -75,7 +75,7 @@ function numberWithPoints (x) {
         arrow.style.transform = "rotate(90deg)"
       }
     
-    }else if(smartphone[0].matches || smartphone[1].matches) {
+    }else if(smartphone[1].matches) {
       if(arrow.style.transform == "rotate(0deg)") {
         mainPopupDeviation.style.display = "inline-block"
         arrow.style.transform = "rotate(180deg)"
@@ -94,6 +94,25 @@ function numberWithPoints (x) {
 function closePopup(i) {
     var popup = document.getElementsByClassName("popup")
     popup[i].style.display = "none"
+}
+
+function changeArrowRotationOnOrientationChange() {
+  
+  arrow = document.getElementById("popupDeviationSpecialHeader")
+  console.log(arrow.style.transform)
+  if(smartphone[0].matches) {
+    if(arrow.style.transform == "rotate(180deg)") {
+      arrow.style.transform = "rotate(270deg)"
+    }else{
+      arrow.style.transform = "rotate(90deg)"
+    }
+  }else if(smartphone[1].matches){
+    if(arrow.style.transform== "rotate(90deg)") {
+      arrow.style.transform = "rotate(0deg)"
+    }else{
+      arrow.style.transform = "rotate(180deg)"
+    }
+  }
 }
 
 function resizeChart() {

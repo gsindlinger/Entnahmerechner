@@ -1,4 +1,7 @@
-window.addEventListener("orientationchange", updateValue)
+window.addEventListener("orientationchange", function() {
+  updateValue()
+  changeArrowRotationOnOrientationChange()
+})
 window.addEventListener("resize", resizeChart)
 window.addEventListener("DOMContentLoaded", function() {
   updateValue()

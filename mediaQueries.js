@@ -45,7 +45,6 @@ function funcSmartphone() {
         for (let i = 0; i < bindings.length; i++) {
 
             let parent = bindings[i].input.parentElement.parentElement
-            //fragment.appendChild(parent)
             
             let headerBox = headerSpecial[i].querySelector(".popupHeaderSpecial")
             headerBox.appendChild(parent)

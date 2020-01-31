@@ -81,6 +81,18 @@
     }
 }
 
+@media (max-width: 600px) and (orientation: landscape){
+    html {
+        font-size: 5px;
+    }
+}
+
+@media (max-width: 500px) and (orientation: landscape){
+    html {
+        font-size: 3.5px;
+    }
+}
+
 
 
 
@@ -576,7 +588,7 @@
 }
 
 
-@media (min-aspect-ratio: 2/1) and (max-width: 899px){
+@media (min-aspect-ratio: 10/14) and (max-width: 899px){
     body #headerSpecial {
         width: 17rem;
     }
@@ -588,10 +600,6 @@
 
     body .smartphoneHeaderContainer{
         width: 17rem;
-    }
-
-    body #headerSpecial{
-        font-size: 2rem;
     }
 
     body .smartphoneIcons{
@@ -619,6 +627,15 @@
 
     body #rente {
         padding-left: 1rem;
+    }
+
+    body #viz3Header {
+        padding-bottom: 0;
+        padding-top: 0;
+    }
+
+    body #viz3Header h2{
+        padding-top: 0.5rem;
     }
        
 }
