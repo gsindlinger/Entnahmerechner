@@ -928,3 +928,18 @@
 
 }
 
+@media (min-aspect-ratio: 6/10) and (max-aspect-ratio: 1/1) {
+    body #viz3Header {
+        padding-bottom: 0;
+    }
+
+    body #viz3SelectAgeHeader {
+        padding-top: 0;
+    }
+
+    body #viz3SelectAge .sliderContainer {
+        height: auto;
+        padding-bottom: 2rem;
+    }
+}
+
