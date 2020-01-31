@@ -99,7 +99,7 @@ function closePopup(i) {
 function changeArrowRotationOnOrientationChange() {
   
   arrow = document.getElementById("popupDeviationSpecialHeader")
-  //console.log(arrow.style.transform)
+  console.log(arrow.style.transform)
   console.log("Test")
     if(arrow.style.transform == "rotate(180deg)") {
       arrow.style.transform = "rotate(270deg)"
