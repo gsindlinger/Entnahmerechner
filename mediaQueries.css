@@ -473,7 +473,7 @@
         height: 15rem;
     }
 
-    body #viz3SelectAgeHeader {
+    #viz3SelectAgeHeader {
         padding-top: 2rem;
     }
 
@@ -875,7 +875,7 @@
     
 }
 
-@media (max-aspect-ratio: 2/2.5) and (max-width: 500px) {
+@media (max-aspect-ratio: 4/5) and (max-width: 500px) {
     body #viz3Header {
         padding-top: 0;
         padding-bottom: 0;
