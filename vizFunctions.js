@@ -167,23 +167,10 @@ function vizHistogram(arr, deviation, pensionStart, pensionEnd, tolerance) {
     let changeVizIcons = container.lastElementChild
     let width2 = container.clientWidth - 2*changeVizIcons.clientWidth;
 
-    //console.log(document.getElementById("viz2Header").clientHeight)
     let height2 = container.clientHeight - sizeHistogramHelper
-    //d3.select("#viz2Test").remove()
-    
-    /*if(smartphone[0].matches) {
-        height2 = Math.round(container.clientHeight*0.95);
-    }else if(smartphone[1].matches){
-        height2 = Math.round(container.clientHeight*0.98);
-    }else{
-        height2 = Math.round(container.clientHeight)*0.9;    
-    } */
     let helpStr = "0 0 " + width2 + " " + height2
 
     
-    
-    /*let width = 960
-    let height = 300*/
     let helpMargin
     helpMargin = 0.8*sizeHistogramHelper
 
@@ -390,8 +377,6 @@ function vizDifferentAges(agesArr, numbersAgesArr, iterations) {
         viz3Percentage.removeChild(viz3Percentage.firstChild);
     }
 
-    //console.log(numbersAgesArr)
-
 
 
     let container = document.getElementById("vizSlide")
@@ -456,11 +441,14 @@ function vizDifferentAges(agesArr, numbersAgesArr, iterations) {
 
     widthHelper = width3
     heightHelper = height3
-    console.log(heightHelper)
 
 
     //Erstellen des Divs zum Auswählen des Alters
     if(!smartphone[4].matches && bool == true) {
+        if(smartphone[7].matches){
+            height3 = height3*0.8
+            heightHelper = height3
+        }
 
         let container2 = document.getElementById("viz3SelectAgeDonut")
         container2.innerHTML = ""
@@ -480,7 +468,7 @@ function vizDifferentAges(agesArr, numbersAgesArr, iterations) {
         mainDiv.style.alignItems = "center"
         mainDiv.id = "donutInputDiv"
 
-
+        
 
         agesArr = [viz3SelectAgesArray[j]]
         numbersAgesArr =  [Math.round(viz3SelectAgesArray2[j]/iterations*100)]
@@ -513,7 +501,6 @@ function changeDonutValue(n) {
     if(inputDiv != null) {
         let width = widthHelper
         let height = heightHelper
-        console.log(heightHelper)
         inputDiv.innerHTML = ""
 
         console.log(width, height)
@@ -539,7 +526,12 @@ function displayDonut(agesArr, numbersAgesArr, mainDiv, j, width2, height2, help
 
         let header = document.createElement("div")
         header.className = "fontViz"
-        header.innerText = Math.round(agesArr[j]) + " Jahre"
+        if(agesArr.length > 5) {
+            header.innerHTML = Math.round(agesArr[j]) + "<br>" + "Jahre"
+        }else{
+            header.innerText = Math.round(agesArr[j]) + " Jahre"
+        }
+        
         header.style.width = "100%"
         mainDiv.appendChild(header)
 
@@ -620,6 +612,7 @@ function displayDonut(agesArr, numbersAgesArr, mainDiv, j, width2, height2, help
                 }
             })
 
+
             if (!(Math.round(numbersAgesArr[j]) > 91)) {
                 g
                 .selectAll('whatever')
@@ -638,7 +631,12 @@ function displayDonut(agesArr, numbersAgesArr, mainDiv, j, width2, height2, help
                                 .innerRadius(0.6*radius)
                                 .outerRadius(0.8*radius)
                     var helpStr = help(d).split(",")
-                    return helpStr[7].substr(0,helpStr[7].indexOf("L"))
+                    if(Math.round(helpArray[d.index]) == 0 || helpArray[d.index] == iterations) {
+                        return "" + (-0.8*radius)
+                    }else{
+                        return helpStr[7].substr(0,helpStr[7].indexOf("L"))
+                    }
+                    
                 })
                 .attr("r", 0.2*radius)
                 .attr('fill', function(d){ 
@@ -678,7 +676,6 @@ function displayDonut(agesArr, numbersAgesArr, mainDiv, j, width2, height2, help
                     return '#400E0B'
                 }
             })
-            console.log("2: ", 0.8*radius)
 
             if (!(Math.round(numbersAgesArr[j]) > 91)) {
 
@@ -698,9 +695,12 @@ function displayDonut(agesArr, numbersAgesArr, mainDiv, j, width2, height2, help
                     var help = d3.arc()
                                 .innerRadius(0.6*radius)
                                 .outerRadius(0.8*radius)
-                    
                     var helpStr = help(d).split(",")
-                    return helpStr[7].substr(0,helpStr[7].indexOf("L"))
+                    if(Math.round(helpArray[d.index]) == 0 || helpArray[d.index] == iterations) {
+                        return "" + (-0.8*radius)
+                    }else{
+                        return helpStr[7].substr(0,helpStr[7].indexOf("L"))
+                    }
                 })
                 .attr("r", 0.2*radius)
                 .attr('fill', function(d){ 
@@ -734,275 +734,6 @@ function displayDonut(agesArr, numbersAgesArr, mainDiv, j, width2, height2, help
 
 
 }
-
-
-function vizDifferentAgesSelect(agesArr, numbersAgesArr, iterations) {
-    let vizSelect = document.getElementById("viz3SelectAge")
-    
-    while (vizSelect.firstChild) {
-        vizSelect.removeChild(vizSelect.firstChild);
-    }
-
-    //console.log(numbersAgesArr)
-
-
-
-    let container = document.getElementById("vizSlide")
-    let changeVizIcons = container.lastElementChild
-    let width2 = container.clientWidth - 2*changeVizIcons.clientWidth;
-    let height2
-    height2 = (container.clientHeight - sizeHistogramHelper)*0.5
-    let j = Math.round((agesArr.length - 1)/2)
-    
-    //let helpStr = "0 0 " + width2 + " " + height2
-    let helpArray = new Array(2)
-   
-    helpArray[0] = numbersAgesArr[j]
-    helpArray[1] = iterations-numbersAgesArr[j]
-
-        let textPercentage = Math.round(numbersAgesArr[j]/iterations*100)
-        
-
-
-        /*Erstellen des Divs für den Titel und die Grafiken. Je nach
-        Länge des übergebenen Arrays und in Abhängigkeit der Displaygröße
-        wird für jedes Alter ein solches Div erstellt. Anschließend wird
-        der Titel für das Alter und das SVG-Element angehängt*/
-
-        let mainDiv = document.createElement("div")
-        mainDiv.className = "centerContent flexColumn"
-        mainDiv.style.width = 1/2*width2 + "px"
-        mainDiv.style.height = height2
-
-        let header = document.createElement("div")
-        header.className = "fontViz"
-        header.innerText = Math.round(agesArr[j]) + " Jahre"
-        mainDiv.appendChild(header)
-
-        let viz = document.createElement("div")
-        viz.className = "centerContent"
-        viz.style.width = 1/2*width2 + "px"
-        viz.style.height = height2-header.clientHeight + "px"
-        mainDiv.appendChild(viz)
-
-        /*Erstellung des SVG-Pie Charts*/
-        // set the dimensions and margins of the graph
-        var width =  width2*0.1
-        var height = height2*0.7
-        let margin = 0.05*Math.min(width, height)
-
-        // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
-        var radius = Math.min(width, height) / 2 - margin
-        // Compute the position of each group on the pie:
-        var pie = d3.pie()
-        .value(function(d) {return d.value; })
-        .sort(null);
-        var data_ready = pie(d3.entries(helpArray))
- 
-        var radiusInner = 0.8*radius
-        console.log(radiusInner)
-
-        var svg = d3.select(viz)
-        
-        svg.append("svg")
-        .attr("width", Math.min(width, height))
-        .attr("height", Math.min(width, height))
-        
-        svg = svg.select("svg")
-        
-        svg.append("defs")
-        
-        var defs = svg.select("defs")
-            defs.append("mask")
-                .attr("id", "innerbevel")
-            mask = defs.select("#innerbevel")
-            
-            mask.append("circle")
-                .attr("cx", "0")
-                .attr("cy", "0")
-                .attr("r", 0.8*height)
-                .attr("fill", "white")
-
-            mask.append("rect")
-                .attr("fill", "black")
-            
-
-            defs.append("mask")
-                .attr("id", "centrehole")
-            mask = defs.select("#centrehole")
-            mask.append("rect")
-                .attr("x", "-100%")
-                .attr("y", "-100%")
-                .attr("width", "200%")
-                .attr("height", "200%")
-                .attr("fill", "white")
-            mask.append("circle")
-                .attr("cx", "0")
-                .attr("cy", "0")
-                .attr("r", 0.6*radius)
-                .attr("fill", "white")
-
-        svg.append("g")
-            .attr("transform", "translate(" + (radius+margin) + "," + (radius+margin) + ")")
-            .attr("mask", "url(#centrehole)")
-
-        var mainG = svg.select("g")
-            //first G
-            mainG.append("g")
-                .attr("id", "firstG")
-            var g = mainG.select("#firstG")
-            
-            g
-            .selectAll('whatever')
-            .data(data_ready)
-            .enter()
-            .append('path')
-            
-            .attr('d', d3.arc()
-            .innerRadius(0.8*radius)
-            .outerRadius(radius)
-            )
-
-            .attr('fill', function(d){ 
-                if(d.data.key == 0) {
-                    return '#1a9850'
-                }else{
-                    return '#d73027'
-                }
-            })
-
-            if (!(Math.round(textPercentage) < 5 || Math.round(textPercentage) > 95)) {
-                g
-                .selectAll('whatever')
-                .data(data_ready)
-                .enter()
-                .append('circle')
-                .attr("cx", function(d) {
-                    var help = d3.arc()
-                                .innerRadius(0.6*radius)
-                                .outerRadius(0.8*radius)
-                    var helpStr = help(d).split(",")
-                    return helpStr[6]
-                })
-                .attr("cy", function(d) {
-                    var help = d3.arc()
-                                .innerRadius(0.6*radius)
-                                .outerRadius(0.8*radius)
-                    var helpStr = help(d).split(",")
-                    return helpStr[7].substr(0,helpStr[7].indexOf("L"))
-                })
-                .attr("r", 0.2*radius)
-                .attr('fill', function(d){ 
-                    if(d.data.key == 0) {
-                        return '#1a9850'
-                    }else{
-                        return '#d73027'
-                    }
-                })
-
-            }
-
-            //2nd G
-
-            mainG.append("g")
-                .attr("id", "scndG")
-                .attr("mask", "url(#innerbevel)")
-            g = mainG.select("#scndG")
-            
-            g
-            .selectAll('whatever')
-            .data(data_ready)
-            .enter()
-            .append('path')
-            .attr('d', d3.arc()
-            .innerRadius(0.6*radius)
-            .outerRadius(0.8*radius)
-            )
-
-            .attr('fill', function(d){ 
-                if(d.data.key == 0) {
-                    return '#0B4022'
-                }else{
-                    return '#400E0B'
-                }
-            })
-
-
-            if (!(Math.round(textPercentage) < 5 || Math.round(textPercentage) > 95)) {
-
-                g
-                .selectAll('whatever')
-                .data(data_ready)
-                .enter()
-                .append('circle')
-                .attr("cx", function(d) {
-                    var help = d3.arc()
-                                .innerRadius(0.6*radius)
-                                .outerRadius(0.8*radius)
-                    var helpStr = help(d).split(",")
-                    return helpStr[6]
-                })
-                .attr("cy", function(d) {
-                    var help = d3.arc()
-                                .innerRadius(0.6*radius)
-                                .outerRadius(0.8*radius)
-                    
-                    var helpStr = help(d).split(",")
-                    return helpStr[7].substr(0,helpStr[7].indexOf("L"))
-                })
-                .attr("r", 0.2*radius)
-                .attr('fill', function(d){ 
-                    if(d.data.key == 0) {
-                        return '#0B4022'
-                    }else{
-                        return '#400E0B'
-                    }
-                })
-            }
-            
-
-    
-        
-
-
-        mainG.append("text")
-        .attr("text-anchor", "middle")
-        .attr("dominant-baseline", "middle")
-        .text(Math.round(textPercentage) + "%")
-        .attr("class", "fontHeader")
-        .style("font-size", "1.7rem")
-        .style("padding-top", "1rem")
-
-        
-        //.style("opacity", 0.7)
-
-        /*let iconContainer = document.createElement("div")
-        iconContainer.className = "viz3PercentageAgeIcon"
-        main.appendChild(iconContainer)
-
-        let icon = document.createElement("img")
-        icon.style
-        if(numbersAgesArr[j] > 50) {
-            icon.src = "svg/check.svg"
-            icon.alt = "Check Icon"
-        }else{
-            icon.src = "svg/stop.svg"
-            icon.alt = "Stop Icon"
-        }
-        iconContainer.appendChild(icon)
-
-        
-
-        let text = document.createElement("div")
-        text.className = "viz3PercentageText"
-        text.innerText = numbersAgesArr[j] +"%"
-        main.appendChild(text)*/
-
-        vizSelect.appendChild(mainDiv)
-
-}
-
-        
     
 
 

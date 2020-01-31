@@ -151,7 +151,12 @@ function calculateViz(performance, sigma, einmalbetrag,
 
     let startAgePercentage = Math.ceil((alterStart + 6)/5)*5
     let endAgePercentage = Math.ceil((alterEnde+11)/5)*5
-    if(endAgePercentage-startAgePercentage > 25) {
+    if(alterEnde - alterStart < 5) {
+        for(let j = startAgePercentage-5; j < startAgePercentage + 5; j+=5) {
+            agesArray.push(j)
+            agesArray2.push(0)
+        }
+    }else if(endAgePercentage-startAgePercentage > 25) {
         for(let j = startAgePercentage; j <= endAgePercentage; j+=10) {
                 agesArray.push(j)
                 agesArray2.push(0)
