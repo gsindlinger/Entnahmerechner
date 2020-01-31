@@ -94,6 +94,11 @@
 }
 
 
+@media (max-width: 300px) and (orientation: landscape){
+    html {
+        font-size: 3px;
+    }
+}
 
 
 
@@ -588,7 +593,7 @@
 }
 
 
-@media (min-aspect-ratio: 10/14) and (max-width: 899px){
+@media (orientation: landscape) and (max-width: 899px){
     body #headerSpecial {
         width: 17rem;
     }
@@ -638,6 +643,16 @@
         padding-top: 0.5rem;
     }
        
+}
+
+@media (orientation: landscape) and (max-width: 350px) {
+    body #rente {
+        padding-left: 2.5rem;
+    }
+
+    body #lebenserwartung {
+        padding-left: 1rem;
+    }
 }
 
 
