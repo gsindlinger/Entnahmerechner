@@ -100,20 +100,24 @@ function changeArrowRotationOnOrientationChange() {
   
   arrow = document.getElementById("popupDeviationSpecialHeader")
   console.log(arrow.style.transform)
-  console.log("Test")
+  if(smartphone[0].matches) {
     if(arrow.style.transform == "rotate(180deg)") {
       arrow.style.transform = "rotate(270deg)"
     }else if(arrow.style.transform == "rotate(0deg)"){
       arrow.style.transform = "rotate(90deg)"
-    }else if(arrow.style.transform == "rotate(90deg)") {
-      arrow.style.transform = "rotate(0deg)"
-    }else if(arrow.style.transform == "rotate(270deg)") {
-      arrow.style.transform == "rotate(180deg)"
     }
+  }else{
+    if(arrow.style.transform == "rotate(90deg)") {
+      arrow.style.transform = "rotate(0deg)"
+    }else if(arrow.style.transform == "rotate(270deg)"){
+      arrow.style.transform = "rotate(180deg)"
+    }
+  }
 }
 
 function resizeChart() {
   slide.setAttribute("data-swipe-threshold", slide.clientWidth*0.5)
+  changeArrowRotationOnOrientationChange()
   updateValue()
   funcSmartphone()
 }
