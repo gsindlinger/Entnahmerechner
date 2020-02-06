@@ -71,6 +71,7 @@ function openPopup() {
   angepasst*/
   var popup
   let arrow
+  
   arrow = document.getElementById("popupDeviationSpecialHeader")
   if(smartphone[0].matches) {
     if(arrow.style.transform == "rotate(90deg)") {
