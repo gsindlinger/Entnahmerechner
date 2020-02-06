@@ -1,94 +1,100 @@
 
-
-
 function numberWithPoints (x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+/*Funktion, die 1000-Trennzeichen bei Zahlen einfügt
+vgl. https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript*/
+return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+}
+
+function roundDigitsNum(x, num) {
+  /*Rundet die Zahl x auf die angegebene Anzahl an Nachkommastellen num*/
+  return (Math.round(x * Math.pow(10,num))/Math.pow(10,num))
+}
+  
+function getStartAge() {
+  return parseInt(renteneintrittsalter.input.value)
+}
+
+function getEndAge() {
+  return parseInt(rentenaustrittsalter.input.value)
+}
+
+function calcLaufzeit() {
+  return parseInt(rentenaustrittsalter.input.value) - parseInt(renteneintrittsalter.input.value)
+}
+
+function getEinmalbetrag() {
+  return parseInt(einmalbetrag.input.value)
+}
+
+function getPerformance() {
+  return parseInt(renditeerwartung.input.value)/100
+}
+
+function getDeviation() {
+/*Die Zuordnung der Standardabweichung ist abhängig von den vorgegebenen, 
+  möglichen Werten für die Standardabweichung
+  
+  Je nachdem, ob der Nutzer das Risiko an die Rendite gekoppelt hat oder nicht,
+  wird der Wert ermittelt*/
+  let helpInt
+  if(checkMuSigma.checked == false) {
+    helpInt = sigmaFromPerformance(parseInt(renditeerwartung.input.value))
+  }else{
+    switch(parseInt(standardabweichung.input.value)) {
+      case 0:
+        helpInt = sigmaArray[0]
+        break
+      case 1:
+        helpInt = sigmaArray[1]
+        break
+      case 2:
+        helpInt = sigmaArray[2]
+        break
+      case 3:
+        helpInt = sigmaArray[3]
+        break
+      case 4:
+        helpInt = sigmaArray[4]
+        break
+    }
+  
+  }
+  return helpInt/100
+  
+}
+
+function openPopup() {
+  /*Öffnet das zusätzliche Fenster der Standardabweichung 
+  (also, ob dieses Feld manuell bearbeitet werden kann)
+
+  Abhängig von dem gewählten Medium wird zusätzlich der Pfeil der Darstellung
+  angepasst*/
+  var popup
+  let arrow
+  arrow = document.getElementById("popupDeviationSpecialHeader")
+  if(smartphone[0].matches) {
+    if(arrow.style.transform == "rotate(90deg)") {
+      mainPopupDeviation.style.display = "inline-block"
+      arrow.style.transform = "rotate(270deg)"
+    }else{
+      mainPopupDeviation.style.display = "none"
+      arrow.style.transform = "rotate(90deg)"
+    }
+  
+  }else if(smartphone[1].matches) {
+    if(arrow.style.transform == "rotate(0deg)") {
+      mainPopupDeviation.style.display = "inline-block"
+      arrow.style.transform = "rotate(180deg)"
+    }else{
+      mainPopupDeviation.style.display = "none"
+      arrow.style.transform = "rotate(0deg)"
+    }
+  
+  }else{
+    popup = document.getElementsByClassName("popup")
+    popup[0].style.display = "flex"
   }
   
-  function getStartAge() {
-    return parseInt(renteneintrittsalter.input.value)
-  }
-
-  function getEndAge() {
-    return parseInt(rentenaustrittsalter.input.value)
-  }
-
-  function calcLaufzeit() {
-    return parseInt(rentenaustrittsalter.input.value) - parseInt(renteneintrittsalter.input.value)
-  }
-
-  function getPerformance() {
-    return parseInt(renditeerwartung.input.value)/100
-  }
-
-  function getDeviation() {
-    let helpInt
-    if(checkMuSigma.checked == false) {
-      helpInt = sigmaFromPerformance(parseInt(renditeerwartung.input.value))
-    }else{
-      switch(parseInt(standardabweichung.input.value)) {
-        case 0:
-          helpInt = sigmaArray[0]
-          break
-        case 1:
-          helpInt = sigmaArray[1]
-          break
-        case 2:
-          helpInt = sigmaArray[2]
-          break
-        case 3:
-          helpInt = sigmaArray[3]
-          break
-        case 4:
-          helpInt = sigmaArray[4]
-          break
-      }
-    
-    }
-    return helpInt/100
-    
-  }
-
-  function getEinmalbetrag() {
-    return parseInt(einmalbetrag.input.value)
-  }
-  
-  /*https://stackoverflow.com/questions/4098685/rounding-numbers-to-2-digits-after-comma/32761885*/
-  function round2DigitsStr(x) {
-    return (Math.round(x * 100)/100).toFixed(2);
-  }
-
-  function roundDigitsNum(x, num) {
-    return (Math.round(x * Math.pow(10,num))/Math.pow(10,num))
-  }
-
-  function openPopup(i) {
-    var popup
-    let arrow
-    arrow = document.getElementById("popupDeviationSpecialHeader")
-    if(smartphone[0].matches) {
-      if(arrow.style.transform == "rotate(90deg)") {
-        mainPopupDeviation.style.display = "inline-block"
-        arrow.style.transform = "rotate(270deg)"
-      }else{
-        mainPopupDeviation.style.display = "none"
-        arrow.style.transform = "rotate(90deg)"
-      }
-    
-    }else if(smartphone[1].matches) {
-      if(arrow.style.transform == "rotate(0deg)") {
-        mainPopupDeviation.style.display = "inline-block"
-        arrow.style.transform = "rotate(180deg)"
-      }else{
-        mainPopupDeviation.style.display = "none"
-        arrow.style.transform = "rotate(0deg)"
-      }
-    
-    }else{
-      popup = document.getElementsByClassName("popup")
-      popup[i].style.display = "flex"
-    }
-    
 }
 
 function closePopup(i) {
@@ -96,11 +102,11 @@ function closePopup(i) {
     popup[i].style.display = "none"
 }
 
+
 function changeArrowRotationOnOrientationChange() {
-  
+  /*Ändert die Ausrichtung des Pfeiles des zusätzlichen Popups der Standardabweichung*/
   arrow = document.getElementById("popupDeviationSpecialHeader")
-  console.log(arrow.style.transform)
-  if(smartphone[0].matches) {
+    if(smartphone[0].matches) {
     if(arrow.style.transform == "rotate(180deg)") {
       arrow.style.transform = "rotate(270deg)"
     }else if(arrow.style.transform == "rotate(0deg)"){
@@ -116,6 +122,7 @@ function changeArrowRotationOnOrientationChange() {
 }
 
 function resizeChart() {
+  /*Funktion, die beim Resize-Event getriggert wird*/
   slide.setAttribute("data-swipe-threshold", slide.clientWidth*0.5)
   changeArrowRotationOnOrientationChange()
   updateValue()
@@ -165,7 +172,6 @@ function sigmaFromPerformance(performance) {
 function activateSigma() {
   let buttons = document.querySelectorAll(".buttonDeviation")
   
-  //let slider =  document.querySelector(".sliderPopup")
 
   if(checkMuSigma.checked == true) {
     standardabweichung.input.disabled = false
@@ -195,10 +201,7 @@ function activateSigma() {
 
 }
 
-/*function defaultCheckbox() {
-  checkMuSigma.checked = false
-  activateSigma()
-}*/
+
 //from https://stackoverflow.com/questions/8584902/get-closest-number-out-of-array
 function closestNumberInArrayIndex (num, arr) {
   var currIndex = 0;
@@ -215,39 +218,10 @@ function closestNumberInArrayIndex (num, arr) {
   return currIndex;
 }
 
-//from https://stackoverflow.com/questions/40475155/does-javascript-have-a-method-that-returns-an-array-of-numbers-based-on-start-s
-function equidistantArr(startValue, stopValue, cardinality) {
-  var arr = [];
-  var step = (stopValue - startValue) / (cardinality - 1);
-  for (var i = 0; i < cardinality; i++) {
-    arr.push(startValue + (step * i));
-  }
-  return arr;
-}
 
-//https://stackoverflow.com/questions/36532307/rem-px-in-javascript
-function convertRemToPixels(rem) {    
-  return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
-}
-
-
-//Rente befüllen
-function fillRente(einmalbetrag, performance, laufzeit) {
-  
-  let renteVal = Math.round(calcRente(einmalbetrag,performance,laufzeit)/(12*10))*10
-  renteRange.input.min = Math.floor(Math.round(renteVal - 0.4*renteVal)/10)*10
-  renteRange.input.max = Math.ceil(Math.round(renteVal + 0.2*renteVal)/10)*10
-  renteRange.input.step = 10
-
-  renteRange.input.value = renteVal
-  renteRange.output.innerText = numberWithPoints(renteVal) + "€"
-  rente.innerText = numberWithPoints(renteVal) + "€"
-
-
-
-}
-
+/*Funktion, die den zweiten Teil der Kopfzeile mit dem Anteil der Menschen, die das Endalter erreichen, berechnet*/
 function fillPercentageHeader(endAge) {
+  /*Quelle: Gomperz-Makeham-Gesetz Norberg, Ragnar: Basic Life Insurance Mathematics, http://web.math.ku.dk/~mogens/lifebook.pdf  / Seite 35)*/
   let startAge = 0
   headerRentenaustrittsalter.innerText = endAge + " Jahre"
   let helpNum = Math.exp(-0.0005*(endAge-startAge))*

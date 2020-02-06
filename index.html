@@ -9,25 +9,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
     <!-- CSS-Skripte-->
+    <link rel="stylesheet" type="text/css" href="root.css">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css" href="rangeSlider.css">
     <link rel="stylesheet" type="text/css" href="onOffSwitch.css">
-    <link rel="stylesheet" type="text/css" href="root.css">
-    <link rel="stylesheet" type="text/css" href="table.css">
     <link rel="stylesheet" type="text/css" href="mediaQueries.css">
 
-
-    
-
-
-    
-
-    <!--Title-->
+    <!--Titel-->
     <title>Rentenrechner</title>
 
 </head>
 <body>
     <header id="header">
+        <!--Unterscheidung zwischen normalem NormalHeader und Smartphone/Tablet SpecialHeader
+        Im 2. Fall werden die Input-Felder mittels Javascript an den Header angehängt
+        -->
         <div id="headerNormal">
             <div id="title">
                     <h1>Berechne Sie Ihren optimalen Entnahmeplan</h1>
@@ -43,6 +39,7 @@
             <div class="smartphoneHeaderContainer">
                 <div class="smartphoneHeaderBox" onclick="openSliderPopup(0)">
                     <div class="smartphoneIcons">
+                        <!--Alle i-Elemente mit Klasse fas repräsentieren Font Awesome Icons-->
                         <i class="fas fa-step-backward"></i>
                     </div>
                     <div class="smartphoneHeaderText"><p>Beginn der Entnahme</p></div>
@@ -83,20 +80,6 @@
                 </div>
             </div>
             <div class="smartphoneHeaderContainer">
-                <div class="smartphoneHeaderBox" onclick="openSliderPopup(3)">
-                    <div class="smartphoneIcons">
-                        <i class="fas fa-hand-holding-usd"></i>
-                    </div>
-                    <div class="smartphoneHeaderText"><p>Monatliche Entnahme</p></div>
-                </div>
-                <div id="popupMonatlicheEntnahme" class="popupSmartphone">
-                    <div class="triangle"></div>
-                    <div class="popupHeaderSpecial move150Right">
-                        <div class="headerPopup"><i class="fas fa-times clickIcon" style="text-shadow: 0rem;" onclick="closeSliderPopup(3)"></i></div>
-                    </div>
-                </div>
-            </div>
-            <div class="smartphoneHeaderContainer">
                 <div class="smartphoneHeaderBox" onclick="openSliderPopup(5)">
                     <div class="smartphoneIcons">
                         <i class="fas fa-chart-line"></i>
@@ -105,7 +88,7 @@
                 </div>
                 <div id="popupRendite" class="popupSmartphone">
                     <div class="triangle"></div>
-                    <div class="popupHeaderSpecial move30Right">
+                    <div class="popupHeaderSpecial move150Right">
                         <div class="headerPopup"><i class="fas fa-times clickIcon" style="text-shadow: 0rem;" onclick="closeSliderPopup(5)"></i></div>
                     </div>
                 </div>
@@ -119,11 +102,25 @@
                 </div>
                 <div id="popupRisiko" class="popupSmartphone">
                     <div class="triangle"></div>
-                    <div class="popupHeaderSpecial move10Right">
+                    <div class="popupHeaderSpecial move30Right">
                         <div class="headerPopup"><i class="fas fa-times clickIcon" style="text-shadow: 0rem;" onclick="closeSliderPopup(4)"></i></div>
                         <div class="centerContent">
-                            <a id="popupDeviationSpecialHeader" class="changeSlide" onclick="openPopup(0)">&#10095;</a>
+                            <a id="popupDeviationSpecialHeader" class="changeSlide" onclick="openPopup()">&#10095;</a>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="smartphoneHeaderContainer">
+                <div class="smartphoneHeaderBox" onclick="openSliderPopup(3)">
+                    <div class="smartphoneIcons">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <div class="smartphoneHeaderText"><p>Monatliche Entnahme</p></div>
+                </div>
+                <div id="popupMonatlicheEntnahme" class="popupSmartphone">
+                    <div class="triangle"></div>
+                    <div class="popupHeaderSpecial move10Right">
+                        <div class="headerPopup"><i class="fas fa-times clickIcon" style="text-shadow: 0rem;" onclick="closeSliderPopup(3)"></i></div>
                     </div>
                 </div>
             </div>
@@ -177,21 +174,6 @@
                     </div>
                 </div>
 
-                <div id="Rente" class="inputBoxen">
-                    <div class="titleInputbox">Monatliche Entnahme</div>
-                    <div class="formBox">
-                        <div class="sliderText">
-                            <p><span id="textRente">5000</span></p> 
-                        </div>
-                        <div class="sliderContainer">
-                            <a class="inputSlide inputPrev" onclick="changeRangeValue('rangeRente',-1)">&#10094;</a>
-                            <input type="range" min="1000" max="1000000" value="100000" step="5000" class="slider" 
-                                id="rangeRente">
-                            <a class="inputSlide inputNext" onclick="changeRangeValue('rangeRente',1)">&#10095;</a>
-                        </div>
-                    </div>
-                </div>
-
                 <div id="Renditeerwartung" class="inputBoxen">
                     <div class="titleInputbox">Rendite</div>
                     <div class="formBox">
@@ -221,7 +203,7 @@
                                 </div>
                             </div>
                             <div class="centerContent alignCenter" style="width: 1.5rem">
-                                <a class="changeSlide" onclick="openPopup(0)" style="font-size: 2.5rem; margin-right: 0.5rem;;">&#10095;</a>
+                                <a class="changeSlide" onclick="openPopup()" style="font-size: 2.5rem; margin-right: 0.5rem;;">&#10095;</a>
                             </div>
                         </div>
 
@@ -230,7 +212,7 @@
                         <div id="popupDeviation" class="popup boxShadowSmall">
                             <div class="headerPopup"><i class="fas fa-times clickIcon" style="text-shadow: 0rem;" onclick="closePopup(0)"></i></div>
                             <div id="mainPopupDeviation" class="mainPopup">  
-                                <p>Der <b>Wert des Risikos</b> hängt von der gewählten Rendite ab.</p>
+                                <p>Das <b>Risiko der Anlage</b> hängt von der gewählten Rendite ab.</p>
                                 <p>Möchten Sie das Risiko selbständig auswählen?</p>
         
                                 <!-- made with https://proto.io/freebies/onoff/ -->
@@ -245,10 +227,26 @@
                                 </div>
                             </div>  
                         </div>
+                    
                 </div>
-
-                
+                <div id="Rente" class="inputBoxen">
+                    <div class="titleInputbox">Monatliche Entnahme</div>
+                    <div class="formBox">
+                        <div class="sliderText">
+                            <p><span id="textRente">5000</span></p> 
+                        </div>
+                        <div class="sliderContainer">
+                            <a class="inputSlide inputPrev" onclick="changeRangeValue('rangeRente',-1)">&#10094;</a>
+                            <input type="range" min="1000" max="1000000" value="100000" step="5000" class="slider" 
+                                id="rangeRente">
+                            <a class="inputSlide inputNext" onclick="changeRangeValue('rangeRente',1)">&#10095;</a>
+                        </div>
+                    </div>
+                </div>
             </div>
+            
+            <!--Der Inhalt der Visualisierungen beginnt hier
+            -->
             <div id="display" class="noShrink">
                 <div id="vizHeader">
                     <div class="vizHeaderIconPlusText">
@@ -275,7 +273,12 @@
 				<div id="vizMain">
 					<div id="vizSlide">
 						<a class="prev changeSlide" onclick="plusSlides(-1)" style="font-size: 2.5rem;">&#10094;</a>
-						<div id="viz1" class="slideshow fade">
+                        <!-- Hier folgen die drei verschiedenen Seiten, die mittels Javascript ein-/ausgeblendet werden
+                        -->
+                        
+
+                        <!--Smiley-Darstellung-->
+                        <div id="viz1" class="slideshow fade">
 
 							<!-- Titel für die Visualisierungen -->
 							<div id="vizTopGood" class="fontVizSmiley" style="margin: auto 0 auto 0;">Geld <b>bleibt übrig</b></div>
@@ -299,6 +302,7 @@
 							<div id="textBad" class="fontHeader textSmiley centerContent"></div>
                         </div>
                         
+                        <!--Donut-Chart-Darstellung-->
                         <div id="viz3" class="slideshow fade flexColumn">
                             <div id="viz3Header" class="centerContent alignCenter">
                                     <h2>Reicht das Geld um ein bestimmtes Alter zu erreichen?</h2>
@@ -324,10 +328,12 @@
                             
                         </div>
 
+                        <!--Histogram-Darstellung-->
 						<div id="viz2" class="slideshow fade flexColumn"></div>
 	
 						<a class="next changeSlide" onclick="plusSlides(1)" style="font-size: 2.5rem;">&#10095;</a>
-					</div>
+                    </div>
+                    
 					<div id="vizSlideIcons">
 						<div class="vizSlideIconsDetail hoverPage activePage" onclick="currentSlide(1)">
 							<i class="fas fa-smile slideIcon"></i>
@@ -338,13 +344,18 @@
 						<div class="vizSlideIconsDetail hoverPage" onclick="currentSlide(3)">
                             <i class="far fa-chart-bar slideIcon"></i>
                         </div>
-						<!-- <div>Icons made by <a href="https://www.flaticon.com/authors/kiranshastry" title="Kiranshastry">Kiranshastry</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>-->
 					</div>
 				</div>
             </div>
         </div>
     </div>
 </div>
+
+<!--Dieses Div dient dazu, eine vergleichbare Größe zur Berechnung von anderen Größenangaben mittels Javascript zu gewährleisten.
+    Problem ist, dass in vielen Bereichen das Ausblenden von Inhalten mittels CSS-Befehl "display: none" durchgeführt wurde und
+    demnach keine Größenberechnung möglich ist. Dieses Div soll dementsprechend eine Möglichkeit bieten fehlende Größenwerte zu berechnen
+    
+    Es wird mittels Positionierung außerhalb des sichtbaren Bereichs gelegt-->
 <div id="viz2Test" class="centerContent alignCenter"><h2>Test</h2></div>
 
 <footer>
@@ -360,11 +371,19 @@
 </footer>
 
 
+<!--Im Folgenden sind alle Javascript-Skripte aufgeführt-->
 
+<!--Font Awesome Icons-->
 <script src="https://kit.fontawesome.com/530dbece4c.js" crossorigin="anonymous"></script>
+<!--D3 zur Visualisierung der Daten (Donut-Chart und Histogramm)-->
 <script src="https://d3js.org/d3.v5.min.js"></script>
+<!--Skript zum Seeden der Zufallszahlen: Ermöglicht Reproduzierbarkeit der Ergebnisse-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
+<!--Skript, welches die Touch-Interaktion zum Wechseln der Visualisierungsseiten ermöglicht-->
+<!--Quelle:  https://github.com/john-doherty/swiped-events-->
 <script src="swiped-events.min.js"></script>
+
+<!--Eigene Javascript-Skripte-->
 <script src="variables.js"></script>
 <script src="mediaQueries.js"></script>
 <script src="pageSlider.js"></script>
@@ -373,11 +392,6 @@
 <script src="blackScholesModel.js"></script>
 <script src="vizFunctions.js"></script>
 <script src="main.js"></script>
-
-
-
-
-
 
 
 </body>

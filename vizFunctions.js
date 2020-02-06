@@ -1,11 +1,6 @@
-//Abhängig vom Device soll die Anzahl der Iterationen angepasst werden
-let iterations
-if(smartphone[3].matches) {
-    iterations = 4000
-}else{
-    iterations = 8000
-}
-
+/*Deklariere zwei Variablen zur Berechnung verschiedener Größen. 
+Da diese erst während der Laufzeit ermittelt werden können werden diese als globale
+Variablen deklariert*/
 let widthHelper = 0
 let heightHelper = 0
 
@@ -15,7 +10,6 @@ function vizSmiley(arr) {
     //Größenbestimmung - viz2Test hat Größe 6rem
     let elem = document.getElementById("viz2Test")
     sizeHistogramHelper = elem.offsetHeight
-
 
 
     let sum = arr[0] + arr[1] + arr[2]
@@ -108,276 +102,13 @@ function vizSmiley(arr) {
     
     }
 
-
-    /*    divBad.style.paddingBottom = 0.05*height + "px"
-    divMedium.style.paddingBottom = 0.05*height + "px"
-    divGood.style.paddingBottom = 0.05*height + "px"
-    
-    divBad.style.paddingTop = 0.05*height + "px"
-    divMedium.style.paddingTop = 0.05*height + "px"
-    divGood.style.paddingTop = 0.05*height + "px"
-    */
-    
-	
-
-    //Index 0 gehört zu Bad
-    
-
 }
 
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-function vizHistogram(arr, deviation, pensionStart, pensionEnd, tolerance) {
-
-    
-
-
-    var viz2 = d3.select("#viz2")
-    .html("")
-
-    viz2.append("div")
-    .attr("id", "viz2Header")
-    .attr("class", "centerContent alignCenter")
-    .append("h2")
-    .text("Wie lange reicht das Geld?")
-
-
-    viz2.append("div")
-    .attr("id", "viz2Display")
-    .attr("class", "centerContent alignCenter")
-    .append("div")
-    .attr("id", "viz2Histogram")
-    .attr("class", "centerContent alignCenter")
-
-
-    let container = document.getElementById("vizSlide")
-    let changeVizIcons = container.lastElementChild
-    let width2 = container.clientWidth - 2*changeVizIcons.clientWidth;
-
-    let height2 = container.clientHeight - sizeHistogramHelper
-    let helpStr = "0 0 " + width2 + " " + height2
-
-    
-    let helpMargin
-    helpMargin = 0.8*sizeHistogramHelper
-
-    let margin = {top: 0, right: 0, bottom: helpMargin, left: 1.2*helpMargin}
-    width = width2 - margin.left - margin.right,
-    height = height2 - margin.top - margin.bottom;
-
-
-
-    var max = d3.max(arr)
-    var min = d3.min(arr)
-
-    var svg = d3.select("#viz2Histogram")
-    .html("")
-    .append("svg")
-    .attr("viewBox", helpStr)
-    .attr("width", width2)
-    .attr("height", height2)
-    .append("g")
-    .attr('transform', 'translate('+ margin.left +', '+ margin.top +')');
-    
-    
-    var x = d3.scaleLinear()
-        .domain([min-1,max+1])
-        .range([0, width]);
-
-    
-
-    
-    const xAxisTicks = x.ticks()
-    .filter(tick => Number.isInteger(tick));
-    
-
-    var histogram = d3.histogram()
-    .domain(x.domain())  // then the domain of the graphic
-    .thresholds(xAxisTicks);// then the numbers of bins
-
-    
-    var bins = histogram(arr)
-
-    var ymax = d3.max(bins, (d) => Math.max((d.length))/arr.length*100+5,100)
-
-    var y = d3.scaleLinear()
-    .range([height, 0]);
-    y.domain([0, ymax]);   // d3.hist has to be called before the Y axis obviously
-    svg.append("g")
-    .style("font-size", "1.2rem")
-    .style("font-family","'Montserrat', serif")
-    .call(d3.axisLeft(y)
-            .tickFormat(function(d) { return d + "%"; }));
-
-
-    /*Code zur Farbzuordnung: Problem ist immer wieder, dass zu viel
-    rot am Anfang bzw. zu viel grün am Ende zu einem Ungleichgewicht sorgen.activePage
-    
-    Deswegen soll die Mitte und das 90% Quantil bestimmt werden um diese als Farbgrenzen zu
-    definieren*/
-
-    let middle
-    let end
-    let sum = 0
-    let j = 0
-
-    for(let i = 0; i < bins.length; i++) {
-        sum += bins[i].length
-
-        if(bins[j].x1 >= pensionEnd) {
-            if(bins[j+2] != undefined) {
-                middle = bins[j+2].x0
-            }else{
-                middle = bins[j].x0
-            }
-            
-        }else{
-            j++
-        }
-        
-        if(sum > 0.90*arr.length) {
-            end = bins[i].x0
-            break
-        }
-    }
-
-    var colorScale = d3.scalePow()
-        .exponent(0.001)
-        .domain([bins[0].x0, middle, end])
-        .range(['#d73027','#87A34A', '#1a9850'])
-        .interpolate(d3.interpolateHcl);
-
-    var tooltip = d3.select("body").append("div").attr("class", "tooltip");
-    
-
-    svg.append("g")
-        .attr("transform", "translate(0," + height + ")")
-        .style("font-size", "1.2rem")
-        .style("font-family","'Montserrat', serif")
-        .call(d3.axisBottom(x)
-        .tickValues(xAxisTicks)
-        .tickFormat(d3.format('d'))
-        );
-
-       
-    
-    svg.append('g')
-    .attr('class', 'grid')
-    .call(d3.axisLeft()
-        .scale(y)
-        .tickSize(-width, 0)
-        .tickFormat(''))
-
-
-
-    svg.selectAll("rect")
-    .data(bins)
-    .enter()
-    .append("rect")
-    .attr("x", 1)
-    .attr("transform", function(d) {
-        if (bins[1].x1-bins[1].x0 < 2) {
-            return "translate(" + x(d.x0-0.5) + "," + y(d.length/arr.length*100) + ")"  
-        }else{
-            return "translate(" + x(d.x0) + "," + y(d.length/arr.length*100) + ")"  
-        }
-            
-    })
-    .attr("width", function(d) {
-        return Math.max(x(d.x1) - x(d.x0) -1, 0);   
-    })
-    .attr("height", function(d) { 
-            return height - y(d.length/arr.length*100) 
-        })
-        
-    .attr("fill", function(d) {
-            if(d.x0 <= end && d.x0 >= pensionStart) {
-                return colorScale(d.x0);
-            }else if(d.x0 > end){
-                return '#1a9850';
-            }else{
-                return '#d73027';
-            }
-            
-    })
-
-
-    .on("mouseover", function(){
-          d3.select(this).transition()
-             .duration('50')
-             .attr('opacity', '.85');     
-
-             tooltip.transition()
-             .duration('200')
-             .style("opacity", '1')
-             
-    })
-
-    .on("mousemove", function(d){
-        tooltip
-        .style("left", d3.event.pageX - 50 + "px")
-        .style("top", d3.event.pageY - 70 + "px")
-        .html(("Alter: " + d.x0 + "-" + d.x1) + "<br>" + Math.round(d.length/arr.length*100) + "%");
-    })
-    .on("mouseout", function(){
-        d3.select(this).transition()
-             .duration('50')
-             .attr('opacity', '1');
-
-        tooltip.transition()
-        .duration('200')
-        .style("opacity", '0')
-    });
-
-    svg.append("svg:line")
-    .attr("x1", x(pensionEnd))
-    .attr("y1", height)
-    .attr("x2", x(pensionEnd))
-    .attr("y2", 0)
-    .attr("class", "reference-line")
-
-    svg.append('text')
-    .attr('x', -(height / 2)-margin.top)
-    .attr('y', -margin.left/1.4)
-    .attr('transform', 'rotate(-90)')
-    .attr('text-anchor', 'middle')
-    .text(function(){
-        if(smartphone[4].matches) {
-            return 'Prob. in %'
-        }else{
-            return "Wahrscheinlichkeit in %"
-        }
-    })
-
-    svg.append('text')
-        .attr('x', width / 2 - margin.left/2)
-        .attr('y', height + helpMargin)
-        .attr('text-anchor', 'middle')
-        .text('Alter in Jahren')
-
-
-
-}
-
+//Donut-Chart-Darstellung
 function vizDifferentAges(agesArr, numbersAgesArr, iterations) {
     while (viz3Percentage.firstChild) {
         viz3Percentage.removeChild(viz3Percentage.firstChild);
     }
-
-
 
     let container = document.getElementById("vizSlide")
     let changeVizIcons = container.lastElementChild
@@ -421,7 +152,6 @@ function vizDifferentAges(agesArr, numbersAgesArr, iterations) {
         width3 = Math.min(height3, width2)
     }
     
-    //let helpStr = "0 0 " + width2 + " " + height2
     let helpArray = new Array(2)
    
     for(let j = 0; j < agesArr.length; j++) {
@@ -487,8 +217,9 @@ function vizDifferentAges(agesArr, numbersAgesArr, iterations) {
 
 }
 
-//donutChartSlider.addEventListener('input', changeDonutValue(0))
-
+/*Funktion, die das klicken bzw. ändern des Input-Feldes des Range Sliders verarbeitet
+Es wird der gespeicherte Wert des globalen Arrays mit den zugehörigen Alterswerten verwendet,
+um das Donut-Div mit Chart neu zu rendern durch den Aufruch der Display-Donut-Funktion*/
 function changeDonutValue(n) {
     if(n == 1) {
         donutChartSlider.value = parseInt(donutChartSlider.value) + 1
@@ -502,6 +233,8 @@ function changeDonutValue(n) {
     helpArray[1] = iterations - viz3SelectAgesArray2[j]
 
     let inputDiv = document.getElementById("donutInputDiv")
+
+    /*Da beim Laden das Div auf display: none gesetzt ist, muss diese Abfrage erfolgen*/
     if(inputDiv != null) {
         let width = widthHelper
         let height = heightHelper
@@ -517,7 +250,7 @@ function changeDonutValue(n) {
 
 
 
-
+//Erstellt genau ein Div mit dementsprechendem Donut und Text anhand der übergebenen Parameter
 function displayDonut(agesArr, numbersAgesArr, mainDiv, j, width2, height2, helpArray, index) {
 
     /*Erstellen des Divs für den Titel und die Grafiken. Je nach
@@ -738,31 +471,236 @@ function displayDonut(agesArr, numbersAgesArr, mainDiv, j, width2, height2, help
 }
     
 
+//Histogram-Darstellung
+
+function vizHistogram(arr, deviation, pensionStart, pensionEnd, tolerance) {
+
+    var viz2 = d3.select("#viz2")
+    .html("")
+
+    viz2.append("div")
+    .attr("id", "viz2Header")
+    .attr("class", "centerContent alignCenter")
+    .append("h2")
+    .text("Wie lange reicht das Geld?")
 
 
-/*https://stackoverflow.com/questions/15164655/generate-html-table-from-2d-javascript-array*/
-function makeTable(array, element) {
-    element.innerHTML = ""
+    viz2.append("div")
+    .attr("id", "viz2Display")
+    .attr("class", "centerContent alignCenter")
+    .append("div")
+    .attr("id", "viz2Histogram")
+    .attr("class", "centerContent alignCenter")
+
+
+    let container = document.getElementById("vizSlide")
+    let changeVizIcons = container.lastElementChild
+    let width2 = container.clientWidth - 2*changeVizIcons.clientWidth;
+
+    let height2 = container.clientHeight - sizeHistogramHelper
+    let helpStr = "0 0 " + width2 + " " + height2
+
     
-    for (let i = 0; i < array.length; i++) {
-        let row = document.createElement('tr');
-        for (let j = 0; j < array[i].length; j++) {
-            let cell = document.createElement('td');
-            let text
-            if(array[i][j] == null) {
-                text = document.createTextNode("");
+    let helpMargin
+    helpMargin = 0.8*sizeHistogramHelper
+
+    let margin = {top: 0, right: 0, bottom: helpMargin, left: 1.2*helpMargin}
+    width = width2 - margin.left - margin.right,
+    height = height2 - margin.top - margin.bottom;
+
+
+
+    var max = d3.max(arr)
+    var min = d3.min(arr)
+
+    var svg = d3.select("#viz2Histogram")
+    .html("")
+    .append("svg")
+    .attr("viewBox", helpStr)
+    .attr("width", width2)
+    .attr("height", height2)
+    .append("g")
+    .attr('transform', 'translate('+ margin.left +', '+ margin.top +')');
+    
+    
+    var x = d3.scaleLinear()
+        .domain([min-1,max+1])
+        .range([0, width]);
+
+    
+
+    
+    const xAxisTicks = x.ticks()
+    .filter(tick => Number.isInteger(tick));
+    
+
+    var histogram = d3.histogram()
+    .domain(x.domain())  
+    .thresholds(xAxisTicks);
+
+    
+    var bins = histogram(arr)
+
+    var ymax = d3.max(bins, (d) => Math.max((d.length))/arr.length*100+5,100)
+
+    var y = d3.scaleLinear()
+    .range([height, 0]);
+    y.domain([0, ymax]);   // d3.hist has to be called before the Y axis obviously
+    svg.append("g")
+    .style("font-size", "1.2rem")
+    .style("font-family","'Montserrat', serif")
+    .call(d3.axisLeft(y)
+            .tickFormat(function(d) { return d + "%"; }));
+
+
+    /*Code zur Farbzuordnung: Problem ist immer wieder, dass zu viel
+    rot am Anfang bzw. zu viel grün am Ende zu einem Ungleichgewicht sorgen.
+    
+    Deswegen soll die Mitte und das 90% Quantil bestimmt werden um diese als Farbgrenzen zu
+    definieren*/
+
+    let middle
+    let end
+    let sum = 0
+    let j = 0
+
+    for(let i = 0; i < bins.length; i++) {
+        sum += bins[i].length
+
+        if(bins[j].x1 >= pensionEnd) {
+            if(bins[j+2] != undefined) {
+                middle = bins[j+2].x0
             }else{
-                text = document.createTextNode(array[i][j]);
+                middle = bins[j].x0
             }
-            cell.appendChild(text)
-            row.appendChild(cell)
+            
+        }else{
+            j++
         }
-        table1Body.appendChild(row)
+        
+        if(sum > 0.90*arr.length) {
+            end = bins[i].x0
+            break
+        }
     }
+
+    var colorScale = d3.scalePow()
+        .exponent(0.001)
+        .domain([bins[0].x0, middle, end])
+        .range(['#d73027','#87A34A', '#1a9850'])
+        .interpolate(d3.interpolateHcl);
+
+    var tooltip = d3.select("body").append("div").attr("class", "tooltip");
+    
+
+    svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .style("font-size", "1.2rem")
+        .style("font-family","'Montserrat', serif")
+        .call(d3.axisBottom(x)
+        .tickValues(xAxisTicks)
+        .tickFormat(d3.format('d'))
+        );
+
+       
+    
+    svg.append('g')
+    .attr('class', 'grid')
+    .call(d3.axisLeft()
+        .scale(y)
+        .tickSize(-width, 0)
+        .tickFormat(''))
+
+
+
+    svg.selectAll("rect")
+    .data(bins)
+    .enter()
+    .append("rect")
+    .attr("x", 1)
+    .attr("transform", function(d) {
+        if (bins[1].x1-bins[1].x0 < 2) {
+            return "translate(" + x(d.x0-0.5) + "," + y(d.length/arr.length*100) + ")"  
+        }else{
+            return "translate(" + x(d.x0) + "," + y(d.length/arr.length*100) + ")"  
+        }
+            
+    })
+    .attr("width", function(d) {
+        return Math.max(x(d.x1) - x(d.x0) -1, 0);   
+    })
+    .attr("height", function(d) { 
+            return height - y(d.length/arr.length*100) 
+        })
+        
+    .attr("fill", function(d) {
+            if(d.x0 <= end && d.x0 >= pensionStart) {
+                return colorScale(d.x0);
+            }else if(d.x0 > end){
+                return '#1a9850';
+            }else{
+                return '#d73027';
+            }
+            
+    })
+
+
+    .on("mouseover", function(){
+          d3.select(this).transition()
+             .duration('50')
+             .attr('opacity', '.85');     
+
+             tooltip.transition()
+             .duration('200')
+             .style("opacity", '1')
+             
+    })
+
+    .on("mousemove", function(d){
+        tooltip
+        .style("left", d3.event.pageX - 50 + "px")
+        .style("top", d3.event.pageY - 70 + "px")
+        .html(("Alter: " + d.x0 + "-" + d.x1) + "<br>" + Math.round(d.length/arr.length*100) + "%");
+    })
+    .on("mouseout", function(){
+        d3.select(this).transition()
+             .duration('50')
+             .attr('opacity', '1');
+
+        tooltip.transition()
+        .duration('200')
+        .style("opacity", '0')
+    });
+
+    svg.append("svg:line")
+    .attr("x1", x(pensionEnd))
+    .attr("y1", height)
+    .attr("x2", x(pensionEnd))
+    .attr("y2", 0)
+    .attr("class", "reference-line")
+
+    svg.append('text')
+    .attr('x', -(height / 2)-margin.top)
+    .attr('y', -margin.left/1.4)
+    .attr('transform', 'rotate(-90)')
+    .attr('text-anchor', 'middle')
+    .text(function(){
+        if(smartphone[4].matches) {
+            return 'Prob. in %'
+        }else{
+            return "Wahrscheinlichkeit in %"
+        }
+    })
+
+    svg.append('text')
+        .attr('x', width / 2 - margin.left/2)
+        .attr('y', height + helpMargin)
+        .attr('text-anchor', 'middle')
+        .text('Alter in Jahren')
+
+
+
 }
-
-
-
 
 
 

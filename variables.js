@@ -1,4 +1,4 @@
-/*Variablen */
+/*Sammle alle Input-Felder mit ihrem zugehörigen Text in einzelnen Arrays*/
 
 const renteneintrittsalter = {
     input: document.getElementById("rangeRenteneintrittsalter"),
@@ -33,7 +33,8 @@ const renteRange = {
 const bindings = [renteneintrittsalter,rentenaustrittsalter,einmalbetrag, renteRange,
       standardabweichung, renditeerwartung]
   
-//Text Visualisation Header (Rente, Lebenserwartung)
+/*Variablen für den Text, der bei der Visualisierung als Kopfzeile dient
+ (Vorschlag zur optimalen Entnahme, Lebenserwartung)*/
 const rente = document.getElementById("calcRente")
 const percentageRentenaustrittsalter = document.getElementById("percentageRentenaustrittsalter")
 const headerRentenaustrittsalter = document.getElementById("headerRentenaustrittsalter")
@@ -42,15 +43,15 @@ const prefixHeaderRentenaustrittsalter = document.getElementById("prefixPercenta
 //Checkbox Mu-Sigma Beziehung
 const checkMuSigma = document.getElementById("checkboxMuSigma")
 
-//Standardabweichung Gruppierungsarray
+/*Festgelegte Werte für die Standardabweichung, die ausgewählt werden können
+0 = kein Risiko
+10 = geringes Risiko
+...
+40 = sehr hohes Risiko
+*/
 const sigmaArray = [0, 10, 20, 30, 40]
 
-//Viz3 DOM
-const quarters = [document.getElementById("viz3QuartersText1Quarter"), document.getElementById("viz3QuartersTextHalf"), document.getElementById("viz3QuartersText3Quarters")]
-const viz3Percentage = document.getElementById("viz3Percentages")
-
-
-//Smiley Divs
+//Viz1-Variablen (Smiley-Chart)
 const divGood = document.getElementById("good")
 const divMedium = document.getElementById("medium")
 const divBad = document.getElementById("bad")
@@ -64,20 +65,15 @@ const table1 = document.getElementById("table1")
 const table1Body = document.getElementById("table1Body")
 const table1Head = document.getElementById("table1Head")
 
-let kontrolle = new Array()
-let kontrolle2 = new Array()
+//Viz3-Variablen (Donut-Chart)
+const viz3Percentage = document.getElementById("viz3Percentages")
 
 
-//Lebenserwartungsarray
-//const sterbetafelW = [83,82,81,80,79,78,77,76,75,74,73,72,71,70,69,68,67,66,65,64,63,62,61,60,59,58,57,56,55,54,53,52,51,50,49,48,47,46,45,44,43,42,41,40,39,38,37,36,35,34,33,33,32,31,30,29,28,27,26,25,24,24,23,22,21,20,19,19,18,17,16,15,15,14,13,12,12,11,10,10,9,8,8,7,6,6,6,5,5,4,4,4,3,3,3,3,3,2,2,2]
-
-//const sterbetafelM = [78,77,76,75,74,73,72,71,70,69,68,67,66,65,64,63,62,61,60,59,58,57,56,55,54,53,52,51,50,49,48,47,46,45,44,43,42,41,41,40,39,38,37,36,35,34,33,32,31,30,29,28,28,27,26,25,24,23,22,22,21,20,19,19,18,17,16,16,15,14,14,13,12,12,11,10,10,9,9,8,7,7,6,6,6,5,5,4,4,4,3,3,3,3,3,2,2,2,2,2]
-
-
-//Berechnung der Visualisierungsgrößen
+/*Variable des Visualisierungsbereich
+v.a. zur Berechnung der Visualisierungsgrößen verwendet*/
 const slide = document.getElementById("vizSlide")
 
-//Header Special
+//Unterscheidung der Header zwischen mobilem und nicht mobilem Gerät
 const headerSpecial = [
   document.getElementById("popupStartEntnahme"),
   document.getElementById("popupEndeEntnahme"),
@@ -99,7 +95,7 @@ const headerNormal = [
 const headerSpecialParent = document.getElementById("headerSpecial").children
 const mainPopupDeviation = document.getElementById("mainPopupDeviation")
 
-//globale Variable zur optimalen Bestimmung der Größe des Histograms
+//globale Variable zur optimalen Bestimmung der Größe des Histograms (vgl. Erläuterungen zu div2Test in der index.html-Datei)
 let sizeHistogramHelper
 
 

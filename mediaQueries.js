@@ -1,3 +1,4 @@
+/*Festlegen relevanter Mediaqueries*/
 const smartphone = [window.matchMedia("(orientation: portrait)"),
                     window.matchMedia("(orientation: landscape) and (max-width: 1024px)"),
                     window.matchMedia("(pointer: coarse) and (orientation: landscape)"),
@@ -15,20 +16,22 @@ for (let i = 0; i < smartphone.length; i++) {
 }
 
 
+
+/*Grundlegende Funktion, welche die Anpassungen zwischen mobilem und nicht-mobilen Endgerät
+vornimmt. Das heißt insbesondere ein schmaleres Logo und das Umhängen der Input-Felder an die Kopfzeile
+im Falle eines mobilen Endgeräts. Analog dazu muss dies natürlich auch umgekehrt beim Wechsel
+von mobilem Gerät zu nicht mobilem Gerät rückgängig gemacht werden.*/
+
 function funcSmartphone() {
 
 
     let logo = document.getElementById("imgLogo")
     let titleHeader = document.getElementById("title").querySelectorAll("h1")
-    //let navbar = document.getElementById("headerSpecial")
-    if(smartphone[0].matches) {
-       
 
-        //Zeilenumbruch in Titel hinzufügen
+    if(smartphone[0].matches) {
+        //Zeilenumbruch in Titel hinzufügen falls das Endgerät länger als breit ist
         titleHeader[0].innerHTML = "Berechne Sie Ihren <br> optimalen Entnahmeplan"
     }else{
-
-        //Zeilenumbruch in Titel hinzufügen
         titleHeader[0].innerHTML = "Berechne Sie Ihren optimalen Entnahmeplan"
     }
     
@@ -39,10 +42,7 @@ function funcSmartphone() {
          //Anpassen des Logos
          logo.src = "Uni_Ulm_Logo_Ausschnitt.svg"
     
-        //Navbar hinzufügen
-        //navbar.style.display = "flex";
-        //inputVariables.style.display = "none";
-
+        //Anhängen der Input-Felder an den HeaderSpecial
         for (let i = 0; i < bindings.length; i++) {
 
             let parent = bindings[i].input.parentElement.parentElement
@@ -68,16 +68,10 @@ function funcSmartphone() {
         //Anpassen des Logos
         logo.src = "Uni_ulm_logo.svg"
 
-        //Navbar hinzufügen
-        //navbar.style.display = "none";
-        //inputVariables.style.display = "grid";
-        
-        //let headerSpecialTest = headerSpecial[0].querySelectorAll(".popupHeaderSpecial")
-        //console.log(headerSpecial[0].querySelector(".popupHeaderSpecial"))
+        //Anhängen der Input-Felder an den ursprünglichen Platz in der HTML-Struktur
         if(headerSpecial[0].querySelector(".popupHeaderSpecial").childElementCount >= 2) {
             for (let i = 0; i < headerNormal.length; i++) {
-                let box 
-                box = headerSpecial[i].querySelector(".popupHeaderSpecial")
+                let box = headerSpecial[i].querySelector(".popupHeaderSpecial")
                 if(i == 4) {
                     
                     document.getElementById("popupDeviation").append(mainPopupDeviation)
@@ -105,6 +99,9 @@ function funcSmartphone() {
 }
 
 
+/*Funktion, welche das Öffnen und Schließen der Input-Felder im Falle eines
+mobilen Endgerät ermöglicht. Alle nicht aktivierten Input-Felder werden geschlossen, das aktivierte dementsprechend
+angezeigt*/
 function openSliderPopup(n) {
     for(let i = 0; i < headerSpecial.length; i++) {
         if(i == n) {
@@ -116,6 +113,7 @@ function openSliderPopup(n) {
     }
 }
 
+/*Schließt das gewählte Popup des zugehörigen Input-Feldes im Falle eines mobilen Endgeräts*/
 function closeSliderPopup(n) {
     headerSpecial[n].style.display = "none"
     headerSpecial[n].parentNode.classList.remove("activeInput")
