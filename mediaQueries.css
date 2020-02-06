@@ -1,20 +1,5 @@
 /* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
 
-/* 
-  ##Device = Desktops
-  ##Screen = 1281px to higher resolution desktops
-*/
-
-@media (min-width: 1281px) {
-  
-    
-}
-  
-/* 
-##Device = Laptops, Desktops
-##Screen = B/w 1025px to 1280px
-*/
-
 @media (min-width: 1025px) and (max-width: 1280px) {
     html {
         font-size: 8.5px
@@ -744,11 +729,11 @@
         top: calc(50% - 2.4rem);
     }
 
-    .move10Right > div:nth-child(2) {
+    .move30Right > div:nth-child(2) {
         width: 90%;
     }
 
-    .move10Right > div:nth-child(3) {
+    .move30Right > div:nth-child(3) {
         position: absolute;
         bottom: 0;
         right: 0;
