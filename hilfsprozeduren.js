@@ -71,9 +71,24 @@ function openPopup() {
   angepasst*/
   var popup
   let arrow
+
+  
   
   arrow = document.getElementById("popupDeviationSpecialHeader")
-  if(smartphone[0].matches) {
+  
+  if(arrow.style.transform == "rotate(90deg)") {
+    if (smartphone[0].matches || smartphone[1].matches || smartphone[2].matches) {
+      mainPopupDeviation.style.display = "block"
+    }
+    arrow.style.transform = "rotate(270deg)"
+  }else{
+    if (smartphone[0].matches || smartphone[1].matches || smartphone[2].matches) {
+      mainPopupDeviation.style.display = "none"
+    }
+    arrow.style.transform = "rotate(90deg)"
+  }
+  
+  /*}else if(smartphone[1].matches) {
     if(arrow.style.transform == "rotate(90deg)") {
       mainPopupDeviation.style.display = "inline-block"
       arrow.style.transform = "rotate(270deg)"
@@ -81,17 +96,8 @@ function openPopup() {
       mainPopupDeviation.style.display = "none"
       arrow.style.transform = "rotate(90deg)"
     }
-  
-  }else if(smartphone[1].matches) {
-    if(arrow.style.transform == "rotate(0deg)") {
-      mainPopupDeviation.style.display = "inline-block"
-      arrow.style.transform = "rotate(180deg)"
-    }else{
-      mainPopupDeviation.style.display = "none"
-      arrow.style.transform = "rotate(0deg)"
-    }
-  
-  }else{
+  */
+  if(!(smartphone[0].matches || smartphone[2].matches)) {
     popup = document.getElementsByClassName("popup")
     popup[0].style.display = "flex"
   }
@@ -103,21 +109,21 @@ function closePopup(i) {
     popup[i].style.display = "none"
 }
 
+function closeAllPopups() {
+  for(let i = 0; i < headerNormal.length; i++) {
+    closeSliderPopup(i)
+  }
+}
+
 
 function changeArrowRotationOnOrientationChange() {
   /*Ändert die Ausrichtung des Pfeiles des zusätzlichen Popups der Standardabweichung*/
   arrow = document.getElementById("popupDeviationSpecialHeader")
-    if(smartphone[0].matches) {
-    if(arrow.style.transform == "rotate(180deg)") {
+    if(smartphone[0].matches || smartphone[2].matches) {
+    if(arrow.style.transform == "rotate(270deg)") {
       arrow.style.transform = "rotate(270deg)"
-    }else if(arrow.style.transform == "rotate(0deg)"){
+    }else{
       arrow.style.transform = "rotate(90deg)"
-    }
-  }else{
-    if(arrow.style.transform == "rotate(90deg)") {
-      arrow.style.transform = "rotate(0deg)"
-    }else if(arrow.style.transform == "rotate(270deg)"){
-      arrow.style.transform = "rotate(180deg)"
     }
   }
 }
@@ -125,10 +131,22 @@ function changeArrowRotationOnOrientationChange() {
 function resizeChart() {
   /*Funktion, die beim Resize-Event getriggert wird*/
   slide.setAttribute("data-swipe-threshold", slide.clientWidth*0.5)
-  changeArrowRotationOnOrientationChange()
+  //changeArrowRotationOnOrientationChange()
   updateValue()
   funcSmartphone()
 }
+
+
+//Wechselt in Abhängigkeit der Buttons Weiter/Zurück, dass die dementsprechenden Input-Felder gewechselt werden
+function changeInputOnButtonClick(fromNum, toNum) {
+  if(fromNum != -1) {
+    closeSliderPopup(fromNum)
+  }
+  if(toNum != -1) {
+    openSliderPopup(toNum)
+  }
+}
+
 
 
 //Gibt den Text für das Feld Standardabweichung zurück

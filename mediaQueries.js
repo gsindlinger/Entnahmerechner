@@ -24,7 +24,7 @@ von mobilem Gerät zu nicht mobilem Gerät rückgängig gemacht werden.*/
 
 function funcSmartphone() {
 
-
+    let popupDeviation = document.getElementById("mainPopupDeviation").querySelectorAll("p")
     let logo = document.getElementById("imgLogo")
     let titleHeader = document.getElementById("title").querySelectorAll("h1")
 
@@ -50,13 +50,16 @@ function funcSmartphone() {
             let headerBox = headerSpecial[i].querySelector(".popupHeaderSpecial")
             headerBox.appendChild(parent)
             if(i == 4) {
-                let extraChild = headerBox.children[1]
-                headerBox.children[1].remove
+                let extraChild = headerBox.children[2]
+                headerBox.children[2].remove
                 headerBox.appendChild(extraChild)
                 headerBox.appendChild(mainPopupDeviation)
             }
 
         }
+
+        //Anpassen des Textes im Popup-Deviation
+        popupDeviation[0].innerHTML = ""
 
         
 
@@ -69,16 +72,16 @@ function funcSmartphone() {
         logo.src = "Uni_ulm_logo.svg"
 
         //Anhängen der Input-Felder an den ursprünglichen Platz in der HTML-Struktur
-        if(headerSpecial[0].querySelector(".popupHeaderSpecial").childElementCount >= 2) {
+        if(headerSpecial[4].querySelector(".popupHeaderSpecial").childElementCount >= 4) {
             for (let i = 0; i < headerNormal.length; i++) {
                 let box = headerSpecial[i].querySelector(".popupHeaderSpecial")
                 if(i == 4) {
                     
                     document.getElementById("popupDeviation").append(mainPopupDeviation)
-                    
-                    let extraChild = box.children[1]
+                    console.log(box.children)
+                    let extraChild = box.children[2]
                     headerNormal[i].children[1].prepend(extraChild)
-                    let extraChild2 = box.children[1]
+                    let extraChild2 = box.children[2]
                     box.append(extraChild2)
 
 
@@ -90,6 +93,9 @@ function funcSmartphone() {
                  
             }
         }
+
+         //Anpassen des Textes im Popup-Deviation
+         popupDeviation[0].innerHTML = "Das <b>Risiko der Anlage</b> hängt von der gewählten Rendite ab.<br>"
         
         
 
@@ -105,7 +111,7 @@ angezeigt*/
 function openSliderPopup(n) {
     for(let i = 0; i < headerSpecial.length; i++) {
         if(i == n) {
-            headerSpecial[n].style.display = "inline-block"
+            headerSpecial[n].style.display = "block"
             headerSpecial[n].parentNode.classList.add("activeInput")
         }else{
             closeSliderPopup(i)

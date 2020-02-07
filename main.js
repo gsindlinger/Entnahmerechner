@@ -1,5 +1,5 @@
 window.addEventListener("orientationchange", function() {
-  changeArrowRotationOnOrientationChange()
+  //changeArrowRotationOnOrientationChange()
   updateValue()
 })
 window.addEventListener("resize", resizeChart)
