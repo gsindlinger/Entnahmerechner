@@ -660,7 +660,7 @@ function vizHistogram(arr, deviation, pensionStart, pensionEnd, tolerance) {
         tooltip
         .style("left", d3.event.pageX - 50 + "px")
         .style("top", d3.event.pageY - 70 + "px")
-        .html(("Alter: " + d.x0 + "-" + d.x1) + "<br>" + Math.round(d.length/arr.length*100) + "%");
+        .html(("Alter: " + d.x0 + "-" + d.x1) + "<br>" + "Wahrscheinlichkeit: "+ Math.round(d.length/arr.length*100) + "%");
     })
     .on("mouseout", function(){
         d3.select(this).transition()

@@ -48,8 +48,11 @@
                     <div class="triangle"></div>
                     <div class="popupHeaderSpecial move10Left">
                         <div class="headerPopup">
-                            <a class="closeButtonLeft buttons" style="padding-left: 1rem;" onclick="closeSliderPopup(0)"><i class="fas fa-times clickIcon" style="text-shadow: 0rem;"></i>Schließen</a>
-                            <a class="nextButton buttons" onclick="changeInputOnButtonClick(0, 1)">Weiter &raquo;</a>
+                            <div class="prevNextDiv">
+                                <a class="previousButton buttons" onclick="changeInputOnButtonClick(1, 3)">&laquo; Zurück</a>
+                                <a class="nextButton buttons" onclick="changeInputOnButtonClick(0, 1)">Weiter &raquo;</a>
+                            </div>
+                            <a class="closeButtonRight buttons" style="padding-right: 1rem;" onclick="closeSliderPopup(0)">Schließen<i class="fas fa-times clickIcon" style="text-shadow: 0rem;"></i></a>
                         </div>
                         <div><p>Wählen Sie das <b>Alter</b>, ab welchem Sie von Ihren angesparten Mitteln <b>monatlich Geld entnehmen</b> wollen!</p></div>
                     </div>
@@ -66,9 +69,11 @@
                     <div class="triangle"></div>
                     <div class="popupHeaderSpecial move30Left">
                         <div class="headerPopup">
-                            <a class="previousButton buttons" onclick="changeInputOnButtonClick(1, 0)">&laquo; Zurück</a>
-                            <i class="fas fa-times clickIcon" style="text-shadow: 0rem;" onclick="closeSliderPopup(1)"></i>
-                            <a class="nextButton buttons" onclick="changeInputOnButtonClick(1, 2)">Weiter &raquo;</a>
+                            <div class="prevNextDiv">
+                                <a class="previousButton buttons" onclick="changeInputOnButtonClick(1, 0)">&laquo; Zurück</a>
+                                <a class="nextButton buttons" onclick="changeInputOnButtonClick(1, 2)">Weiter &raquo;</a>
+                            </div>
+                            <a class="closeButtonRight buttons" style="padding-right: 1rem;" onclick="closeSliderPopup(1)">Schließen<i class="fas fa-times clickIcon" style="text-shadow: 0rem;"></i></a>
                         </div>
                         <div><p>Wählen Sie das <b>Alter</b>, bis zu welchem Sie glauben die <b>monatliche Entnahme wahrzunehmen</b> (beispielsweise erwartetes <b>Todesalter</b>)!</p></div>
                     </div>
@@ -85,9 +90,11 @@
                     <div class="triangle"></div>
                     <div class="popupHeaderSpecial move150Left">
                         <div class="headerPopup">
-                            <a class="previousButton buttons" onclick="changeInputOnButtonClick(2, 1)">&laquo; Zurück</a>
-                            <i class="fas fa-times clickIcon" style="text-shadow: 0rem;" onclick="closeSliderPopup(2)"></i>
-                            <a class="nextButton buttons" onclick="changeInputOnButtonClick(2, 5)">Weiter &raquo;</a>
+                            <div class="prevNextDiv">
+                                <a class="previousButton buttons" onclick="changeInputOnButtonClick(2, 1)">&laquo; Zurück</a>
+                                <a class="nextButton buttons" onclick="changeInputOnButtonClick(2, 5)">Weiter &raquo;</a>
+                            </div>
+                            <a class="closeButtonRight buttons" style="padding-right: 1rem;" onclick="closeSliderPopup(2)">Schließen<i class="fas fa-times clickIcon" style="text-shadow: 0rem;"></i></a>
                         </div>
                         <div><p>Wählen Sie Ihr <b>angespartes Kapital</b>, welches Sie zu <b>Beginn der Entnahme</b> voraussichtlich zur Verfügung haben!</p></div>
                     </div>
@@ -104,9 +111,11 @@
                     <div class="triangle triangleColorChange"></div>
                     <div class="popupHeaderSpecial move150Right">
                         <div class="headerPopup">
-                            <a class="previousButton buttons" onclick="changeInputOnButtonClick(5, 2)">&laquo; Zurück</a>
-                            <i class="fas fa-times clickIcon" style="text-shadow: 0rem;" onclick="closeSliderPopup(5)"></i>
-                            <a class="nextButton buttons" onclick="changeInputOnButtonClick(5, 4)">Weiter &raquo;</a>
+                            <div class="prevNextDiv">
+                                <a class="previousButton buttons" onclick="changeInputOnButtonClick(5, 2)">&laquo; Zurück</a>
+                                <a class="nextButton buttons" onclick="changeInputOnButtonClick(5, 4)">Weiter &raquo;</a>
+                            </div>
+                            <a class="closeButtonRight buttons" style="padding-right: 1rem;" onclick="closeSliderPopup(5)">Schließen<i class="fas fa-times clickIcon" style="text-shadow: 0rem;"></i></a>
                         </div>
                         <div><p><b>Während des Entnahmeprozesses</b> zwischen dem Zeitpunkt zu Beginn der Entnahme und zum Ende der Entnahme wird der <b>verbleibende Betrag Ihrer angesparter Mittel</b> auf dem Kapitalmarkt <b>investiert</b>. <br><br>
                             Wählen Sie nun eine <b>mögliche Rendite</b>, die Sie auf dem Kapitalmarkt erwarten!</p></div>
@@ -124,9 +133,11 @@
                     <div class="triangle triangleColorChange"></div>
                     <div class="popupHeaderSpecial move30Right">
                         <div class="headerPopup">
-                            <a class="previousButton buttons" onclick="changeInputOnButtonClick(4, 5)">&laquo; Zurück</a>
-                            <i class="fas fa-times clickIcon" style="text-shadow: 0rem;" onclick="closeSliderPopup(4)"></i>
-                            <a class="nextButton buttons" onclick="changeInputOnButtonClick(4, 3)">Weiter &raquo;</a>
+                            <div class="prevNextDiv">
+                                <a class="previousButton buttons" onclick="changeInputOnButtonClick(4, 5)">&laquo; Zurück</a>
+                                <a class="nextButton buttons" onclick="changeInputOnButtonClick(4, 3)">Weiter &raquo;</a>
+                            </div>
+                            <a class="closeButtonRight buttons" style="padding-right: 1rem;" onclick="closeSliderPopup(4)">Schließen<i class="fas fa-times clickIcon" style="text-shadow: 0rem;"></i></a>
                         </div>
                         <div><p>Die <b>Rendite</b>, welche Ihre angesparten Mittel auf dem Kapitalmarkt erzielt, <b>hängt zwangsläufig davon ab</b>, in welche <b>Wertanlagen</b> die Mittel <b>investiert</b> werden.
                             <br><br>
@@ -149,7 +160,10 @@
                     <div class="triangle triangleColorChange"></div>
                     <div class="popupHeaderSpecial move10Right">
                         <div class="headerPopup">
-                            <a class="previousButton buttons" onclick="changeInputOnButtonClick(3, 4)">&laquo; Zurück</a>
+                            <div class="prevNextDiv">
+                                <a class="previousButton buttons" onclick="changeInputOnButtonClick(3, 4)">&laquo; Zurück</a>
+                                <a class="nextButton buttons" onclick="changeInputOnButtonClick(3, 0)">Weiter &raquo;</a>
+                            </div>
                             <a class="closeButtonRight buttons" style="padding-right: 1rem;" onclick="closeSliderPopup(3)">Schließen<i class="fas fa-times clickIcon" style="text-shadow: 0rem;"></i></a>
                         </div>
                         <div><p>
@@ -166,7 +180,14 @@
         <div id="container">
             <div id="inputVariables" class="centerContent">
                 <div id="Renteneintrittsalter" class="inputBoxen">
-                    <div class="titleInputbox">Beginn der Entnahme</div>
+                    <div class="titleInputbox">
+                        <p>Beginn der Entnahme</p> 
+                        <i class="fas fa-info-circle" onmouseover="showInfoPopup('Renteneintrittsalter')" onmouseout="hideInfoPopup('Renteneintrittsalter')"></i>
+                        <div  id="triangleTop"  class="triangle notVisiblePopup"></div>
+                        <div class="infoHeaderNormal startDivAtTop notVisiblePopup">
+                            <p>Wählen Sie das <b>Alter</b>, ab welchem Sie von Ihren angesparten Mitteln <b>monatlich Geld entnehmen</b> wollen!</p>
+                        </div>
+                    </div>
                     <div class="formBox">
                         <div class="sliderText">
                             <p><span id="textRenteneintrittsalter">90</span> Jahre</p>
@@ -181,7 +202,14 @@
                 </div>
 
                 <div id="Rentenaustrittsalter" class="inputBoxen">
-                    <div class="titleInputbox">Ende der Entnahme</div>
+                    <div class="titleInputbox">
+                        <p>Ende der Entnahme</p> 
+                        <i class="fas fa-info-circle" onmouseover="showInfoPopup('Rentenaustrittsalter')" onmouseout="hideInfoPopup('Rentenaustrittsalter')"></i>
+                        <div class="triangle notVisiblePopup"></div>
+                        <div class="infoHeaderNormal startDivNormal notVisiblePopup">
+                            <p>Wählen Sie das <b>Alter</b>, bis zu welchem Sie glauben die <b>monatliche Entnahme wahrzunehmen</b> (beispielsweise erwartetes <b>Todesalter</b>)!</p>
+                        </div>
+                    </div>
                     <div class="formBox">
                         <div class="sliderText">
                             <p><span id="textRentenaustrittsalter">90</span> Jahre</p></div>
@@ -196,7 +224,14 @@
                 </div>  
                 
                 <div id="Einmalbetrag" class="inputBoxen">
-                    <div class="titleInputbox">Startkapital</div>
+                    <div class="titleInputbox">
+                        <p>Startkapital</p> 
+                        <i class="fas fa-info-circle" onmouseover="showInfoPopup('Einmalbetrag')" onmouseout="hideInfoPopup('Einmalbetrag')"></i>
+                        <div class="triangle notVisiblePopup"></div>
+                        <div class="infoHeaderNormal startDivNormal notVisiblePopup">
+                            <p>Wählen Sie Ihr <b>angespartes Kapital</b>, welches Sie zu <b>Beginn der Entnahme</b> voraussichtlich zur Verfügung haben!</p>
+                        </div>
+                    </div>
                     <div class="formBox">
                         <div class="sliderText">
                             <p><span id="textEinmalbetrag">100000</span></p>
@@ -211,7 +246,15 @@
                 </div>
 
                 <div id="Renditeerwartung" class="inputBoxen">
-                    <div class="titleInputbox">Rendite</div>
+                    <div class="titleInputbox">
+                        <p>Rendite</p> 
+                        <i class="fas fa-info-circle" onmouseover="showInfoPopup('Renditeerwartung')" onmouseout="hideInfoPopup('Renditeerwartung')"></i>
+                        <div class="triangle notVisiblePopup"></div>
+                        <div class="infoHeaderNormal startDivNormal notVisiblePopup">
+                            <p><b>Während des Entnahmeprozesses</b> zwischen dem Zeitpunkt zu Beginn der Entnahme und zum Ende der Entnahme wird der <b>verbleibende Betrag Ihrer angesparter Mittel</b> auf dem Kapitalmarkt <b>investiert</b>. <br><br>
+                                Wählen Sie nun eine <b>mögliche Rendite</b>, die Sie auf dem Kapitalmarkt erwarten!</p>
+                        </div>
+                    </div>
                     <div class="formBox">
                     <div class="sliderText">
                         <p><span id="textRenditeerwartung">4 %</span></p> 
@@ -225,7 +268,18 @@
                     </div>
                 </div>
                 <div id="Standardabweichung" class="inputBoxen">
-                        <div class="titleInputbox">Risiko</div>
+                        <div class="titleInputbox">
+                            <p>Risiko</p> 
+                            <i class="fas fa-info-circle" onmouseover="showInfoPopup('Standardabweichung')" onmouseout="hideInfoPopup('Standardabweichung')"></i>
+                            <div class="triangle notVisiblePopup"></div>
+                            <div class="infoHeaderNormal startDivMediumUp notVisiblePopup">
+                                <p>Die <b>Rendite</b>, welche Ihre angesparten Mittel auf dem Kapitalmarkt erzielt, <b>hängt zwangsläufig davon ab</b>, in welche <b>Wertanlagen</b> die Mittel <b>investiert</b> werden.
+                                    <br><br>
+                                    Deswegen wird das <b>Risiko der Anlage</b> standardmäßig abhängig von der <b>gewählten Rendite</b> berechnet. <br>
+                                    Wenn Sie das Risiko <b>selbstständig</b> wählen wollen, öffnen Sie das zusätzliche Fenster durch Klicken auf den Pfeil.
+                                </p>
+                            </div>
+                        </div>
                         <div class="centerContent flexRow" style="height: 80%;">
                             <div class="centerContent flexColumn alignCenter">
                                 <div class="sliderText" style="margin-left: 1rem"> 
@@ -266,7 +320,17 @@
                     
                 </div>
                 <div id="Rente" class="inputBoxen">
-                    <div class="titleInputbox">Monatliche Entnahme</div>
+                    <div class="titleInputbox">
+                        <p>Monatliche Entnahme</p> 
+                        <i class="fas fa-info-circle" onmouseover="showInfoPopup('Rente')" onmouseout="hideInfoPopup('Rente')"></i>
+                        <div class="triangle notVisiblePopup"></div>
+                        <div class="infoHeaderNormal startDivAtBottom notVisiblePopup"><p>
+                            Die zuvor gewählten Angaben wurden dazu verwendet, einen <b>Vorschlag für eine monatliche Entnahme</b> zu berechnen. Wollen Sie diesen Wert <b>anpassen</b>?
+                            <br><br>
+                            <b>Beachten Sie:</b> Wenn Sie einen der anderen Werte anpassen, wird der Wert der monatlichen Entnahme stets auf den neuen, angepassten Vorschlag zurückgesetzt!
+                        </p>
+                        </div>
+                    </div>
                     <div class="formBox">
                         <div class="sliderText">
                             <p><span id="textRente">5000</span></p> 

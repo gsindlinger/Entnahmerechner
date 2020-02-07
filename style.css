@@ -80,9 +80,12 @@
     background: var(--main-gray);
   }
 
+ 
+
 
 #headerSpecial {
   display: none;
+  z-index: 11;
 }
 
 .popupHeaderSpecial p{
@@ -159,7 +162,7 @@ img  {
         -ms-flex-pack: center;
             justify-content: center;
     margin: 1.5rem auto 0 auto;
-    width: 95%;
+    width: 85%;
     max-width: 1400px;
 }
 
@@ -224,13 +227,14 @@ img  {
   -moz-user-select: none;
    -ms-user-select: none;
        user-select: none;
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.75);
 }
 
 .titleInputbox {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  height: 2rem;
+  height: 2.5rem;
   -webkit-box-flex: 0;
       -ms-flex-positive: 0;
           flex-grow: 0;
@@ -239,11 +243,84 @@ img  {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   border-radius: 0.5rem 0.5rem 0 0;
   font-size: 1.3rem;
+  position: relative;
+}
+
+.titleInputbox i {
+  width: 2rem;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.titleInputbox p {
+  display: flex;
+  flex-grow: 1;
+  text-align: center;
+  justify-content: center;
+}
+
+.infoHeaderNormal {
+    position: absolute;
+    left: calc(100% + 2rem);
+    width: 150%;
+    background-color: white;
+    box-shadow: 0 0 1rem rgba(0,0,0,0.75);
+    padding: 2rem;
+    text-align: center;
+    border-radius: 1rem;
+}
+
+.startDivAtTop {
+  top: -25%;
+}
+
+#triangleTop {
+  border-right: 2.5rem solid white;
+}
+
+.startDivNormal {
+  top: -100%;
+}
+
+.startDivAtBottom {
+  bottom: -100%;
+}
+
+.startDivMediumUp {
+  bottom: -500%;
+}
+
+.visiblePopup {
+  visibility: visible;
+  opacity: 1;
+  z-index: 12;
+}
+
+.notVisiblePopup {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.infoHeaderNormal p {
+  display: block;
+  text-align: center;
+}
+
+.triangle {
+  position: absolute;
+  left: 100%;
+  width: 0; 
+  height: 0; 
+  border-right: 2rem solid white;
+  border-top: 1.5rem solid transparent;
+  border-bottom: 1.5rem solid transparent;
+  border-left: 0;
+  z-index: 13;
 }
 
 .formBox{
@@ -392,7 +469,8 @@ img  {
 }
 
 #popupDeviation {
-  bottom: 0;
+  bottom: -50%;
+  z-index: 10;
 }
 
 .popup {
@@ -462,10 +540,12 @@ img  {
 
 .previousButton {
   padding-left: 1rem;
+  padding-right: 0.5rem;
 }
 
 .nextButton {
   padding-right: 1rem;
+  padding-left: 0.5rem;
 }
 
 .closeButtonLeft i {
@@ -537,6 +617,8 @@ img  {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.75);
+  z-index: 5;
 }
 
 #vizHeader {
@@ -1061,6 +1143,7 @@ footer{
           align-items: center;
   padding-right: 1rem;
   color: lightgray;
+  z-index: -1;
 }
 
 #copyright {

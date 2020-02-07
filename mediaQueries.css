@@ -1,8 +1,16 @@
 /* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
 
-@media (min-width: 1025px) and (max-width: 1280px) {
+@media (min-width: 1401px) and (max-width: 1600px) {
     html {
         font-size: 8.5px
+    }
+
+}
+
+
+@media (min-width: 1025px) and (max-width: 1400px) {
+    html {
+        font-size: 7.5px
     }
 
 }
@@ -14,7 +22,7 @@
 
 @media (min-width: 768px) and (max-width: 1024px) {
     html{
-        font-size: 9px;
+        font-size: 7px;
     }
 
 }
@@ -170,6 +178,7 @@
         height: 12rem;
     }
 
+
     #headerSpecial {
         position: fixed;
         display: -webkit-box;
@@ -192,6 +201,10 @@
 
     #inputVariables {
         display: none;
+    }
+
+    #container {
+        width: 95%;
     }
 
     .smartphoneHeaderContainer {
@@ -521,10 +534,6 @@
         padding-right: 1rem;
     }
 
-}
-
-@media (orientation: portrait) {
-
 
     #vizTopGood{
         -ms-grid-row: 1;
@@ -619,7 +628,7 @@
     }
 
     body .smartphoneHeaderBox p{
-        padding-top: 0.4rem;
+        padding-top: 0.7rem;
         font-size: 1.3rem;
     }
 
@@ -699,7 +708,6 @@
         width: 10rem;
         background-color: var(--color-uni);
         color: white; 
-        z-index: 1;
     }
 
     #inputVariables {

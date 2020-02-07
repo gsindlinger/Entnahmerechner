@@ -75,6 +75,7 @@ function funcSmartphone() {
         if(headerSpecial[4].querySelector(".popupHeaderSpecial").childElementCount >= 4) {
             for (let i = 0; i < headerNormal.length; i++) {
                 let box = headerSpecial[i].querySelector(".popupHeaderSpecial")
+
                 if(i == 4) {
                     
                     document.getElementById("popupDeviation").append(mainPopupDeviation)
@@ -88,6 +89,7 @@ function funcSmartphone() {
                 }else{
                     box = box.lastElementChild
                     headerNormal[i].appendChild(box)
+
                 }
                
                  

@@ -71,6 +71,7 @@ function openPopup() {
   angepasst*/
   var popup
   let arrow
+  console.log("Test")
 
   
   
@@ -78,11 +79,13 @@ function openPopup() {
   
   if(arrow.style.transform == "rotate(90deg)") {
     if (smartphone[0].matches || smartphone[1].matches || smartphone[2].matches) {
+      console.log("Test2")
       mainPopupDeviation.style.display = "block"
     }
     arrow.style.transform = "rotate(270deg)"
   }else{
     if (smartphone[0].matches || smartphone[1].matches || smartphone[2].matches) {
+      console.log("Test3")
       mainPopupDeviation.style.display = "none"
     }
     arrow.style.transform = "rotate(90deg)"
@@ -97,7 +100,8 @@ function openPopup() {
       arrow.style.transform = "rotate(90deg)"
     }
   */
-  if(!(smartphone[0].matches || smartphone[2].matches)) {
+  if(!(smartphone[0].matches || smartphone[1].matches)) {
+    console.log("Test4")
     popup = document.getElementsByClassName("popup")
     popup[0].style.display = "flex"
   }
@@ -146,6 +150,29 @@ function changeInputOnButtonClick(fromNum, toNum) {
     openSliderPopup(toNum)
   }
 }
+
+//Öffnen der Infopopups beim Hovern
+function showInfoPopup(str) {
+  let box = document.getElementById(str).children[0]
+  let box2
+  for(let i = 2; i < 4; i++) {
+    box2 = box.children[i]
+    box2.classList.remove("notVisiblePopup")
+    box2.classList.add("visiblePopup")
+  }
+}
+
+//Verstecken des Infopopups beim Verlassen des Bereichs-Hovern
+function hideInfoPopup(str) {
+  let box = document.getElementById(str).children[0]
+  let box2
+  for(let i = 2; i < 4; i++) {
+    box2 = box.children[i]
+    box2.classList.remove("visiblePopup")
+    box2.classList.add("notVisiblePopup")
+} 
+}
+
 
 
 

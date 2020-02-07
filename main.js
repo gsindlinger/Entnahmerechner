@@ -8,6 +8,7 @@ window.addEventListener("DOMContentLoaded", function() {
   if(smartphone[0].matches || smartphone[1].matches || smartphone[2].matches) {
     openSliderPopup(0)
   }
+  funcSmartphone()
 })
 
 for (binding of bindings) {
