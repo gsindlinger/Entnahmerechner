@@ -543,6 +543,14 @@ img  {
   padding-right: 0.5rem;
 }
 
+.previousButton i {
+  padding-right: 0.3rem;
+}
+
+.nextButton i {
+  padding-left: 0.3rem;
+}
+
 .nextButton {
   padding-right: 1rem;
   padding-left: 0.5rem;
@@ -553,7 +561,7 @@ img  {
 }
 
 .closeButtonRight i {
-  padding-left: 1rem;
+  padding-left: 0.7rem;
 }
 
 
