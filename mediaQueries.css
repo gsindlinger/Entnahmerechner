@@ -939,7 +939,7 @@
     }
 }
 
-@media (orientation: landscape) and (max-height: 220px) {
+@media (orientation: landscape) and (max-height: 500px) {
     body .move30Right {
         bottom: -90%;
         max-height: 90vh;
