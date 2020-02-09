@@ -136,7 +136,13 @@
 
 @media (max-width: 230px) and (orientation: portrait){
     html {
-        font-size: 4px;
+        font-size: 3.5px;
+    }
+}
+
+@media (max-width: 190px) and (orientation: portrait){
+    html {
+        font-size: 3px;
     }
 }
 
@@ -930,6 +936,14 @@
     body #viz3SelectAge .sliderContainer {
         height: auto;
         padding-bottom: 2rem;
+    }
+}
+
+@media (orientation: landscape) and (max-height: 220px) {
+    body .move30Right {
+        bottom: -90%;
+        max-height: 90vh;
+        overflow: auto;
     }
 }
 
