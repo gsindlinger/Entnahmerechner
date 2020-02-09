@@ -261,6 +261,9 @@ function closestNumberInArrayIndex (num, arr) {
           currIndex = val
       }
   }
+  if(currIndex == 0 && getPerformance() > 0.02) {
+    currIndex++
+  }
   return currIndex;
 }
 
