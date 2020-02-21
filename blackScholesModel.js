@@ -81,7 +81,7 @@ function calculateViz(performance, sigma, einmalbetrag,
     alterStart, alterEnde) {
     
 
-    //Abhängig von den Input-Parametern wird der Zufallesgenerator geseeted
+    //Abhängig von den Input-Parametern wird der Zufallsgenerator geseeted
     Math.seedrandom("Test" + performance + sigma + einmalbetrag + alterStart + alterEnde)    
 
 
