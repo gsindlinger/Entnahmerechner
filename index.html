@@ -12,7 +12,8 @@
     <link href="css/css/all.min.css" type="text/css" rel="stylesheet" media="screen">
 
     <!--<script defer src="fontAwesome.js"></script> -->
-    
+
+
     <!-- CSS-Skripte-->
     <link rel="stylesheet" type="text/css" href="css/root.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -20,6 +21,16 @@
     <link rel="stylesheet" type="text/css" href="css/onOffSwitch.css">
     <link rel="stylesheet" type="text/css" href="css/mediaQueries.css">
 
+    <!-- PWA Properties -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="white"/>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="images/icons/icon-152x152.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Entnahmerechner">
+    <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#FFFFFF">
 
     <!--Titel-->
     <title>Entnahmerechner</title>
@@ -189,7 +200,7 @@
             <div id="inputVariables" class="centerContent">
                 <div id="Renteneintrittsalter" class="inputBoxen">
                     <div class="titleInputbox">
-                        <p>Beginn der Entnahme</p> 
+                        <p>Beginn der Entnahme</p>
                         <i class="fas fa-info-circle" onmouseover="showInfoPopup('Renteneintrittsalter')" onmouseout="hideInfoPopup('Renteneintrittsalter')"></i>
                         <div  id="triangleTop"  class="triangle notVisiblePopup"></div>
                         <div class="infoHeaderNormal startDivAtTop notVisiblePopup">
@@ -211,7 +222,7 @@
 
                 <div id="Rentenaustrittsalter" class="inputBoxen">
                     <div class="titleInputbox">
-                        <p>Ende der Entnahme</p> 
+                        <p>Ende der Entnahme</p>
                         <i class="fas fa-info-circle" onmouseover="showInfoPopup('Rentenaustrittsalter')" onmouseout="hideInfoPopup('Rentenaustrittsalter')"></i>
                         <div class="triangle notVisiblePopup"></div>
                         <div class="infoHeaderNormal startDivNormal notVisiblePopup">
@@ -229,11 +240,11 @@
 
                         </div>
                     </div>
-                </div>  
-                
+                </div>
+
                 <div id="Einmalbetrag" class="inputBoxen">
                     <div class="titleInputbox">
-                        <p>Startkapital</p> 
+                        <p>Startkapital</p>
                         <i class="fas fa-info-circle" onmouseover="showInfoPopup('Einmalbetrag')" onmouseout="hideInfoPopup('Einmalbetrag')"></i>
                         <div class="triangle notVisiblePopup"></div>
                         <div class="infoHeaderNormal startDivNormal notVisiblePopup">
@@ -246,7 +257,7 @@
                         </div>
                         <div class="sliderContainer">
                             <a class="inputSlide inputPrev" onclick="changeRangeValue('rangeEinmalbetrag',-1)">&#10094;</a>
-                            <input type="range" min="5000" max="1000000" value="100000" step="5000" class="slider" 
+                            <input type="range" min="5000" max="1000000" value="100000" step="5000" class="slider"
                                 id="rangeEinmalbetrag">
                             <a class="inputSlide inputNext" onclick="changeRangeValue('rangeEinmalbetrag',1)">&#10095;</a>
                         </div>
@@ -255,7 +266,7 @@
 
                 <div id="Renditeerwartung" class="inputBoxen">
                     <div class="titleInputbox">
-                        <p>Rendite</p> 
+                        <p>Rendite</p>
                         <i class="fas fa-info-circle" onmouseover="showInfoPopup('Renditeerwartung')" onmouseout="hideInfoPopup('Renditeerwartung')"></i>
                         <div class="triangle notVisiblePopup"></div>
                         <div class="infoHeaderNormal startDivNormal notVisiblePopup">
@@ -265,11 +276,11 @@
                     </div>
                     <div class="formBox">
                     <div class="sliderText">
-                        <p><span id="textRenditeerwartung">4 %</span></p> 
+                        <p><span id="textRenditeerwartung">4 %</span></p>
                     </div>
                         <div class="sliderContainer">
                             <a class="inputSlide inputPrev" onclick="changeRangeValue('rangeRenditeerwartung',-1)">&#10094;</a>
-                            <input type="range" min="0" max="10" value="4" class="slider" 
+                            <input type="range" min="0" max="10" value="4" class="slider"
                                 id="rangeRenditeerwartung">
                             <a class="inputSlide inputNext" onclick="changeRangeValue('rangeRenditeerwartung',1)">&#10095;</a>
                         </div>
@@ -277,7 +288,7 @@
                 </div>
                 <div id="Standardabweichung" class="inputBoxen">
                         <div class="titleInputbox">
-                            <p>Risiko</p> 
+                            <p>Risiko</p>
                             <i class="fas fa-info-circle" onmouseover="showInfoPopup('Standardabweichung')" onmouseout="hideInfoPopup('Standardabweichung')"></i>
                             <div class="triangle notVisiblePopup"></div>
                             <div class="infoHeaderNormal startDivMediumUp notVisiblePopup">
@@ -290,8 +301,8 @@
                         </div>
                         <div class="centerContent flexRow" style="height: 80%;">
                             <div class="centerContent flexColumn alignCenter">
-                                <div class="sliderText" style="margin-left: 1rem"> 
-                                    <p><span id="textStandardabweichung">Kein Risiko</span></p> 
+                                <div class="sliderText" style="margin-left: 1rem">
+                                    <p><span id="textStandardabweichung">Kein Risiko</span></p>
                                 </div>
                                 <div class="sliderContainer sliderPopup" onclick="openDeviationPopup()">
                                     <a class="inputSlide inputPrev buttonStandardabweichung buttonDeviation" onclick="changeRangeValue('rangeStandardabweichung',-1)">&#10094;</a>
@@ -308,15 +319,15 @@
 
 
                         <div id="popupDeviation" class="popup boxShadowSmall">
-                            <div class="headerPopup"  onclick="closePopup(0)"> 
+                            <div class="headerPopup"  onclick="closePopup(0)">
                                 <a class="closeButtonRight popupsA">
                                     <span>Schließen</span><i class="fas fa-times" style="text-shadow: 0rem;"></i>
                                 </a>
                             </div>
-                            <div id="mainPopupDeviation" class="mainPopup">  
+                            <div id="mainPopupDeviation" class="mainPopup">
                                 <p>Das <b>Risiko der Anlage</b> hängt von der gewählten Rendite ab.</p>
                                 <p>Möchten Sie das Risiko selbständig auswählen?</p>
-        
+
                                 <!-- made with https://proto.io/freebies/onoff/ -->
                                 <div class="centerContent" style="padding-top: 1rem;">
                                     <div class="onoffswitch" onclick="activateSigma()" onload="defaultCheckbox()">
@@ -327,13 +338,13 @@
                                         </label>
                                     </div>
                                 </div>
-                            </div>  
+                            </div>
                         </div>
-                    
+
                 </div>
                 <div id="Rente" class="inputBoxen">
                     <div class="titleInputbox">
-                        <p>Monatliche Entnahme</p> 
+                        <p>Monatliche Entnahme</p>
                         <i class="fas fa-info-circle" onmouseover="showInfoPopup('Rente')" onmouseout="hideInfoPopup('Rente')"></i>
                         <div class="triangle notVisiblePopup"></div>
                         <div class="infoHeaderNormal startDivAtBottom notVisiblePopup"><p>
@@ -345,18 +356,18 @@
                     </div>
                     <div class="formBox">
                         <div class="sliderText">
-                            <p><span id="textRente">5000</span></p> 
+                            <p><span id="textRente">5000</span></p>
                         </div>
                         <div class="sliderContainer">
                             <a class="inputSlide inputPrev" onclick="changeRangeValue('rangeRente',-1)">&#10094;</a>
-                            <input type="range" min="1000" max="1000000" value="5000" step="5000" class="slider" 
+                            <input type="range" min="1000" max="1000000" value="5000" step="5000" class="slider"
                                 id="rangeRente">
                             <a class="inputSlide inputNext" onclick="changeRangeValue('rangeRente',1)">&#10095;</a>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <!--Der Inhalt der Visualisierungen beginnt hier
             -->
             <div id="display" class="noShrink">
@@ -382,11 +393,11 @@
                                                 Wählen Sie nun eine <b>mögliche Rendite</b>, die Sie auf dem Kapitalmarkt erwarten!</p>
                                             </div>
                                             <div class="popupVorschlagUebernehmen" id="popupVorschlagUebernehmenRedo">
-                                                <i class="fas fa-redo"></i>   
-                                            </div> 
+                                                <i class="fas fa-redo"></i>
+                                            </div>
                                         </div>
                                     </div>
-                                </span>                          
+                                </span>
                             </div>
                             <p>Vorschlag für eine monatliche Entnahme</p>
                         </div>
@@ -397,9 +408,9 @@
                             </div>
                             <div id="lebenserwartung">
                                 <p style="width: 30rem;"> <span id="prefixPercentageRentenaustrittsalter">ca.</span> <span id="percentageRentenaustrittsalter" class="fontHeader">50%</span> aller Deutschen <br>
-                                erreichen das Alter von 
+                                erreichen das Alter von
                                 <span id="headerRentenaustrittsalter" class="fontHeader" style="font-size: 1.9rem">90 Jahren</span>
-                                </p> 
+                                </p>
                             </div>
                     </div>
                 </div>
@@ -408,7 +419,7 @@
 						<a class="prev changeSlide" onclick="plusSlides(-1)" style="font-size: 2.5rem;">&#10094;</a>
                         <!-- Hier folgen die drei verschiedenen Seiten, die mittels Javascript ein-/ausgeblendet werden
                         -->
-                        
+
 
                         <!--Smiley-Darstellung-->
                         <div id="viz1" class="slideshow fade">
@@ -417,7 +428,7 @@
 							<div id="vizTopGood" class="fontVizSmiley" style="margin: auto 0 auto 0;">Geld <b>bleibt übrig</b></div>
 							<div id="vizTopMedium" class="fontVizSmiley" style="margin: auto 0 auto 0;">Geld <b>reicht</b> passend</div>
 							<div id="vizTopBad" class="fontVizSmiley" style="margin: auto 0 auto 0;">Geld reicht <b>nicht</b></div>
-							
+
 							<!-- Visualisierungen selbst -->
 							<div id="good" class="centerContentGrid">
 								<img class="centerContent boxShadowBig" src="svg/good.svg" alt="Smiley Good">
@@ -434,7 +445,7 @@
 							<div id="textMedium" class="fontHeader textSmiley centerContent"></div>
 							<div id="textBad" class="fontHeader textSmiley centerContent"></div>
                         </div>
-                        
+
                         <!--Donut-Chart-Darstellung-->
                         <div id="viz3" class="slideshow fade flexColumn">
                             <div id="viz3Header" class="centerContent alignCenter">
@@ -446,7 +457,7 @@
                                     <div id="viz3SelectAgeHeader" class="centerContent alignCenter">
                                         <h2>Wählen Sie ihr gewünschtes Alter...</h2>
                                     </div>
-                                    
+
                                         <div id="viz3SelectAgeDisplay" class="centerContent flexColumn">
                                         <div id="viz3SelectAgeDonut" class="centerContent flexColumn alignCenter"></div>
                                         <div class="sliderContainer">
@@ -458,15 +469,15 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
 
                         <!--Histogram-Darstellung-->
 						<div id="viz2" class="slideshow fade flexColumn"></div>
-	
+
 						<a class="next changeSlide" onclick="plusSlides(1)" style="font-size: 2.5rem;">&#10095;</a>
                     </div>
-                    
+
 					<div id="vizSlideIcons">
 						<div class="vizSlideIconsDetail hoverPage activePage" onclick="currentSlide(1)">
 							<i class="fas fa-smile slideIcon"></i>
@@ -487,7 +498,7 @@
 <!--Dieses Div dient dazu, eine vergleichbare Größe zur Berechnung von anderen Größenangaben mittels Javascript zu gewährleisten.
     Problem ist, dass in vielen Bereichen das Ausblenden von Inhalten mittels CSS-Befehl "display: none" durchgeführt wurde und
     demnach keine Größenberechnung möglich ist. Dieses Div soll dementsprechend eine Möglichkeit bieten fehlende Größenwerte zu berechnen
-    
+
     Es wird mittels Positionierung außerhalb des sichtbaren Bereichs gelegt-->
 <div id="viz2Test" class="centerContent alignCenter"><h2>Test</h2></div>
 
@@ -497,7 +508,7 @@
     <i class="fas fa-info-circle"></i>
     <div class="triangle" style="visibility: hidden"></div>
     <div class="infoPopup">
-        
+
     </div>
 </div>
 
@@ -529,6 +540,3 @@
 
 </body>
 </html>
-
-
-
