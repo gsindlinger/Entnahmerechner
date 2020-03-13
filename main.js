@@ -10,7 +10,9 @@ window.addEventListener("DOMContentLoaded", function() {
     openSliderPopup(0)
   }
   funcSmartphone()
-  
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./serviceworker.js');
+  }
 })
 
 for (binding of bindings) {
@@ -36,7 +38,7 @@ function updateDisplay(shouldPreventUpdateValue) {
   let renteAlterEnde = parseInt(rentenaustrittsalter.input.value)
 
   let step
-  
+
   if(isNaN(parseInt(input.step))) {
     step = 1
   }else{
