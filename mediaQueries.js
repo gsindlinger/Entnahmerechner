@@ -30,9 +30,9 @@ function funcSmartphone() {
 
     if(smartphone[0].matches) {
         //Zeilenumbruch in Titel hinzufügen falls das Endgerät länger als breit ist
-        titleHeader[0].innerHTML = "Berechne Sie Ihren <br> optimalen Entnahmeplan"
+        titleHeader[0].innerHTML = "Berechne Sie <br> Ihren Entnahmeplan"
     }else{
-        titleHeader[0].innerHTML = "Berechne Sie Ihren optimalen Entnahmeplan"
+        titleHeader[0].innerHTML = "Berechne Sie Ihren Entnahmeplan"
     }
     
 

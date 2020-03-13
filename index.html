@@ -27,7 +27,7 @@
         -->
         <div id="headerNormal">
             <div id="title">
-                    <h1>Berechne Sie Ihren optimalen Entnahmeplan</h1>
+                    <h1>Berechnen Sie den Entnahmeplan Ihrer Altersvorsorge</h1>
                     <div id="subtitle">
                         <p>Wie lange reichen Ihre angesparten Mittel?</p>
                     </div>
@@ -288,7 +288,7 @@
                                 <div class="sliderText" style="margin-left: 1rem"> 
                                     <p><span id="textStandardabweichung">Kein Risiko</span></p> 
                                 </div>
-                                <div class="sliderContainer sliderPopup">
+                                <div class="sliderContainer sliderPopup" onclick="openDeviationPopup()">
                                     <a class="inputSlide inputPrev buttonStandardabweichung buttonDeviation" onclick="changeRangeValue('rangeStandardabweichung',-1)">&#10094;</a>
                                     <input type="range" min="0" max="4" value="0" class="slider" disabled="true"
                                         id="rangeStandardabweichung">
@@ -303,7 +303,11 @@
 
 
                         <div id="popupDeviation" class="popup boxShadowSmall">
-                            <div class="headerPopup"><i class="fas fa-times clickIcon" style="text-shadow: 0rem;" onclick="closePopup(0)"></i></div>
+                            <div class="headerPopup"  onclick="closePopup(0)"> 
+                                <a class="closeButtonRight popupsA">
+                                    <span>Schließen</span><i class="fas fa-times" style="text-shadow: 0rem;"></i>
+                                </a>
+                            </div>
                             <div id="mainPopupDeviation" class="mainPopup">  
                                 <p>Das <b>Risiko der Anlage</b> hängt von der gewählten Rendite ab.</p>
                                 <p>Möchten Sie das Risiko selbständig auswählen?</p>
@@ -340,7 +344,7 @@
                         </div>
                         <div class="sliderContainer">
                             <a class="inputSlide inputPrev" onclick="changeRangeValue('rangeRente',-1)">&#10094;</a>
-                            <input type="range" min="1000" max="1000000" value="100000" step="5000" class="slider" 
+                            <input type="range" min="1000" max="1000000" value="5000" step="5000" class="slider" 
                                 id="rangeRente">
                             <a class="inputSlide inputNext" onclick="changeRangeValue('rangeRente',1)">&#10095;</a>
                         </div>
@@ -357,8 +361,29 @@
                             <img src="svg/rente.svg" alt="Rente Icon">
                         </div>
                         <div id="rente">
-                            <span id="calcRente" class="fontHeader"></span>
-                            <p>Vorschlag für eine optimale monatliche Entnahme</p> 
+                            <div id="calcRenteDiv">
+                                <span id="calcRenteMain" class="fontHeader">
+                                    <span id="calcRente"></span>
+                                    <div class="popupVorschlagUebernehmen" id="popupVorschlagUebernehmenInfo">
+                                        <i class="fas fa-info-circle fontHeader"></i>
+                                    </div>
+                                    <div id="popupVorschlag">
+                                        <div class="triangle"></div>
+                                        <div id="popupVorschlagBody" class="fontViz">
+                                            <div class="headerPopup">
+                                                <a class="closeButtonRight buttons" style="padding-right: 1rem;" onclick="closeSliderPopup(5)">Schließen<i class="fas fa-times clickIcon" style="text-shadow: 0rem;"></i></a>
+                                            </div>
+                                            <div><p><b>Während des Entnahmeprozesses</b> zwischen dem Zeitpunkt zu Beginn der Entnahme und zum Ende der Entnahme wird der <b>verbleibende Betrag Ihrer angesparter Mittel</b> auf dem Kapitalmarkt <b>investiert</b>. <br><br>
+                                                Wählen Sie nun eine <b>mögliche Rendite</b>, die Sie auf dem Kapitalmarkt erwarten!</p>
+                                            </div>
+                                            <div class="popupVorschlagUebernehmen" id="popupVorschlagUebernehmenRedo">
+                                                <i class="fas fa-redo fontHeader"></i>   
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </span>                          
+                            </div>
+                            <p>Vorschlag für eine monatliche Entnahme</p>
                         </div>
                     </div>
                     <div class="vizHeaderIconPlusText">

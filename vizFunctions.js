@@ -563,10 +563,12 @@ function vizHistogram(arr, deviation, pensionStart, pensionEnd, tolerance) {
     let end
     let sum = 0
     let j = 0
+    let bool = true
+    
+    
 
     for(let i = 0; i < bins.length; i++) {
         sum += bins[i].length
-
         if(bins[j].x1 >= pensionEnd) {
             if(bins[j+2] != undefined) {
                 middle = bins[j+2].x0
@@ -578,17 +580,27 @@ function vizHistogram(arr, deviation, pensionStart, pensionEnd, tolerance) {
             j++
         }
         
-        if(sum > 0.90*arr.length) {
+        if(sum > 0.90*arr.length && bool == true) {
             end = bins[i].x0
-            break
+            bool = false
         }
     }
 
-    var colorScale = d3.scalePow()
+    if(end <= pensionEnd) {
+        end = bins[bins.length-1].x0
+    }
+
+    if(middle == undefined) {
+        middle = end
+    }
+
+    let colorScale = d3.scalePow()
         .exponent(0.001)
         .domain([bins[0].x0, middle, end])
         .range(['#d73027','#87A34A', '#1a9850'])
-        .interpolate(d3.interpolateHcl);
+        .interpolate(d3.interpolateHcl)
+
+   
 
     var tooltip = d3.select("body").append("div").attr("class", "tooltip");
     

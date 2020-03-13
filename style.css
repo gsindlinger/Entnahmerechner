@@ -255,6 +255,7 @@ img  {
   width: 2rem;
   display: flex;
   justify-content: flex-start;
+  cursor: pointer;
 }
 
 .titleInputbox p {
@@ -316,7 +317,7 @@ img  {
   left: 100%;
   width: 0; 
   height: 0; 
-  border-right: 2rem solid white;
+  border-right: 2.3rem solid white;
   border-top: 1.5rem solid transparent;
   border-bottom: 1.5rem solid transparent;
   border-left: 0;
@@ -441,6 +442,10 @@ img  {
   color: #363636;
 }
 
+.popupsA .fa-times{
+  color: inherit;
+}
+
 .clickIcon {
   cursor: pointer;
   -webkit-transition: 0.3s ease;
@@ -506,6 +511,27 @@ img  {
 .mainPopup {
   padding: 2rem;
 }
+
+.popupsA {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: #363636;
+  -webkit-transition: 0.3s ease;
+  -o-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+
+.popupsA:hover{
+  color: lightgray;
+}
+
+.popupsA span {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+
 
 
 
@@ -691,7 +717,36 @@ img  {
 .fontHeaderWithoutSize{
   font-family: var(--font-rest);
 }
-	
+
+#calcRenteMain{
+  position: relative;
+}
+
+.popupVorschlagUebernehmen {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  align-items: center;
+}
+
+#popupVorschlagUebernehmenInfo {
+  left: calc(100% + 2rem);
+}
+
+#popupVorschlagUebernehmenRedo {
+  display: none;
+  left: calc(100% + 4rem);
+}
+
+#popupVorschlag {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 
 #vizMain{
 	width: 100%;

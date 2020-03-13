@@ -1,9 +1,9 @@
 //Abhängig vom Device soll die Anzahl der Iterationen angepasst werden
 let iterations
 if(smartphone[3].matches) {
-    iterations = 4000
+    iterations = 5000
 }else{
-    iterations = 8000
+    iterations = 10000
 }
 
 

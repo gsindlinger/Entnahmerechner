@@ -71,7 +71,6 @@ function openPopup() {
   angepasst*/
   var popup
   let arrow
-  console.log("Test")
 
   
   
@@ -79,7 +78,6 @@ function openPopup() {
   
   if(arrow.style.transform == "rotate(90deg)") {
     if (smartphone[0].matches || smartphone[1].matches || smartphone[2].matches) {
-      console.log("Test2")
       mainPopupDeviation.style.display = "block"
     }
     arrow.style.transform = "rotate(270deg)"
@@ -239,7 +237,7 @@ function activateSigma() {
     for(let i = 0; i < buttons.length; i++) {
       buttons[i].classList.add("buttonStandardabweichung")
     }
-    standardabweichung.input.classList.add("noPointerEvents")
+    //standardabweichung.input.classList.add("noPointerEvents")
 
   }
 
@@ -255,7 +253,7 @@ function closestNumberInArrayIndex (num, arr) {
   var diff = Math.abs (num - curr);
   for (var val = 0; val < arr.length; val++) {
       var newdiff = Math.abs (num - arr[val]);
-      if (newdiff < diff) {
+      if (newdiff <= diff) {
           diff = newdiff;
           curr = arr[val];
           currIndex = val
@@ -279,6 +277,9 @@ function fillPercentageHeader(endAge) {
   if(helpNum <= 0.05) {
     percentageRentenaustrittsalter.innerText = Math.round(helpNum*100)+1 + "%"
     prefixHeaderRentenaustrittsalter.innerText = "Weniger als"
+  }else if(helpNum >= 0.90) {
+    percentageRentenaustrittsalter.innerText = 90 + "%"
+    prefixHeaderRentenaustrittsalter.innerText = "Mehr als"
   }else{
     percentageRentenaustrittsalter.innerText = Math.ceil(helpNum*10)*10 + "%" 
     prefixHeaderRentenaustrittsalter.innerText = "Ca."
@@ -322,7 +323,17 @@ function changeRangeValue(idRangeName, plusMinus) {
     input.value = parseInt(input.value) - step
   }
 
-  if(idRangeName == "rangeEinmalbetrag" || idRangeName == "rangeRente") {
+  if(idRangeName == "rangeEinmalbetrag") {
+    if(parseInt(input.value) <= parseInt(renteRange.input.value)*12) {
+      window.alert("Die Entnahme darf maximal den Wert der Rente besitzen!")
+      input.value = parseInt(renteRange.input.value) + step
+    }
+    output.innerText = numberWithPoints(input.value) + "€"
+  }else if (idRangeName == "rangeRente"){
+    if(parseInt(input.value)*12 >= parseInt(einmalbetrag.input.value)) {
+      window.alert("Die Entnahme darf maximal den Wert der Rente besitzen!")
+      input.value = einmalbetrag.input.value - step
+    }
     output.innerText = numberWithPoints(input.value) + "€"
   }else if(idRangeName == "rangeStandardabweichung" && checkMuSigma.checked == true) {
     output.innerText = textDeviation(parseInt(input.value))
@@ -343,9 +354,17 @@ function changeRangeValue(idRangeName, plusMinus) {
   
   
   if(idRangeName!="rangeRente") {
-    fillRente(getEinmalbetrag(), getPerformance(), calcLaufzeit())
+    fillRente(getEinmalbetrag(), getPerformance(), calcLaufzeit(), false)
   }
   calculateViz(getPerformance(),getDeviation(), getEinmalbetrag(),
   parseInt(renteneintrittsalter.input.value), parseInt(rentenaustrittsalter.input.value))
+  fillPercentageHeader(parseInt(rentenaustrittsalter.input.value))
+}
+
+
+function openDeviationPopup() {
+  if(standardabweichung.input.disabled == true) {
+    openPopup()
+  }
 }
 

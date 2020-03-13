@@ -4,11 +4,13 @@ window.addEventListener("orientationchange", function() {
 })
 window.addEventListener("resize", resizeChart)
 window.addEventListener("DOMContentLoaded", function() {
+  fillRente(getEinmalbetrag(), getPerformance(), calcLaufzeit(), true)
   updateValue()
   if(smartphone[0].matches || smartphone[1].matches || smartphone[2].matches) {
     openSliderPopup(0)
   }
   funcSmartphone()
+  
 })
 
 for (binding of bindings) {
@@ -33,6 +35,15 @@ function updateDisplay(shouldPreventUpdateValue) {
   let renteAlterStart = parseInt(renteneintrittsalter.input.value)
   let renteAlterEnde = parseInt(rentenaustrittsalter.input.value)
 
+  let step
+  
+  if(isNaN(parseInt(input.step))) {
+    step = 1
+  }else{
+    step = parseInt(input.step)
+  }
+
+
   if(input.id == "rangeRenditeerwartung") {
     output.innerText = input.value + "%"
 
@@ -45,8 +56,14 @@ function updateDisplay(shouldPreventUpdateValue) {
       standardabweichung.input.value = closest
       standardabweichung.output.innerText = textDeviation(parseInt(closest))
     }
-  }else if(input.id == "rangeEinmalbetrag" || input.id == "rangeRente") {
-      output.innerText = numberWithPoints(input.value) + "€"
+  }else if(input.id == "rangeEinmalbetrag") {
+    if(parseInt(input.value) <= parseInt(renteRange.input.value)*12) {
+      window.alert("Die Entnahme darf maximal den Wert der Rente besitzen!")
+      console.log("step ", step)
+      console.log("input Value ", input.value)
+      input.value = parseInt(renteRange.input.value) + step
+    }
+    output.innerText = numberWithPoints(input.value) + "€"
   }else if(input.id == "rangeStandardabweichung" && checkMuSigma.checked == true) {
     output.innerText = textDeviation(parseInt(input.value))
 
@@ -58,18 +75,18 @@ function updateDisplay(shouldPreventUpdateValue) {
   }else if(input.id == "rangeRenteneintrittsalter") {
       if(parseInt(input.value) >= renteAlterEnde) {
         window.alert("Das Rentenaustrittsalter muss mindestens ein Jahr über dem Renteneintrittsalter liegen!")
-        input.value = renteAlterEnde - 1
-        renteAlterStart = renteAlterEnde - 1
+        input.value = renteAlterEnde - step
+        renteAlterStart = renteAlterEnde - step
       }
       output.innerText = input.value
       renteAlterStart = parseInt(input.value)
 
-      rentenaustrittsalter.input.min = parseInt(input.value) + 1
+      rentenaustrittsalter.input.min = parseInt(input.value) + step
 
     }else if(input.id == "rangeRentenaustrittsalter") {
       if(parseInt(input.value) <= renteAlterStart) {
           window.alert("Das Rentenaustrittsalter muss mindestens ein Jahr über dem Renteneintrittsalter liegen!")
-          input.value = renteAlterStart + 1
+          input.value = renteAlterStart + step
           output.innerText = input.value
       }
       output.innerText = input.value
@@ -79,20 +96,22 @@ function updateDisplay(shouldPreventUpdateValue) {
       fillPercentageHeader(renteAlterEnde)
 
 
+    }else if(input.id == "rangeRente") {
+      if(parseInt(input.value)*12 >= parseInt(einmalbetrag.input.value)) {
+        window.alert("Die Entnahme darf maximal den Wert der Rente besitzen!")
+        input.value = einmalbetrag.input.value - step
+      }
+      output.innerText = numberWithPoints(input.value) + "€"
+      console.log("Test")
+      //checkBordersForInputRange()
     }else{
-    output.innerText = input.value
-  }
+      output.innerText = input.value
+    }
 
     /*Ersetzen des Textes in den Boxen*/
 
   if (input.id != "rangeRente") {
-    fillRente(getEinmalbetrag(),getPerformance(),renteAlterEnde-renteAlterStart)
-  }else{
-    if(parseInt(input.value) >= einmalbetrag.input.value) {
-      window.alert("Die Entnahme darf maximal den Wert der Rente besitzen!")
-      input.value = einmalbetrag.input.value - 1
-      output.innerText = numberWithPoints(input.value) + "€"
-    }
+    fillRente(getEinmalbetrag(),getPerformance(),renteAlterEnde-renteAlterStart, false)
   }
 
 

@@ -27,15 +27,21 @@ function calcRente(varEinmalbetrag, varPerformance, varLaufzeit) {
 }
 
 //Befüllt das Feld des Vorschlags mit der optimalen Entnahme unter Aufruf der oberen beiden Funktionen
-function fillRente(einmalbetrag, performance, laufzeit) {
+function fillRente(einmalbetrag, performance, laufzeit, boolResetRente) {
   
     let renteVal = Math.round(calcRente(einmalbetrag,performance,laufzeit)/(12*10))*10
-    renteRange.input.min = Math.floor(Math.round(renteVal - 0.4*renteVal)/10)*10
-    renteRange.input.max = Math.ceil(Math.round(renteVal + 0.2*renteVal)/10)*10
+    renteRange.input.min = Math.min(renteRange.input.min, Math.floor(Math.round(renteVal - 0.4*renteVal)/10)*10)
+    renteRange.input.max = Math.floor(Math.min(Math.max(renteRange.input.max, Math.ceil(Math.round(renteVal + 0.4*renteVal)/10)*10), getEinmalbetrag()/12))
     renteRange.input.step = 10
   
-    renteRange.input.value = renteVal
-    renteRange.output.innerText = numberWithPoints(renteVal) + "€"
+
+    if(boolResetRente == true) {
+        renteRange.input.min = Math.floor(Math.round(renteVal - 0.4*renteVal)/10)*10
+        renteRange.input.max = Math.ceil(Math.round(renteVal + 0.4*renteVal)/10)*10
+        renteRange.input.value = renteVal
+        renteRange.output.innerText = numberWithPoints(renteVal) + "€"
+    }
+    
     rente.innerText = numberWithPoints(renteVal) + "€"
   
   
