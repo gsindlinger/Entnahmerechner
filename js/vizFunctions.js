@@ -475,6 +475,13 @@ function displayDonut(agesArr, numbersAgesArr, mainDiv, j, width2, height2, help
 
 function vizHistogram(arr, deviation, pensionStart, pensionEnd, tolerance) {
 
+
+var paras = document.getElementsByClassName('tooltips');
+
+    while(paras[0] || paras[0] !=undefined) {
+        paras[0].parentNode.removeChild(paras[0])
+    }
+
     var viz2 = d3.select("#viz2")
     .html("")
 
@@ -602,7 +609,7 @@ function vizHistogram(arr, deviation, pensionStart, pensionEnd, tolerance) {
 
    
 
-    var tooltip = d3.select("body").append("div").attr("class", "tooltip");
+    var tooltip = d3.select("body").append("div").attr("class", "tooltip").style("left", "-1000px");
     
 
     svg.append("g")
