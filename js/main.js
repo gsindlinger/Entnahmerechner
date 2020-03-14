@@ -61,8 +61,6 @@ function updateDisplay(shouldPreventUpdateValue) {
   }else if(input.id == "rangeEinmalbetrag") {
     if(parseInt(input.value) <= parseInt(renteRange.input.value)*12) {
       window.alert("Die Entnahme darf maximal den Wert der Rente besitzen!")
-      console.log("step ", step)
-      console.log("input Value ", input.value)
       input.value = parseInt(renteRange.input.value) + step
     }
     output.innerText = numberWithPoints(input.value) + "€"
@@ -104,8 +102,6 @@ function updateDisplay(shouldPreventUpdateValue) {
         input.value = einmalbetrag.input.value - step
       }
       output.innerText = numberWithPoints(input.value) + "€"
-      console.log("Test")
-      //checkBordersForInputRange()
     }else{
       output.innerText = input.value
     }

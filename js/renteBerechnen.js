@@ -48,5 +48,21 @@ function fillRente(einmalbetrag, performance, laufzeit, boolResetRente) {
   
   }
 
+  function resetProposal() {
+    fillRente(getEinmalbetrag(),getPerformance(),calcLaufzeit(), true)
+    updateValue()
+    closeProposalPopup()
+  }
+
+  function closeProposalPopup() {
+    let proposalPopup = document.getElementById("popupVorschlag")
+    proposalPopup.style.display = "none"
+  }
+
+  function openProposalPopup() {
+    let proposalPopup = document.getElementById("popupVorschlag")
+    proposalPopup.style.display = "inline"
+  }
+
 
 

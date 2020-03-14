@@ -416,18 +416,39 @@
     }
 
     .headerPopup {
-       
         -webkit-box-pack: justify;
             -ms-flex-pack: justify;
                 justify-content: space-between;
+    }
+
+    #popupVorschlag .headerPopup {
+        justify-content: flex-end;
     }
 
     .mainPopup {
         padding: 0;
     }
 
+    #popupVorschlag .mainPopup {
+        padding: 1.5rem;
+    }
+
+    .popupsA span {
+        font-size: 1.7rem;
+    }
+
+    .popupsA {
+        padding-right: 1rem;
+    }
+
+
     #mainPopupDeviation {
         font-size: 1.3rem;
+    }
+
+    #popupVorschlagBody {
+        max-width: 50vw;
+        width: 45rem;
     }
 
     #main{
@@ -750,13 +771,33 @@
 
     }
 
+    .trianglePopupA {
+        left: 100%;
+        border-right: 2.3rem solid white;
+        border-top: 1.5rem solid transparent;
+        border-bottom: 1.5rem solid transparent;
+      }
+
+      #popupVorschlag .trianglePopupA {
+        top: 0.8rem;
+      }
+
     .colorUni {
         background-color: var(--color-uni);
+    }
+
+    #popupVorschlag {
+        left: calc(100% + 5rem);
+        top: 0rem;
     }
 
 
     .popupHeaderSpecial {
         width: 50vw;
+    }
+
+    #buttonRedo{
+        padding: 2rem 4rem;
     }
 
     .move10Left {

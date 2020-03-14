@@ -183,9 +183,10 @@
                             <a class="closeButtonRight buttons" style="padding-right: 1rem;" onclick="closeSliderPopup(3)">Schließen<i class="fas fa-times clickIcon" style="text-shadow: 0rem;"></i></a>
                         </div>
                         <div><p>
-                            Die zuvor gewählten Angaben wurden dazu verwendet, einen <b>Vorschlag für eine monatliche Entnahme</b> zu berechnen. Wollen Sie diesen Wert <b>anpassen</b>?
+                            Die zuvor gewählten Angaben wurden dazu verwendet, einen <b>Vorschlag für eine monatliche Entnahme</b> zu berechnen. <br>
+                            Anhand dieses Wertes wird ermittelt, ob Ihr angespartes Geld bis zum Ende der Entnahme <b>ausreicht</b> oder <b>nicht</b>. Wollen Sie diesen Wert anpassen?
                             <br><br>
-                            <b>Beachten Sie:</b> Wenn Sie einen der anderen Werte anpassen, wird der Wert der monatlichen Entnahme stets auf den neuen, angepassten Vorschlag zurückgesetzt!
+                            Über den <b>Informationsbutton neben dem Vorschlag für die Entnahme</b> können sie diesen Vorschlag übernehmen.
                         </p></div>
                     </div>
                 </div>
@@ -345,9 +346,11 @@
                         <i class="fas fa-info-circle" onmouseover="showInfoPopup('Rente')" onmouseout="hideInfoPopup('Rente')"></i>
                         <div class="triangle notVisiblePopup"></div>
                         <div class="infoHeaderNormal startDivAtBottom notVisiblePopup"><p>
-                            Die zuvor gewählten Angaben wurden dazu verwendet, einen <b>Vorschlag für eine monatliche Entnahme</b> zu berechnen. Wollen Sie diesen Wert <b>anpassen</b>?
+                            Die zuvor gewählten Angaben wurden dazu verwendet, einen <b>Vorschlag für eine monatliche Entnahme</b> zu berechnen. <br>
+                            Anhand dieses Wertes wird ermittelt, ob Ihr angespartes Geld bis zum Ende der Entnahme <b>ausreicht</b> oder <b>nicht</b>.
+                            <br><br> Wollen Sie diesen Wert anpassen?
                             <br><br>
-                            <b>Beachten Sie:</b> Wenn Sie einen der anderen Werte anpassen, wird der Wert der monatlichen Entnahme stets auf den neuen, angepassten Vorschlag zurückgesetzt!
+                            Über den <b>Informationsbutton neben dem Vorschlag für die Entnahme</b> können sie diesen Vorschlag übernehmen.
                         </p>
                         </div>
                     </div>
@@ -378,20 +381,31 @@
                                 <span id="calcRenteMain" class="fontHeader">
                                     <span id="calcRente"></span>
                                     <div class="popupVorschlagUebernehmen" id="popupVorschlagUebernehmenInfo">
-                                        <i class="fas fa-info-circle"></i>
+                                        <i id="vorschlagIcon" class="fas fa-info-circle" onclick="openProposalPopup()"></i>
                                     </div>
                                     <div id="popupVorschlag">
-                                        <div class="triangle"></div>
-                                        <div id="popupVorschlagBody" class="fontViz">
+                                        <div class="trianglePopupA"></div>
+                                        <div id="popupVorschlagBody" class="popupWithoutDisplay">
                                             <div class="headerPopup">
-                                                <a class="closeButtonRight buttons" style="padding-right: 1rem;" onclick="closeSliderPopup(5)">Schließen<i class="fas fa-times clickIcon" style="text-shadow: 0rem;"></i></a>
+                                                <a class="closeButtonRight popupsA" onclick="closeProposalPopup()">
+                                                    <span>Schließen</span><i class="fas fa-times" style="text-shadow: 0rem;"></i>
+                                                </a>
                                             </div>
-                                            <div><p><b>Während des Entnahmeprozesses</b> zwischen dem Zeitpunkt zu Beginn der Entnahme und zum Ende der Entnahme wird der <b>verbleibende Betrag Ihrer angesparter Mittel</b> auf dem Kapitalmarkt <b>investiert</b>. <br><br>
-                                                Wählen Sie nun eine <b>mögliche Rendite</b>, die Sie auf dem Kapitalmarkt erwarten!</p>
+                                            <div class="mainPopup"><p>
+                                                Die <b>Entwicklung Ihrer Wertanlage</b> während des Entnahmeprozesses ist aufgrund des Risikos <b>nur bedingt vorhersehbar</b>.
+                                                <br><br>
+                                                Die <b>Schwankungen des Kapitalmarktes</b> sorgen dafür, 
+                                                dass die <b>tatsächliche Rendite</b> in jedem Jahr sich von Ihrer <b>ausgewählten Rendite unterscheidet</b>.
+                                                <br><br>
+                                                Lässt man die Berücksichtigung des Risikos <b>außen vor</b>  und geht davon aus, 
+                                                dass in jedem Jahr zwischen dem Beginn der Entnahme und dem Ende der Entnahme <b>exakt Ihre gewählte Rendite erzielt wird</b>, 
+                                                dann führt dieser Vorschlag einer monatlichen Entnahme dazu, dass ihre Entnahme <b>exakt bis zum Ende der Entnahme reicht</b>.
+                                                <br><br>
+                                                Möchten Sie diesen Vorschlag übernehmen?
+                                            </p>
                                             </div>
-                                            <div class="popupVorschlagUebernehmen" id="popupVorschlagUebernehmenRedo">
-                                                <i class="fas fa-redo"></i>
-                                            </div>
+                                            <button id="buttonRedo" onclick="resetProposal()"><span>Vorschlag übernehmen!</span>
+                                            </button>
                                         </div>
                                     </div>
                                 </span>
@@ -500,14 +514,14 @@
 <div id="viz2Test" class="centerContent alignCenter"><h2>Test</h2></div>
 
 <footer>
-<div id="copyright">&copy; Copyright 2019 Johannes Gabriel Sindlinger</div>
-<div id="infoFooter">
-    <i class="fas fa-info-circle"></i>
-    <div class="triangle" style="visibility: hidden"></div>
-    <div class="infoPopup">
+    <div id="copyright">&copy; Copyright 2019 Johannes Gabriel Sindlinger</div>
+    <div id="infoFooter">
+        <i class="fas fa-info-circle"></i>
+        <div class="triangle" style="visibility: hidden"></div>
+        <div class="infoPopup">
 
+        </div>
     </div>
-</div>
 
 </footer>
 

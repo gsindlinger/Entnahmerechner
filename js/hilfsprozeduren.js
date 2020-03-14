@@ -83,7 +83,6 @@ function openPopup() {
     arrow.style.transform = "rotate(270deg)"
   }else{
     if (smartphone[0].matches || smartphone[1].matches || smartphone[2].matches) {
-      console.log("Test3")
       mainPopupDeviation.style.display = "none"
     }
     arrow.style.transform = "rotate(90deg)"
@@ -99,7 +98,6 @@ function openPopup() {
     }
   */
   if(!(smartphone[0].matches || smartphone[1].matches)) {
-    console.log("Test4")
     popup = document.getElementsByClassName("popup")
     popup[0].style.display = "flex"
   }
@@ -329,6 +327,28 @@ function changeRangeValue(idRangeName, plusMinus) {
       input.value = parseInt(renteRange.input.value) + step
     }
     output.innerText = numberWithPoints(input.value) + "€"
+  }else if(input.id == "rangeRenteneintrittsalter") {
+    if(parseInt(input.value) >= parseInt(rentenaustrittsalter.input.value)) {
+      window.alert("Das Rentenaustrittsalter muss mindestens ein Jahr über dem Renteneintrittsalter liegen!")
+      input.value = parseInt(rentenaustrittsalter.input.value) - step
+      renteneintrittsalter.input.value = rentenaustrittsalter.input.value - step
+    }
+    output.innerText = input.value
+    renteneintrittsalter.input.value = parseInt(input.value)
+
+    rentenaustrittsalter.input.min = parseInt(input.value) + step
+  }else if(input.id == "rangeRentenaustrittsalter") {
+    if(parseInt(input.value) <= parseInt(renteneintrittsalter.input.value)) {
+        window.alert("Das Rentenaustrittsalter muss mindestens ein Jahr über dem Renteneintrittsalter liegen!")
+        input.value = parseInt(renteneintrittsalter.input.value) + step
+        output.innerText = input.value
+    }
+    output.innerText = input.value
+    rentenaustrittsalter.input.value = parseInt(input.value)
+
+    renteneintrittsalter.input.max = Math.min(parseInt(input.value) - 1,75)
+
+
   }else if (idRangeName == "rangeRente"){
     if(parseInt(input.value)*12 >= parseInt(einmalbetrag.input.value)) {
       window.alert("Die Entnahme darf maximal den Wert der Rente besitzen!")
@@ -367,4 +387,6 @@ function openDeviationPopup() {
     openPopup()
   }
 }
+
+
 
