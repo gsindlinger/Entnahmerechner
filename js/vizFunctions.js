@@ -49,49 +49,62 @@ function vizSmiley(arr) {
     textMedium.innerText = varMedium + "%"
     textGood.innerText = varGood + "%"
 
+
+    let varMaxWidth = 0.97
+
+    if(smartphone[0].matches) {
+        varMaxWidth = heightStart/help.clientWidth
+    }
+
+    
+
+    divBad.style.width = help.clientWidth*varMaxWidth + "px"
+    divMedium.style.width = help.clientWidth*varMaxWidth + "px"
+    divGood.style.width = help.clientWidth*varMaxWidth + "px"
+
     switch(max) {
         case 0: 
-            divBad.style.height = heightStart + "px"
+            divBad.style.height = Math.min(help.clientWidth*varMaxWidth, heightStart) + "px"
             if (varMedium/varBad < 0.2) {
-                divMedium.style.height = 0.2*heightStart + "px"
+                divMedium.style.height = Math.min(help.clientWidth*varMaxWidth, 0.2*heightStart) + "px"
             }else{
-                divMedium.style.height = Math.round(varMedium/varBad*heightStart) + "px"
+                divMedium.style.height = Math.min(help.clientWidth*varMaxWidth, Math.round(varMedium/varBad*heightStart)) + "px"
             }
 
             if (varGood/varBad < 0.2) {
-                divGood.style.height = 0.2*heightStart + "px"
+                divGood.style.height = Math.min(help.clientWidth*varMaxWidth, 0.2*heightStart) + "px"
             }else{
-                divGood.style.height = Math.round(varGood/varBad*heightStart) + "px"
+                divGood.style.height = Math.min(help.clientWidth*varMaxWidth, Math.round(varGood/varBad*heightStart)) + "px"
             }
             break
         case 1:
-            divMedium.style.height = heightStart + "px"
+            divMedium.style.height = Math.min(help.clientWidth*varMaxWidth, heightStart) + "px"
             
             if (varBad/varMedium < 0.2) {
-                divBad.style.height = 0.2*heightStart + "px";
+                divBad.style.height = Math.min(help.clientWidth*varMaxWidth, 0.2*heightStart) + "px";
             }else{
-                divBad.style.height = Math.round(varBad/varMedium*heightStart) + "px"
+                divBad.style.height = Math.min(help.clientWidth*varMaxWidth, Math.round(varBad/varMedium*heightStart)) + "px"
             }
 
             if (varGood/varMedium < 0.2) {
-                divGood.style.height = 0.2*heightStart + "px"
+                divGood.style.height = Math.min(help.clientWidth*varMaxWidth, 0.2*heightStart) + "px"
             }else{
-                divGood.style.height = Math.round(varGood/varMedium*heightStart) + "px"
+                divGood.style.height = Math.min(help.clientWidth*varMaxWidth, Math.round(varGood/varMedium*heightStart)) + "px"
             }
             break
         case 2:
-            divGood.style.height = heightStart + "px"
+            divGood.style.height = Math.min(help.clientWidth*varMaxWidth, Math.min(help.clientWidth*varMaxWidth, heightStart)) + "px"
             
             if (varBad/varGood < 0.2) {
-                divBad.style.height = 0.2*heightStart + "px"
+                divBad.style.height = Math.min(help.clientWidth*varMaxWidth, 0.2*heightStart) + "px"
             }else{
-                divBad.style.height = Math.round(varBad/varGood*heightStart) + "px"
+                divBad.style.height = Math.min(help.clientWidth*varMaxWidth, Math.round(varBad/varGood*heightStart)) + "px"
             }
             
             if (varMedium/varGood < 0.2) {
-                divMedium.style.height = 0.2*heightStart + "px"
+                divMedium.style.height = Math.min(help.clientWidth*varMaxWidth, 0.2*heightStart) + "px"
             }else{
-                divMedium.style.height = Math.round(varMedium/varGood*heightStart) + "px"
+                divMedium.style.height = Math.min(help.clientWidth*varMaxWidth, Math.round(varMedium/varGood*heightStart)) + "px"
             }
             break
         default: 
@@ -99,8 +112,10 @@ function vizSmiley(arr) {
             divMedium.style.height = heightStart + "px"
             divGood.style.height = heightStart + "px"
     
-    
+            
     }
+
+
 
 }
 
