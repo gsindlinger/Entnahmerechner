@@ -193,7 +193,7 @@
             </div>
         </div>
     </header>
-    <div id="main" onclick="closeAllPopups()">
+    <div id="main">
         <div id="container">
             <div id="inputVariables" class="centerContent">
                 <div id="Renteneintrittsalter" class="inputBoxen">
@@ -212,7 +212,7 @@
                         <div class="sliderContainer">
                             <a class="inputSlide inputPrev" onclick="changeRangeValue('rangeRenteneintrittsalter',-1)">&#10094;</a>
                             <input type="range" min="50" max="99" value="67"
-                                id="rangeRenteneintrittsalter">
+                                id="rangeRenteneintrittsalter" class=" slider PointerEvents">
                             <a class="inputSlide inputNext" onclick="changeRangeValue('rangeRenteneintrittsalter',1)">&#10095;</a>
                         </div>
                     </div>
@@ -233,7 +233,7 @@
                         <div class="sliderContainer">
                             <a class="inputSlide inputPrev" onclick="changeRangeValue('rangeRentenaustrittsalter',-1)">&#10094;</a>
                             <input type="range" min="60" max="120" value="90"
-                                id="rangeRentenaustrittsalter">
+                                id="rangeRentenaustrittsalter" class=" slider PointerEvents">
                             <a class="inputSlide inputNext" onclick="changeRangeValue('rangeRentenaustrittsalter',1)">&#10095;</a>
 
                         </div>
@@ -255,7 +255,7 @@
                         </div>
                         <div class="sliderContainer">
                             <a class="inputSlide inputPrev" onclick="changeRangeValue('rangeEinmalbetrag',-1)">&#10094;</a>
-                            <input type="range" min="5000" max="1000000" value="100000" step="5000" class="slider"
+                            <input type="range" min="5000" max="1000000" value="100000" step="5000" class="slider PointerEvents"
                                 id="rangeEinmalbetrag">
                             <a class="inputSlide inputNext" onclick="changeRangeValue('rangeEinmalbetrag',1)">&#10095;</a>
                         </div>
@@ -278,7 +278,7 @@
                     </div>
                         <div class="sliderContainer">
                             <a class="inputSlide inputPrev" onclick="changeRangeValue('rangeRenditeerwartung',-1)">&#10094;</a>
-                            <input type="range" min="0" max="10" value="4" class="slider"
+                            <input type="range" min="0" max="10" value="4" class="slider PointerEvents"
                                 id="rangeRenditeerwartung">
                             <a class="inputSlide inputNext" onclick="changeRangeValue('rangeRenditeerwartung',1)">&#10095;</a>
                         </div>
@@ -303,10 +303,10 @@
                                     <p><span id="textStandardabweichung">Kein Risiko</span></p>
                                 </div>
                                 <div class="sliderContainer sliderPopup" onclick="openDeviationPopup()">
-                                    <a class="inputSlide inputPrev buttonStandardabweichung buttonDeviation" onclick="changeRangeValue('rangeStandardabweichung',-1)">&#10094;</a>
-                                    <input type="range" min="0" max="4" value="0" class="slider" disabled="true"
+                                    <a class="inputSlide inputPrev buttonStandardabweichung buttonDeviation" onclick="changeRangeValueDeviation('rangeStandardabweichung',-1)">&#10094;</a>
+                                    <input type="range" min="0" max="4" value="0" class="slider noPointerEvents" disabled="true"
                                         id="rangeStandardabweichung">
-                                    <a class="inputSlide inputNext buttonStandardabweichung buttonDeviation" onclick="changeRangeValue('rangeStandardabweichung',1)">&#10095;</a>
+                                    <a class="inputSlide inputNext buttonStandardabweichung buttonDeviation" onclick="changeRangeValueDeviation('rangeStandardabweichung',1)">&#10095;</a>
                                 </div>
                             </div>
                             <div class="centerContent alignCenter" style="width: 1.5rem">
@@ -317,8 +317,8 @@
 
 
                         <div id="popupDeviation" class="popup boxShadowSmall">
-                            <div class="headerPopup"  onclick="closePopup(0)">
-                                <a class="closeButtonRight popupsA">
+                            <div class="headerPopup">
+                                <a class="closeButtonRight popupsA" onclick="closePopup(0)">
                                     <span>Schließen</span><i class="fas fa-times" style="text-shadow: 0rem;"></i>
                                 </a>
                             </div>
@@ -360,7 +360,7 @@
                         </div>
                         <div class="sliderContainer">
                             <a class="inputSlide inputPrev" onclick="changeRangeValue('rangeRente',-1)">&#10094;</a>
-                            <input type="range" min="1000" max="1000000" value="5000" step="5000" class="slider"
+                            <input type="range" min="1000" max="1000000" value="5000" step="5000" class="slider PointerEvents"
                                 id="rangeRente">
                             <a class="inputSlide inputNext" onclick="changeRangeValue('rangeRente',1)">&#10095;</a>
                         </div>
@@ -425,7 +425,7 @@
                             </div>
                     </div>
                 </div>
-				<div id="vizMain">
+				<div id="vizMain" onclick="closeAllPopups()">
 					<div id="vizSlide">
 						<a class="prev changeSlide" onclick="plusSlides(-1)" style="font-size: 2.5rem;">&#10094;</a>
                         <!-- Hier folgen die drei verschiedenen Seiten, die mittels Javascript ein-/ausgeblendet werden
@@ -514,14 +514,53 @@
 <div id="viz2Test" class="centerContent alignCenter"><h2>Test</h2></div>
 
 <footer>
-    <div id="copyright">&copy; Copyright 2019 Johannes Gabriel Sindlinger</div>
+    <div id="copyright" onclick="openFooterPopup()">&copy; Copyright 2019 Johannes Gabriel Sindlinger</div>
     <div id="infoFooter">
-        <i class="fas fa-info-circle"></i>
-        <div class="triangle" style="visibility: hidden"></div>
-        <div class="infoPopup">
-
+        <i class="fas fa-info-circle" onclick="openFooterPopup()"></i>
+        <div id="infoPopup" class="popupWithoutDisplay boxShadowSmall">
+            <div class="headerPopup">
+                <a class="closeButtonRight popupsA" onclick="closeFooterPopup()">
+                    <span>Schließen</span><i class="fas fa-times" style="text-shadow: 0rem;"></i>
+                </a>
+            </div>
+            <div id="mainInfoPopup" class="mainPopup">
+                <h3>Urheberrechtshinweise zu den verwendeten Icons:</h3>
+                <div class="copyrightItemOverall">
+                    <div class="copyrightItemIcon">
+                        <img class="imgFooter" src="svg/medium.svg" alt="Smiley Good">
+                        <p>Smileys</p>
+                    </div>
+                    <div class="copyrightItemDisclaimer aStyling">
+                        Made by <a href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a> 
+                        von <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+                    </div>
+                </div>
+                <div class="copyrightItemOverall">
+                    <div class="copyrightItemIcon">
+                        <img class="imgFooter" src="svg/lebenserwartung.svg" alt="Lebenserwartung">
+                        <p>Lebenserwartung</p>
+                    </div>
+                    <div class="copyrightItemDisclaimer aStyling">
+                        Made by <a href="https://www.flaticon.com/authors/freepik" title="freepik">Freepik</a> 
+                        von <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+                    </div>
+                </div>
+                <div class="copyrightItemOverall">
+                    <div class="copyrightItemIcon">
+                        <img class="imgFooter" src="svg/rente.svg" alt="Vorschlag zur Entnahme">
+                        <p>Vorschlag zur Entnahme</p>
+                    </div>
+                    <div class="copyrightItemDisclaimer aStyling">
+                        Made by <a href="https://www.flaticon.com/authors/freepik" title="freepik">Freepik</a> 
+                        von <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+                    </div>
+                </div>
+                <br>
+                <p class="aStyling">Alle weiteren Icons wurden mit <a href="https://fontawesome.com/" title="Font Awesome">Font Awesome</a> erstellt.</p>
+            </div>
         </div>
     </div>
+
 
 </footer>
 

@@ -79,7 +79,6 @@ function funcSmartphone() {
                 if(i == 4) {
                     
                     document.getElementById("popupDeviation").append(mainPopupDeviation)
-                    console.log(box.children)
                     let extraChild = box.children[2]
                     headerNormal[i].children[1].prepend(extraChild)
                     let extraChild2 = box.children[2]

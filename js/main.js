@@ -1,5 +1,4 @@
 window.addEventListener("orientationchange", function() {
-  //changeArrowRotationOnOrientationChange()
   updateValue()
 })
 window.addEventListener("resize", resizeChart)
@@ -18,10 +17,7 @@ window.addEventListener("DOMContentLoaded", function() {
 for (binding of bindings) {
   const input = binding.input
   const output = binding.output
-
-  if(smartphone[3].matches) {
-    input.addEventListener('change', updateValue)
-  }
+  input.addEventListener('change', updateValue)
   input.addEventListener('input', updateDisplay.bind(binding))
   updateDisplay.apply(binding, [true])
 }
@@ -51,7 +47,6 @@ function updateDisplay(shouldPreventUpdateValue) {
 
     if(checkMuSigma.checked == false) {
       standardabweichung.input.disabled = true;
-
       let sigma = sigmaFromPerformance(parseInt(input.value))
       //from https://stackoverflow.com/questions/8584902/get-closest-number-out-of-array
       let closest = closestNumberInArrayIndex(sigma, sigmaArray)
@@ -60,8 +55,8 @@ function updateDisplay(shouldPreventUpdateValue) {
     }
   }else if(input.id == "rangeEinmalbetrag") {
     if(parseInt(input.value) <= parseInt(renteRange.input.value)*12) {
-      window.alert("Die Entnahme darf maximal den Wert der Rente besitzen!")
-      input.value = parseInt(renteRange.input.value) + step
+      window.alert("Die monatliche Entnahme darf nicht höher sein, als das Startkapital durch 12 Monate dividiert!")
+      input.value = Math.ceil(parseInt(renteRange.input.value)*12/5000)*5000
     }
     output.innerText = numberWithPoints(input.value) + "€"
   }else if(input.id == "rangeStandardabweichung" && checkMuSigma.checked == true) {
@@ -98,7 +93,7 @@ function updateDisplay(shouldPreventUpdateValue) {
 
     }else if(input.id == "rangeRente") {
       if(parseInt(input.value)*12 >= parseInt(einmalbetrag.input.value)) {
-        window.alert("Die Entnahme darf maximal den Wert der Rente besitzen!")
+        window.alert("Die monatliche Entnahme darf nicht höher sein, als das Startkapital durch 12 Monate dividiert!")
         input.value = einmalbetrag.input.value - step
       }
       output.innerText = numberWithPoints(input.value) + "€"
@@ -113,8 +108,5 @@ function updateDisplay(shouldPreventUpdateValue) {
   }
 
 
-  if(!smartphone[3].matches && shouldPreventUpdateValue !== true) {
-    updateValue()
-  }
 
 }

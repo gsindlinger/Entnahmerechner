@@ -421,15 +421,16 @@
                 justify-content: space-between;
     }
 
-    #popupVorschlag .headerPopup {
+    #popupVorschlag .headerPopup, #infoPopup .headerPopup {
         justify-content: flex-end;
     }
+
 
     .mainPopup {
         padding: 0;
     }
 
-    #popupVorschlag .mainPopup {
+    #popupVorschlag .mainPopup, #infoPopup .mainPopup {
         padding: 1.5rem;
     }
 
@@ -472,6 +473,10 @@
 
     .changeSlide:hover{
         color: #363636;
+    }
+
+    #infoPopup {
+        background-color: var(--color-uni-dark);
     }
 
 }
@@ -869,7 +874,7 @@
     }
 
     .vizSlideIconsDetail:hover{
-        background-color: white;
+        background-color: lightgray;
         color: #363636;
       }
 }

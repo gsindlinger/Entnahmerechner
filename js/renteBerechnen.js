@@ -30,11 +30,12 @@ function calcRente(varEinmalbetrag, varPerformance, varLaufzeit) {
 function fillRente(einmalbetrag, performance, laufzeit, boolResetRente) {
   
     let renteVal = Math.round(calcRente(einmalbetrag,performance,laufzeit)/(12*10))*10
+    
+
     renteRange.input.min = Math.min(renteRange.input.min, Math.floor(Math.round(renteVal - 0.4*renteVal)/10)*10)
     renteRange.input.max = Math.floor(Math.min(Math.max(renteRange.input.max, Math.ceil(Math.round(renteVal + 0.4*renteVal)/10)*10), getEinmalbetrag()/12))
     renteRange.input.step = 10
   
-
     if(boolResetRente == true) {
         renteRange.input.min = Math.floor(Math.round(renteVal - 0.4*renteVal)/10)*10
         renteRange.input.max = Math.ceil(Math.round(renteVal + 0.4*renteVal)/10)*10

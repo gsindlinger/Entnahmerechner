@@ -113,6 +113,10 @@ function closeAllPopups() {
   for(let i = 0; i < headerNormal.length; i++) {
     closeSliderPopup(i)
   }
+  closeFooterPopup()
+  closeProposalPopup()
+  closePopup(0)
+
 }
 
 
@@ -218,6 +222,7 @@ function activateSigma() {
   if(checkMuSigma.checked == true) {
     standardabweichung.input.disabled = false
     standardabweichung.input.classList.remove("noPointerEvents")
+    standardabweichung.input.classList.add("PointerEvents")
     for(let i = 0; i < buttons.length; i++) {
       buttons[i].classList.remove("buttonStandardabweichung")
     }
@@ -225,6 +230,9 @@ function activateSigma() {
 
   }else{
     standardabweichung.input.disabled = true
+    standardabweichung.input.classList.add("noPointerEvents")
+    standardabweichung.input.classList.remove("PointerEvents")
+
 
     let sigma = sigmaFromPerformance(parseInt(renditeerwartung.input.value))
     //from https://stackoverflow.com/questions/8584902/get-closest-number-out-of-array
@@ -323,8 +331,8 @@ function changeRangeValue(idRangeName, plusMinus) {
 
   if(idRangeName == "rangeEinmalbetrag") {
     if(parseInt(input.value) <= parseInt(renteRange.input.value)*12) {
-      window.alert("Die Entnahme darf maximal den Wert der Rente besitzen!")
-      input.value = parseInt(renteRange.input.value) + step
+      window.alert("Die monatliche Entnahme darf nicht höher sein, als das Startkapital durch 12 Monate dividiert!")
+      input.value = Math.ceil(parseInt(renteRange.input.value)*12/5000)*5000
     }
     output.innerText = numberWithPoints(input.value) + "€"
   }else if(input.id == "rangeRenteneintrittsalter") {
@@ -351,7 +359,7 @@ function changeRangeValue(idRangeName, plusMinus) {
 
   }else if (idRangeName == "rangeRente"){
     if(parseInt(input.value)*12 >= parseInt(einmalbetrag.input.value)) {
-      window.alert("Die Entnahme darf maximal den Wert der Rente besitzen!")
+      window.alert("Die monatliche Entnahme darf nicht höher sein, als das Startkapital durch 12 Monate dividiert!")
       input.value = einmalbetrag.input.value - step
     }
     output.innerText = numberWithPoints(input.value) + "€"
@@ -387,6 +395,24 @@ function openDeviationPopup() {
     openPopup()
   }
 }
+
+function openFooterPopup() {
+  let footerPopup = document.getElementById("infoPopup")
+  footerPopup.style.display = "inline"
+}
+
+function closeFooterPopup() {
+  let footerPopup = document.getElementById("infoPopup")
+  footerPopup.style.display = "none"
+}
+
+function changeRangeValueDeviation(idRangeName, plusMinus) {
+  if(checkMuSigma.checked == true) {
+    changeRangeValue(idRangeName, plusMinus)
+  }
+}
+
+
 
 
 

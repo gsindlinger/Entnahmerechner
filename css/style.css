@@ -396,15 +396,15 @@ img  {
 }
 
 .noPointerEvents {
-  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.PointerEvents {
+  cursor: pointer;
 }
 
 .buttonStandardabweichung{
-  pointer-events: none;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  cursor: not-allowed;
 }
 
 .buttonStandardabweichung:hover{
@@ -1298,14 +1298,73 @@ footer{
           justify-content: flex-end;
   font-size: 1rem;
   padding-right: 1rem;
+  cursor: pointer;
 }
 
 #infoFooter {
   position: relative;
+  cursor: pointer;
+}
+
+#infoFooter .fa-info-circle{
+  color: inherit;
+
 }
 
 #infoPopup {
-  
+    bottom: 4rem;
+    right: 0rem;
+    width: 65rem;
+    max-width: 90vw;
+    display: none;
+}
+
+.aStyling a{
+  color: black;
+}
+
+.aStyling a:hover{
+  color: #363636;
+}
+
+#mainInfoPopup {
+  color: black;
+}
+
+#mainInfoPopup h3{
+  margin-bottom: 0.5rem;
+}
+
+
+#copyrightIcons {
+  display: grid;
+}
+
+.imgFooter {
+  width: 4rem;
+}
+
+.copyrightItemOverall {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  padding: 1rem 1rem 1rem 4rem;
+}
+
+.copyrightItemIcon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20rem;
+}
+
+.copyrightItemIcon p {
+  padding-top: 0.3rem;
+}
+
+.copyrightItemDisclaimer {
+  padding-left: 2rem;
 }
 
 
