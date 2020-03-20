@@ -300,9 +300,9 @@
                         <div class="centerContent flexRow" style="height: 80%;">
                             <div class="centerContent flexColumn alignCenter">
                                 <div class="sliderText" style="margin-left: 1rem">
-                                    <p><span id="textStandardabweichung">Kein Risiko</span></p>
+                                    <p><span id="textStandardabweichung" class="opacityLow">Kein Risiko</span></p>
                                 </div>
-                                <div class="sliderContainer sliderPopup" onclick="openDeviationPopup()">
+                                <div id="wholeInputDeviation" class="sliderContainer sliderPopup opacityLow" onclick="openDeviationPopup()">
                                     <a class="inputSlide inputPrev buttonStandardabweichung buttonDeviation" onclick="changeRangeValueDeviation('rangeStandardabweichung',-1)">&#10094;</a>
                                     <input type="range" min="0" max="4" value="0" class="slider noPointerEvents" disabled="true"
                                         id="rangeStandardabweichung">

@@ -28,8 +28,6 @@
        url('fonts/montserrat-v14-latin-regular.svg#Montserrat') format('svg'); /* Legacy iOS */
 }
 
-
-
 :root {
     --main-blue: #45567d;
     --main-gray: #303841;
@@ -54,9 +52,6 @@
 
     --grid-width-viz: 32%;
     --grid-gap-viz: 3%;
-
-
-
   }
 
   .centerContent{
@@ -107,8 +102,6 @@
         flex-shrink: 0;
   }
   
-
-
   /* Fading animation */
   .fade {
     -webkit-animation-name: fade;
@@ -126,7 +119,6 @@
     from {opacity: .4}
     to {opacity: 1}
   }
-
 
 /* Add animation (fade in the popup) */
 @-webkit-keyframes fadeIn {

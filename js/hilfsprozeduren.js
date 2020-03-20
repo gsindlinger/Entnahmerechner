@@ -223,6 +223,14 @@ function activateSigma() {
     standardabweichung.input.disabled = false
     standardabweichung.input.classList.remove("noPointerEvents")
     standardabweichung.input.classList.add("PointerEvents")
+    let inputFieldDeviation = document.getElementById("wholeInputDeviation")
+    let inputTextDeviation = document.getElementById("textStandardabweichung")
+    inputTextDeviation.classList.remove("opacityLow")
+    inputTextDeviation.classList.add("opacityHigh")
+    inputFieldDeviation.classList.remove("opacityLow")
+    inputFieldDeviation.classList.add("opacityHigh")
+
+
     for(let i = 0; i < buttons.length; i++) {
       buttons[i].classList.remove("buttonStandardabweichung")
     }
@@ -232,6 +240,13 @@ function activateSigma() {
     standardabweichung.input.disabled = true
     standardabweichung.input.classList.add("noPointerEvents")
     standardabweichung.input.classList.remove("PointerEvents")
+
+    let inputFieldDeviation = document.getElementById("wholeInputDeviation")
+    let inputTextDeviation = document.getElementById("textStandardabweichung")
+    inputTextDeviation.classList.remove("opacityHigh")
+    inputTextDeviation.classList.add("opacityLow")
+    inputFieldDeviation.classList.remove("opacityHigh")
+    inputFieldDeviation.classList.add("opacityLow")
 
 
     let sigma = sigmaFromPerformance(parseInt(renditeerwartung.input.value))
@@ -293,21 +308,7 @@ function fillPercentageHeader(endAge) {
   
 }
 
-
-
-
-  //Erstellt eine CSV-Datei aus einem Array
-  function createCSV(array) {
-    let csvContent = "data:text/csv;charset=utf-8," 
-    + array.map(e => e.join(";")).join("\n");
-
-    let encodedUri = encodeURI(csvContent);
-    window.open(encodedUri);
-  }
-
-
-
-//Erhöht den Range Slider Wert
+//Erhöht/Vermindert den Range Slider Wert
 
 function changeRangeValue(idRangeName, plusMinus) {
   let input = document.getElementById(idRangeName)
@@ -389,6 +390,11 @@ function changeRangeValue(idRangeName, plusMinus) {
   fillPercentageHeader(parseInt(rentenaustrittsalter.input.value))
 }
 
+function changeRangeValueDeviation(idRangeName, plusMinus) {
+  if(checkMuSigma.checked == true) {
+    changeRangeValue(idRangeName, plusMinus)
+  }
+}
 
 function openDeviationPopup() {
   if(standardabweichung.input.disabled == true) {
@@ -404,12 +410,6 @@ function openFooterPopup() {
 function closeFooterPopup() {
   let footerPopup = document.getElementById("infoPopup")
   footerPopup.style.display = "none"
-}
-
-function changeRangeValueDeviation(idRangeName, plusMinus) {
-  if(checkMuSigma.checked == true) {
-    changeRangeValue(idRangeName, plusMinus)
-  }
 }
 
 
