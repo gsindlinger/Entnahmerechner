@@ -70,7 +70,7 @@
                                 <a class="closeButtonRight buttons" style="padding-right: 1rem;" onclick="closeSliderPopup(0)">Schließen<i class="fas fa-times clickIcon" style="text-shadow: 0rem;"></i></a>
                             </div>
                         </div>
-                        <div><p>Wählen Sie das <b>Alter</b>, ab welchem Sie von Ihren angesparten Mitteln <b>monatlich Geld entnehmen</b> wollen!</p></div>
+                        <div class="textPopupSpecial"><p>Wählen Sie das <b>Alter</b>, ab welchem Sie von Ihren angesparten Mitteln <b>monatlich Geld entnehmen</b> wollen!</p></div>
                     </div>
                 </div>
             </div>
@@ -91,7 +91,7 @@
                             </div>
                             <a class="closeButtonRight buttons" style="padding-right: 1rem;" onclick="closeSliderPopup(1)">Schließen<i class="fas fa-times clickIcon" style="text-shadow: 0rem;"></i></a>
                         </div>
-                        <div><p>Wählen Sie das <b>Alter</b>, bis zu welchem Sie glauben die <b>monatliche Entnahme wahrzunehmen</b> (beispielsweise erwartetes <b>Todesalter</b>)!</p></div>
+                        <div class="textPopupSpecial"><p>Wählen Sie das <b>Alter</b>, bis zu welchem Sie glauben die <b>monatliche Entnahme wahrzunehmen</b> (beispielsweise erwartetes <b>Todesalter</b>)!</p></div>
                     </div>
                 </div>
             </div>
@@ -112,7 +112,7 @@
                             </div>
                             <a class="closeButtonRight buttons" style="padding-right: 1rem;" onclick="closeSliderPopup(2)">Schließen<i class="fas fa-times clickIcon" style="text-shadow: 0rem;"></i></a>
                         </div>
-                        <div><p>Wählen Sie Ihr <b>angespartes Kapital</b>, welches Sie zu <b>Beginn der Entnahme</b> voraussichtlich zur Verfügung haben!</p></div>
+                        <div class="textPopupSpecial"><p>Wählen Sie Ihr <b>angespartes Kapital</b>, welches Sie zu <b>Beginn der Entnahme</b> voraussichtlich zur Verfügung haben!</p></div>
                     </div>
                 </div>
             </div>
@@ -133,7 +133,7 @@
                             </div>
                             <a class="closeButtonRight buttons" style="padding-right: 1rem;" onclick="closeSliderPopup(5)">Schließen<i class="fas fa-times clickIcon" style="text-shadow: 0rem;"></i></a>
                         </div>
-                        <div><p><b>Während des Entnahmeprozesses</b> zwischen dem Zeitpunkt zu Beginn der Entnahme und zum Ende der Entnahme wird der <b>verbleibende Betrag Ihrer angesparter Mittel</b> auf dem Kapitalmarkt <b>investiert</b>. <br><br>
+                        <div class="textPopupSpecial"><p><b>Während des Entnahmeprozesses</b> zwischen dem Zeitpunkt zu Beginn der Entnahme und zum Ende der Entnahme wird der <b>verbleibende Betrag Ihrer angesparter Mittel</b> auf dem Kapitalmarkt <b>investiert</b>. <br><br>
                             Wählen Sie nun eine <b>mögliche Rendite</b>, die Sie auf dem Kapitalmarkt erwarten!</p></div>
                     </div>
                 </div>
@@ -155,7 +155,7 @@
                             </div>
                             <a class="closeButtonRight buttons" style="padding-right: 1rem;" onclick="closeSliderPopup(4)">Schließen<i class="fas fa-times clickIcon" style="text-shadow: 0rem;"></i></a>
                         </div>
-                        <div><p>Die <b>Rendite</b>, welche Ihre angesparten Mittel auf dem Kapitalmarkt erzielt, <b>hängt zwangsläufig davon ab</b>, in welche <b>Wertanlagen</b> die Mittel <b>investiert</b> werden.
+                        <div class="textPopupSpecial"><p>Die <b>Rendite</b>, welche Ihre angesparten Mittel auf dem Kapitalmarkt erzielt, <b>hängt zwangsläufig davon ab</b>, in welche <b>Wertanlagen</b> die Mittel <b>investiert</b> werden.
                             <br><br>
                             Deswegen wird das <b>Risiko der Anlage</b> standardmäßig abhängig von der <b>gewählten Rendite</b> berechnet.
                         </p></div>
@@ -182,7 +182,7 @@
                             </div>
                             <a class="closeButtonRight buttons" style="padding-right: 1rem;" onclick="closeSliderPopup(3)">Schließen<i class="fas fa-times clickIcon" style="text-shadow: 0rem;"></i></a>
                         </div>
-                        <div><p>
+                        <div class="textPopupSpecial"><p>
                             Die zuvor gewählten Angaben wurden dazu verwendet, einen <b>Vorschlag für eine monatliche Entnahme</b> zu berechnen. <br>
                             Anhand dieses Wertes wird ermittelt, ob Ihr angespartes Geld bis zum Ende der Entnahme <b>ausreicht</b> oder <b>nicht</b>. Wollen Sie diesen Wert anpassen?
                             <br><br>
@@ -208,6 +208,16 @@
                     <div class="formBox">
                         <div class="sliderText">
                             <p><span id="textRenteneintrittsalter">90</span> Jahre</p>
+                            <div class="redo" onmouseover="showStandardwertUebernehmenPopup('standardRenteneintrittsalter')"
+                            onmouseout="hideStandardwertUebernehmenPopup('standardRenteneintrittsalter')" onclick="vorschlagUebernehmen(0)">
+                                <i class="fas fa-retweet"></i>
+                                <div class="redoSmartphone">Standardwert<br>übernehmen?</div>
+
+                            </div>
+                            <div id="standardRenteneintrittsalter" class="popupStandardwertUebernehmen notVisiblePopup">
+                                <div class="triangle"></div>
+                                <div class="popupStandardwertUebernehmenInner">Standardwert übernehmen?</div>
+                            </div>
                         </div>
                         <div class="sliderContainer">
                             <a class="inputSlide inputPrev" onclick="changeRangeValue('rangeRenteneintrittsalter',-1)">&#10094;</a>
@@ -229,7 +239,17 @@
                     </div>
                     <div class="formBox">
                         <div class="sliderText">
-                            <p><span id="textRentenaustrittsalter">90</span> Jahre</p></div>
+                            <p><span id="textRentenaustrittsalter">90</span> Jahre</p>
+                            <div class="redo" onmouseover="showStandardwertUebernehmenPopup('standardRentenaustrittsalter')"
+                            onmouseout="hideStandardwertUebernehmenPopup('standardRentenaustrittsalter')" onclick="vorschlagUebernehmen(1)">
+                                <i class="fas fa-retweet"></i>
+                                <div class="redoSmartphone">Standardwert<br>übernehmen?</div>
+                            </div>
+                            <div id="standardRentenaustrittsalter" class="popupStandardwertUebernehmen notVisiblePopup">
+                                <div class="triangle"></div>
+                                <div class="popupStandardwertUebernehmenInner">Standardwert übernehmen?</div>
+                            </div>
+                        </div>
                         <div class="sliderContainer">
                             <a class="inputSlide inputPrev" onclick="changeRangeValue('rangeRentenaustrittsalter',-1)">&#10094;</a>
                             <input type="range" min="60" max="120" value="90"
@@ -252,6 +272,15 @@
                     <div class="formBox">
                         <div class="sliderText">
                             <p><span id="textEinmalbetrag">100000</span></p>
+                            <div class="redo" onmouseover="showStandardwertUebernehmenPopup('standardEinmalbetrag')"
+                            onmouseout="hideStandardwertUebernehmenPopup('standardEinmalbetrag')" onclick="vorschlagUebernehmen(2)">
+                                <i class="fas fa-retweet"></i>
+                                <div class="redoSmartphone">Standardwert<br>übernehmen?</div>
+                            </div>
+                            <div id="standardEinmalbetrag" class="popupStandardwertUebernehmen notVisiblePopup">
+                                <div class="triangle"></div>
+                                <div class="popupStandardwertUebernehmenInner">Standardwert übernehmen?</div>
+                            </div>
                         </div>
                         <div class="sliderContainer">
                             <a class="inputSlide inputPrev" onclick="changeRangeValue('rangeEinmalbetrag',-1)">&#10094;</a>
@@ -275,6 +304,15 @@
                     <div class="formBox">
                     <div class="sliderText">
                         <p><span id="textRenditeerwartung">4 %</span></p>
+                        <div class="redo" onmouseover="showStandardwertUebernehmenPopup('standardRendite')"
+                        onmouseout="hideStandardwertUebernehmenPopup('standardRendite')" onclick="vorschlagUebernehmen(5)">
+                            <i class="fas fa-retweet"></i>
+                            <div class="redoSmartphone">Standardwert<br>übernehmen?</div>
+                        </div>
+                        <div id="standardRendite" class="popupStandardwertUebernehmen notVisiblePopup">
+                            <div class="triangle"></div>
+                            <div class="popupStandardwertUebernehmenInner">Standardwert übernehmen?</div>
+                        </div>
                     </div>
                         <div class="sliderContainer">
                             <a class="inputSlide inputPrev" onclick="changeRangeValue('rangeRenditeerwartung',-1)">&#10094;</a>
@@ -357,6 +395,15 @@
                     <div class="formBox">
                         <div class="sliderText">
                             <p><span id="textRente">5000</span></p>
+                            <div class="redo" onmouseover="showStandardwertUebernehmenPopup('standardRente')"
+                            onmouseout="hideStandardwertUebernehmenPopup('standardRente')" onclick="vorschlagUebernehmen(3)">
+                                <i class="fas fa-retweet"></i>
+                                <div class="redoSmartphone">Vorschlag<br>übernehmen?</div>
+                            </div>
+                            <div id="standardRente" class="popupStandardwertUebernehmen notVisiblePopup">
+                                <div class="triangle"></div>
+                                <div class="popupStandardwertUebernehmenInner">Vorschlag übernehmen?</div>
+                            </div>
                         </div>
                         <div class="sliderContainer">
                             <a class="inputSlide inputPrev" onclick="changeRangeValue('rangeRente',-1)">&#10094;</a>
@@ -471,7 +518,7 @@
 
                                         <div id="viz3SelectAgeDisplay" class="centerContent flexColumn">
                                         <div id="viz3SelectAgeDonut" class="centerContent flexColumn alignCenter"></div>
-                                        <div class="sliderContainer">
+                                        <div class="sliderContainer PointerEvents">
                                             <a class="inputSlide inputPrev inputSelectAge" onclick="changeDonutValue(-1)">&#10094;</a>
                                             <input type="range" min="60" max="120" value="90" oninput="changeDonutValue(0)"
                                                 id="viz3SelectAgeRange">

@@ -2,14 +2,14 @@
 
 @media (min-width: 1401px) and (max-width: 1600px) {
     html {
-        font-size: 8.5px
+        font-size: 8px
     }
 
 }
 
 @media (min-width: 1025px) and (max-width: 1400px) {
     html {
-        font-size: 7.5px
+        font-size: 7px
     }
 
 }
@@ -21,7 +21,7 @@
 
 @media (min-width: 768px) and (max-width: 1024px) {
     html{
-        font-size: 7px;
+        font-size: 6.5px;
     }
 
 }
@@ -451,6 +451,37 @@
     #popupVorschlagBody {
         max-width: 50vw;
         width: 45rem;
+    }
+
+    .sliderText {
+        padding-bottom: 2rem;
+    }
+
+    .redo{
+        top: -1.2rem;
+        right: 3vw;
+        font-size: 1.6rem;
+        padding: 0.8rem;
+        background-color: #303841;
+        border: 2px solid #999999;
+        color: var(--color-uni);
+        text-align: center;
+        text-decoration: none;
+        -webkit-transition-duration: 0.4s;
+             -o-transition-duration: 0.4s;
+                transition-duration: 0.4s;
+        cursor: pointer;
+        border-radius: 1rem;
+        font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    }
+
+    .redoSmartphone {
+        display: inline;
+        font-size: 1rem;
+    }
+
+    .popupStandardwertUebernehmen {
+        display: none;
     }
 
     #main{

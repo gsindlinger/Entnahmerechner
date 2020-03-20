@@ -173,6 +173,58 @@ function hideInfoPopup(str) {
 } 
 }
 
+//Öffnen des Popups zum Vorschlag übernehmen
+function showStandardwertUebernehmenPopup(str) {
+  let box = document.getElementById(str)
+  box.classList.add("visiblePopup")
+  box.classList.remove("notVisiblePopup")
+}
+
+//Öffnen des Popups zum Vorschlag übernehmen
+function hideStandardwertUebernehmenPopup(str) {
+  let box = document.getElementById(str)
+  box.classList.remove("notvisiblePopup")
+  box.classList.add("notVisiblePopup")
+}
+
+//Ordnet dem jeweiligen Eingabefeld den Standardwert zu
+function vorschlagUebernehmen(n) {
+  switch (n) {
+    case 0:
+      bindings[0].input.value = 67
+      bindings[0].output.innerText = 67
+      break
+    case 1:
+      bindings[1].input.value = 90
+      bindings[1].output.innerText = 90
+      break
+    case 2:
+      bindings[2].input.value = 100000
+      bindings[2].output.innerText = numberWithPoints(100000) + "€"
+      break
+    case 3:
+      fillRente(getEinmalbetrag(),getPerformance(),calcLaufzeit(), true)
+      break
+    case 5:
+      bindings[5].input.value = 4
+      bindings[5].output.innerText = 4 + "%"
+
+      if(checkMuSigma.checked == false) {
+        standardabweichung.input.disabled = true;
+        let sigma = sigmaFromPerformance(parseInt(4))
+        //from https://stackoverflow.com/questions/8584902/get-closest-number-out-of-array
+        let closest = closestNumberInArrayIndex(sigma, sigmaArray)
+        standardabweichung.input.value = closest
+        standardabweichung.output.innerText = textDeviation(parseInt(closest))
+      }
+      break
+  }
+
+  updateValue()
+
+}
+
+
 
 
 

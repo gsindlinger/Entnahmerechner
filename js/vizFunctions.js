@@ -4,6 +4,8 @@ Variablen deklariert*/
 let widthHelper = 0
 let heightHelper = 0
 
+let smileyHelpWidth = 0
+
 
 
 function vizSmiley(arr) {
@@ -23,6 +25,9 @@ function vizSmiley(arr) {
     let help = document.getElementById("vizTopGood")
     let help2 = document.getElementById("textGood")
 
+    if(help.clientWidth != 0) {
+        smileyHelpWidth = help.clientWidth
+    }
 
     let height
     let heightStart
@@ -35,7 +40,7 @@ function vizSmiley(arr) {
         
         heightStart = height*0.95
     }else{
-        if(help.clientWidth == 0) {
+        if(smileyHelpWidth == 0) {
             height = container.clientHeight - 4/3*sizeHistogramHelper - 2/3*sizeHistogramHelper
         }else{
             height = container.clientHeight - help.clientHeight - help2.clientHeight
@@ -49,62 +54,61 @@ function vizSmiley(arr) {
     textMedium.innerText = varMedium + "%"
     textGood.innerText = varGood + "%"
 
-
     let varMaxWidth = 0.97
 
     if(smartphone[0].matches) {
-        varMaxWidth = heightStart/help.clientWidth
+        varMaxWidth = heightStart/smileyHelpWidth
     }
 
     
 
-    divBad.style.width = help.clientWidth*varMaxWidth + "px"
-    divMedium.style.width = help.clientWidth*varMaxWidth + "px"
-    divGood.style.width = help.clientWidth*varMaxWidth + "px"
+    divBad.style.width = smileyHelpWidth*varMaxWidth + "px"
+    divMedium.style.width = smileyHelpWidth*varMaxWidth + "px"
+    divGood.style.width = smileyHelpWidth*varMaxWidth + "px"
 
     switch(max) {
         case 0: 
-            divBad.style.height = Math.min(help.clientWidth*varMaxWidth, heightStart) + "px"
+            divBad.style.height = Math.min(smileyHelpWidth*varMaxWidth, heightStart) + "px"
             if (varMedium/varBad < 0.2) {
-                divMedium.style.height = Math.min(help.clientWidth*varMaxWidth, 0.2*heightStart) + "px"
+                divMedium.style.height = Math.min(smileyHelpWidth*varMaxWidth, 0.2*heightStart) + "px"
             }else{
-                divMedium.style.height = Math.min(help.clientWidth*varMaxWidth, Math.round(varMedium/varBad*heightStart)) + "px"
+                divMedium.style.height = Math.min(smileyHelpWidth*varMaxWidth, Math.round(varMedium/varBad*heightStart)) + "px"
             }
 
             if (varGood/varBad < 0.2) {
-                divGood.style.height = Math.min(help.clientWidth*varMaxWidth, 0.2*heightStart) + "px"
+                divGood.style.height = Math.min(smileyHelpWidth*varMaxWidth, 0.2*heightStart) + "px"
             }else{
-                divGood.style.height = Math.min(help.clientWidth*varMaxWidth, Math.round(varGood/varBad*heightStart)) + "px"
+                divGood.style.height = Math.min(smileyHelpWidth*varMaxWidth, Math.round(varGood/varBad*heightStart)) + "px"
             }
             break
         case 1:
-            divMedium.style.height = Math.min(help.clientWidth*varMaxWidth, heightStart) + "px"
+            divMedium.style.height = Math.min(smileyHelpWidth*varMaxWidth, heightStart) + "px"
             
             if (varBad/varMedium < 0.2) {
-                divBad.style.height = Math.min(help.clientWidth*varMaxWidth, 0.2*heightStart) + "px";
+                divBad.style.height = Math.min(smileyHelpWidth*varMaxWidth, 0.2*heightStart) + "px";
             }else{
-                divBad.style.height = Math.min(help.clientWidth*varMaxWidth, Math.round(varBad/varMedium*heightStart)) + "px"
+                divBad.style.height = Math.min(smileyHelpWidth*varMaxWidth, Math.round(varBad/varMedium*heightStart)) + "px"
             }
 
             if (varGood/varMedium < 0.2) {
-                divGood.style.height = Math.min(help.clientWidth*varMaxWidth, 0.2*heightStart) + "px"
+                divGood.style.height = Math.min(smileyHelpWidth*varMaxWidth, 0.2*heightStart) + "px"
             }else{
-                divGood.style.height = Math.min(help.clientWidth*varMaxWidth, Math.round(varGood/varMedium*heightStart)) + "px"
+                divGood.style.height = Math.min(smileyHelpWidth*varMaxWidth, Math.round(varGood/varMedium*heightStart)) + "px"
             }
             break
         case 2:
-            divGood.style.height = Math.min(help.clientWidth*varMaxWidth, Math.min(help.clientWidth*varMaxWidth, heightStart)) + "px"
+            divGood.style.height = Math.min(smileyHelpWidth*varMaxWidth, Math.min(smileyHelpWidth*varMaxWidth, heightStart)) + "px"
             
             if (varBad/varGood < 0.2) {
-                divBad.style.height = Math.min(help.clientWidth*varMaxWidth, 0.2*heightStart) + "px"
+                divBad.style.height = Math.min(smileyHelpWidth*varMaxWidth, 0.2*heightStart) + "px"
             }else{
-                divBad.style.height = Math.min(help.clientWidth*varMaxWidth, Math.round(varBad/varGood*heightStart)) + "px"
+                divBad.style.height = Math.min(smileyHelpWidth*varMaxWidth, Math.round(varBad/varGood*heightStart)) + "px"
             }
             
             if (varMedium/varGood < 0.2) {
-                divMedium.style.height = Math.min(help.clientWidth*varMaxWidth, 0.2*heightStart) + "px"
+                divMedium.style.height = Math.min(smileyHelpWidth*varMaxWidth, 0.2*heightStart) + "px"
             }else{
-                divMedium.style.height = Math.min(help.clientWidth*varMaxWidth, Math.round(varMedium/varGood*heightStart)) + "px"
+                divMedium.style.height = Math.min(smileyHelpWidth*varMaxWidth, Math.round(varMedium/varGood*heightStart)) + "px"
             }
             break
         default: 
@@ -114,6 +118,8 @@ function vizSmiley(arr) {
     
             
     }
+
+
 
 
 
