@@ -490,7 +490,7 @@ img  {
   color: #363636;
 }
 
-.fa-info-circle:hover, .redo:hover .fa-retweet{
+.fa-info-circle:hover{
   -webkit-filter:drop-shadow(0 0 1rem black);
           filter:drop-shadow(0 0 1rem black);
 }
@@ -717,15 +717,24 @@ img  {
 
 .redo {
   position: absolute;
-  right: 0;
+  right: 0.7rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 1.4rem;
-  padding: 1rem;
-  color: #363636;
+  padding: 0.5rem;
+  font-size: 1.1rem;
   cursor: pointer;
+  background-color: #303841;
+  border: 2px solid #999999;
+  color: var(--color-uni);
+  text-align: center;
+  text-decoration: none;
+  -webkit-transition-duration: 0.2s;
+       -o-transition-duration: 0.2s;
+          transition-duration: 0.2s;
+  border-radius: 1rem;
+  font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
 }
 
 .redoSmartphone{
@@ -738,6 +747,12 @@ img  {
   border-right: 1.5rem solid white;
   border-top: 1rem solid transparent;
   border-bottom: 1rem solid transparent;
+}
+
+.popupStandardwertUebernehmen{
+  -webkit-transition-duration: 0.2s;
+       -o-transition-duration: 0.2s;
+          transition-duration: 0.2s;
 }
 
 .popupStandardwertUebernehmenInner{
@@ -912,7 +927,7 @@ img  {
   
 }
 
-#buttonRedo:hover {
+#buttonRedo:hover, .redo:hover{
   -webkit-box-shadow: 0 0 2rem rgba(0,0,0,0.75);
           box-shadow: 0 0 2rem rgba(0,0,0,0.75);
 }

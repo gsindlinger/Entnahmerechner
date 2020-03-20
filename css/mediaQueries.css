@@ -462,17 +462,6 @@
         right: 3vw;
         font-size: 1.6rem;
         padding: 0.8rem;
-        background-color: #303841;
-        border: 2px solid #999999;
-        color: var(--color-uni);
-        text-align: center;
-        text-decoration: none;
-        -webkit-transition-duration: 0.4s;
-             -o-transition-duration: 0.4s;
-                transition-duration: 0.4s;
-        cursor: pointer;
-        border-radius: 1rem;
-        font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
     }
 
     .redoSmartphone {
