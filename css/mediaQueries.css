@@ -464,6 +464,11 @@
         padding: 0.8rem;
     }
 
+    .redo:hover{
+        -webkit-box-shadow: 0 0 0rem rgba(0,0,0,0.75);
+                box-shadow: 0 0 0rem rgba(0,0,0,0.75);
+    }
+
     .redoSmartphone {
         display: inline;
         font-size: 1rem;
