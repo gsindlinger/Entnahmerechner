@@ -6,20 +6,18 @@ if(smartphone[3].matches) {
     iterations = 10000
 }
 
-
 //Modelliert den Black-Scholes-Prozess unter der Wahl der Parameter. Dabei wird die d3-RandomNormal-Library verwendet
 //https://github.com/d3/d3-random
 function blackScholesProcess(mu, sigma, retArray, currentStateArray) {
 
     let normalDist = d3.randomNormal(0,1)  
+    let i = retArray.length
+    let randNum = normalDist()
+    currentStateArray.push(
+    currentStateArray[i-1]*Math.exp((mu-0.5*Math.pow(sigma,2)+sigma*randNum)))
+    retArray.push(currentStateArray[i]/currentStateArray[i-1]-1)
 
-      let i = retArray.length
-      let randNum = normalDist()
-      currentStateArray.push(
-      currentStateArray[i-1]*Math.exp((mu-0.5*Math.pow(sigma,2)+sigma*randNum)))
-      retArray.push(currentStateArray[i]/currentStateArray[i-1]-1)
-
-  return [retArray, currentStateArray]
+    return [retArray, currentStateArray]
 }
 
 
@@ -33,7 +31,6 @@ function calcAgeProzess(performance, sigma, einmalbetrag, renteVal, laufzeit) {
     helpArray.push(einmalbetrag)
     let i = 1
 
-
     let renditeArray = new Array()
     let currentStateArray = new Array()
     renditeArray.push(0)
@@ -42,16 +39,7 @@ function calcAgeProzess(performance, sigma, einmalbetrag, renteVal, laufzeit) {
         
         [renditeArray, currentStateArray] = blackScholesProcess(Math.log(1+performance),sigma,renditeArray, currentStateArray)
         let iBlackScholes = roundDigitsNum(renditeArray[i],4)
-        
-        /*
-        Falls man eine optimale Verwendung der renteVal anstrebt macht es Sinn
-        die renteVal in jedem Schritt neu zu berechnen
-
-        renteVal = roundDigitsNum(calcrenteVal(iVorEntnahme,iBlackScholes,laufzeit-i),2)
-        */
-
         let iNachEntnahme = roundDigitsNum(iVorEntnahme-renteVal,2)
-        
 
         /*Abbruchbedingung: Wenn der Betrag kleiner als eine Toleranzmenge ist(0.005*einmalbetrag) oder
         die Iterationen die Laufzeit um 20 Jahre überschreitet wird abgebrochen. Die zweite Bedingung dient lediglich
@@ -59,31 +47,22 @@ function calcAgeProzess(performance, sigma, einmalbetrag, renteVal, laufzeit) {
         if(i > laufzeit + 20 || iNachEntnahme <= 0.005*einmalbetrag) {
             break
         }else if(i == 100) {
-            //window.alert("Ein möglicher Pfad würde länger als 100 Jahre halten - Abbruch an dieser Stelle")
             break
         }else{
             iVorEntnahme = roundDigitsNum(iNachEntnahme*(1+iBlackScholes),2)
             helpArray.push(iVorEntnahme)
         }
         i++
-
-
     }
-
     return i
-    
 }
-
 
 /*Simuliert den Entnahmeprozess je nach Wahl der iterations dementsprechend häufig und gibt das Ergebnis
 an die Visualisierungsfunktionen (vizFunctions) weiter*/
-function calculateViz(performance, sigma, einmalbetrag, 
-    alterStart, alterEnde) {
-    
+function calculateViz(performance, sigma, einmalbetrag, alterStart, alterEnde) {
 
     //Abhängig von den Input-Parametern wird der Zufallsgenerator geseeted
     Math.seedrandom("Test" + performance + sigma + einmalbetrag + alterStart + alterEnde)    
-
 
     const toleranz = 1
     
@@ -125,14 +104,10 @@ function calculateViz(performance, sigma, einmalbetrag,
         viz3SelectAgesArray2.push(0)
     }
     
-
-    
     /*Hauptschleife der Funktion, welche die Simulation je nach Wahl der iterations ausführt
     und die dementsprechenden Werte in die Viz-Arrays speichert*/
     for(let i = 0; i<iterations; i++) {
         let compVal = calcAgeProzess(performance,sigma,einmalbetrag,renteVal, laufzeit)
-
-
         histogramArray.push(compVal+alterStart)
         if(compVal < laufzeit-toleranz) {
             smileyArray[0]++
@@ -155,8 +130,6 @@ function calculateViz(performance, sigma, einmalbetrag,
         }
 
     }
-
-    
 
     //Aufruf der Visualisierungs-Funktionen mit den berechneten Informationen von zuvor
     vizSmiley(smileyArray)

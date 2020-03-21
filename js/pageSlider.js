@@ -1,11 +1,7 @@
-
-
-/*
-Skript/Funktionen, welche das Wechseln der verschiedenen Visualisierungsseiten
+/*Skript/Funktionen, welche das Wechseln der verschiedenen Visualisierungsseiten
 ermöglicht.
 
 vgl. https://www.w3schools.com/howto/howto_js_slideshow.asp*/
-
 
 let slideIndex = 1;
 showSlides(slideIndex);
@@ -45,8 +41,6 @@ function showSlides(n) {
   dots[slideIndex-1].className += " activePage";
 
 }
-
-
 
 /*Zusätzliche Funktion zum Swipen bei mobilen Geräten
 

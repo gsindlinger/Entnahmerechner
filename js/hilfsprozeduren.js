@@ -187,7 +187,9 @@ function hideStandardwertUebernehmenPopup(str) {
   box.classList.add("notVisiblePopup")
 }
 
-//Ordnet dem jeweiligen Eingabefeld den Standardwert zu
+/*Funktion zur Zuordnung des Standardwertes eines jeden
+Eingabefeldes: Diese wird beim Klicken auf den Reset-Knopf
+ausgelöst*/
 function vorschlagUebernehmen(n) {
   switch (n) {
     case 0:
@@ -219,14 +221,8 @@ function vorschlagUebernehmen(n) {
       }
       break
   }
-
   updateValue()
-
 }
-
-
-
-
 
 //Gibt den Text für das Feld Standardabweichung zurück
 function textDeviation(inputInt) {
@@ -265,23 +261,22 @@ function sigmaFromPerformance(performance) {
   }
 }
 
-
 //Ermöglicht das Bearbeiten/Bzw. verhindert das Bearbeiten der Volatilität
 function activateSigma() {
   let buttons = document.querySelectorAll(".buttonDeviation")
   
-
   if(checkMuSigma.checked == true) {
     standardabweichung.input.disabled = false
     standardabweichung.input.classList.remove("noPointerEvents")
     standardabweichung.input.classList.add("PointerEvents")
     let inputFieldDeviation = document.getElementById("wholeInputDeviation")
     let inputTextDeviation = document.getElementById("textStandardabweichung")
+    
+    //Erhöht die Sättigung des Eingabefeldes wenn der Nutzer das Risiko selbst auswählen kann
     inputTextDeviation.classList.remove("opacityLow")
     inputTextDeviation.classList.add("opacityHigh")
     inputFieldDeviation.classList.remove("opacityLow")
     inputFieldDeviation.classList.add("opacityHigh")
-
 
     for(let i = 0; i < buttons.length; i++) {
       buttons[i].classList.remove("buttonStandardabweichung")
@@ -293,13 +288,13 @@ function activateSigma() {
     standardabweichung.input.classList.add("noPointerEvents")
     standardabweichung.input.classList.remove("PointerEvents")
 
+    //Vermindert die Sättigung des Eingabefeldes wenn das Risiko automatisch berechnet wird
     let inputFieldDeviation = document.getElementById("wholeInputDeviation")
     let inputTextDeviation = document.getElementById("textStandardabweichung")
     inputTextDeviation.classList.remove("opacityHigh")
     inputTextDeviation.classList.add("opacityLow")
     inputFieldDeviation.classList.remove("opacityHigh")
     inputFieldDeviation.classList.add("opacityLow")
-
 
     let sigma = sigmaFromPerformance(parseInt(renditeerwartung.input.value))
     //from https://stackoverflow.com/questions/8584902/get-closest-number-out-of-array
@@ -310,14 +305,8 @@ function activateSigma() {
     for(let i = 0; i < buttons.length; i++) {
       buttons[i].classList.add("buttonStandardabweichung")
     }
-    //standardabweichung.input.classList.add("noPointerEvents")
-
   }
-
-  
-
 }
-
 
 //from https://stackoverflow.com/questions/8584902/get-closest-number-out-of-array
 function closestNumberInArrayIndex (num, arr) {
@@ -338,7 +327,6 @@ function closestNumberInArrayIndex (num, arr) {
   return currIndex;
 }
 
-
 /*Funktion, die den zweiten Teil der Kopfzeile mit dem Anteil der Menschen, die das Endalter erreichen, berechnet*/
 function fillPercentageHeader(endAge) {
   /*Quelle: Gomperz-Makeham-Gesetz Norberg, Ragnar: Basic Life Insurance Mathematics, http://web.math.ku.dk/~mogens/lifebook.pdf  / Seite 35)*/
@@ -357,11 +345,10 @@ function fillPercentageHeader(endAge) {
     percentageRentenaustrittsalter.innerText = Math.ceil(helpNum*10)*10 + "%" 
     prefixHeaderRentenaustrittsalter.innerText = "Ca."
   }
-  
 }
 
-//Erhöht/Vermindert den Range Slider Wert
-
+/*Erhöht/Vermindert den Range Slider Wert eines Eingabefeldes: 
+Wird durch das Klicken auf die Felder neben den RangeSlidern ausgelöst*/
 function changeRangeValue(idRangeName, plusMinus) {
   let input = document.getElementById(idRangeName)
 
@@ -442,6 +429,9 @@ function changeRangeValue(idRangeName, plusMinus) {
   fillPercentageHeader(parseInt(rentenaustrittsalter.input.value))
 }
 
+/*Spezielle Behandlung des Eingabefeldes der Standardabweichung:
+Das Klick-Event soll nur dann etwas bewirken, wenn die Checkbox zur Kopplung
+von Mu und Sigma aktiviert ist, der Nutzer also das Risiko selbstständig auswählt*/
 function changeRangeValueDeviation(idRangeName, plusMinus) {
   if(checkMuSigma.checked == true) {
     changeRangeValue(idRangeName, plusMinus)

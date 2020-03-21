@@ -2,6 +2,9 @@ window.addEventListener("orientationchange", function() {
   updateValue()
 })
 window.addEventListener("resize", resizeChart)
+
+/*Wenn die Seite mit einem Smartphone oder Tablet geöffnet wird soll
+unmittelbar das erste Popup angezeigt werden*/
 window.addEventListener("DOMContentLoaded", function() {
   fillRente(getEinmalbetrag(), getPerformance(), calcLaufzeit(), true)
   updateValue()
@@ -9,11 +12,15 @@ window.addEventListener("DOMContentLoaded", function() {
     openSliderPopup(0)
   }
   funcSmartphone()
+
+  /*Funktion zum Handeln des PWA-Supports*/
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('./serviceworker.js');
   }
 })
 
+
+/*Listener für die Unterscheidung zwischen UpdateValue und UpdateDisplay*/
 for (binding of bindings) {
   const input = binding.input
   const output = binding.output
@@ -22,11 +29,16 @@ for (binding of bindings) {
   updateDisplay.apply(binding, [true])
 }
 
+/*Funktion, die auslöst, dass sich die Visualisierungen anpassen
+Diese wird erst ausgelöst, wenn der Nutzer die Maus loslässt oder
+den Finger vom Gerät nimmt*/
 function updateValue() {
   calculateViz(getPerformance(),getDeviation(), getEinmalbetrag(),
   getStartAge(),getEndAge())
 }
 
+/*Dagegen werden die angezeigten Werte bereits während des
+Änderungsvorgangs verändert, damit der Nutzer eine schnelle Rückmeldung erhält*/
 function updateDisplay(shouldPreventUpdateValue) {
   const input = this.input
   const output = this.output
@@ -40,7 +52,6 @@ function updateDisplay(shouldPreventUpdateValue) {
   }else{
     step = parseInt(input.step)
   }
-
 
   if(input.id == "rangeRenditeerwartung") {
     output.innerText = input.value + "%"
@@ -61,9 +72,6 @@ function updateDisplay(shouldPreventUpdateValue) {
     output.innerText = numberWithPoints(input.value) + "€"
   }else if(input.id == "rangeStandardabweichung" && checkMuSigma.checked == true) {
     output.innerText = textDeviation(parseInt(input.value))
-
-
-
 
     /*Verhindern, dass Renteintrittsalter und -austrittsalter sich fälschlicher-
     weise überschneiden*/
@@ -106,7 +114,4 @@ function updateDisplay(shouldPreventUpdateValue) {
   if (input.id != "rangeRente") {
     fillRente(getEinmalbetrag(),getPerformance(),renteAlterEnde-renteAlterStart, false)
   }
-
-
-
 }
