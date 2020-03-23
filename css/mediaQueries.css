@@ -510,10 +510,6 @@
 @media (orientation: portrait) {
     body{
         background: url(Hintergrund_mobil.jpg) no-repeat center center fixed;
-        background-size: cover;
-        -moz-background-size: cover;
-        -webkit-background-size: cover;
-        -o-background-size: cover;
     }
 
     #vizTopGood {
