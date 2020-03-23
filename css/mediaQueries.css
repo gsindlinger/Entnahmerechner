@@ -508,10 +508,6 @@
 }
 
 @media (orientation: portrait) {
-    body{
-        background: url(Hintergrund_mobil.jpg) no-repeat center center fixed;
-    }
-
     #vizTopGood {
         grid-area: textGood;
     }
