@@ -508,6 +508,14 @@
 }
 
 @media (orientation: portrait) {
+    body{
+        background: url(Hintergrund_mobil.jpg) no-repeat center center fixed;
+        background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        -o-background-size: cover;
+    }
+
     #vizTopGood {
         grid-area: textGood;
     }
@@ -669,145 +677,6 @@
 
 }
 
-@media (orientation: portrait) {
-
-
-    #vizTopGood{
-        -ms-grid-row: 1;
-        -ms-grid-row-span: 2;
-        -ms-grid-column: 1;
-
-    }
-
-
-    #vizTopMedium{
-        -ms-grid-row: 3;
-        -ms-grid-row-span: 2;
-        -ms-grid-column: 1;
-
-    }
-
-
-    #vizTopBad{
-        -ms-grid-row: 5;
-        -ms-grid-row-span: 2;
-        -ms-grid-column: 1;
-
-    }
-
-
-    #good{
-        -ms-grid-row: 1;
-        -ms-grid-column: 2;
-
-    }
-
-
-    #medium{
-        -ms-grid-row: 3;
-        -ms-grid-column: 2;
-
-    }
-
-
-    #bad{
-        -ms-grid-row: 5;
-        -ms-grid-column: 2;
-
-    }
-
-
-    #textGood{
-        -ms-grid-row: 2;
-        -ms-grid-column: 2;
-
-    }
-
-
-    #textMedium{
-        -ms-grid-row: 4;
-        -ms-grid-column: 2;
-
-    }
-
-
-    #textBad{
-        -ms-grid-row: 6;
-        -ms-grid-column: 2;
-
-    }
-
-}
-
-@media (orientation: portrait) {
-
-
-    #vizTopGood{
-        -ms-grid-row: 1;
-        -ms-grid-row-span: 2;
-        -ms-grid-column: 1;
-
-    }
-
-
-    #vizTopMedium{
-        -ms-grid-row: 3;
-        -ms-grid-row-span: 2;
-        -ms-grid-column: 1;
-
-    }
-
-
-    #vizTopBad{
-        -ms-grid-row: 5;
-        -ms-grid-row-span: 2;
-        -ms-grid-column: 1;
-
-    }
-
-
-    #good{
-        -ms-grid-row: 1;
-        -ms-grid-column: 2;
-
-    }
-
-
-    #medium{
-        -ms-grid-row: 3;
-        -ms-grid-column: 2;
-
-    }
-
-
-    #bad{
-        -ms-grid-row: 5;
-        -ms-grid-column: 2;
-
-    }
-
-
-    #textGood{
-        -ms-grid-row: 2;
-        -ms-grid-column: 2;
-
-    }
-
-
-    #textMedium{
-        -ms-grid-row: 4;
-        -ms-grid-column: 2;
-
-    }
-
-
-    #textBad{
-        -ms-grid-row: 6;
-        -ms-grid-column: 2;
-
-    }
-
-}
 
 
 @media (orientation: landscape) and (max-width: 899px){
