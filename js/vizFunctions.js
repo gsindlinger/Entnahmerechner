@@ -1,11 +1,9 @@
-/*Deklariere zwei Variablen zur Berechnung verschiedener Größen. 
+/*Deklariere drei Variablen zur Berechnung verschiedener Größen. 
 Da diese erst während der Laufzeit ermittelt werden können werden diese als globale
 Variablen deklariert*/
 let widthHelper = 0
 let heightHelper = 0
-
 let smileyHelpWidth = 0
-
 
 
 function vizSmiley(arr) {
@@ -60,8 +58,6 @@ function vizSmiley(arr) {
         varMaxWidth = heightStart/smileyHelpWidth
     }
 
-    
-
     divBad.style.width = smileyHelpWidth*varMaxWidth + "px"
     divMedium.style.width = smileyHelpWidth*varMaxWidth + "px"
     divGood.style.width = smileyHelpWidth*varMaxWidth + "px"
@@ -114,15 +110,8 @@ function vizSmiley(arr) {
         default: 
             divBad.style.height = heightStart + "px"
             divMedium.style.height = heightStart + "px"
-            divGood.style.height = heightStart + "px"
-    
-            
+            divGood.style.height = heightStart + "px"   
     }
-
-
-
-
-
 }
 
 //Donut-Chart-Darstellung
@@ -149,7 +138,7 @@ function vizDifferentAges(agesArr, numbersAgesArr, iterations) {
         if(smartphone[0].matches) {
             height2 = (container.clientHeight - sizeHistogramHelper)*0.33
         }else{
-            height2 = (container.clientHeight - sizeHistogramHelper)*0.2
+            height2 = (container.clientHeight - sizeHistogramHelper)*0.24
         }
         if(smartphone[0].matches) {
             height3 = (container.clientHeight - sizeHistogramHelper)*0.8 - 2.8*sizeHistogramHelper
@@ -197,7 +186,6 @@ function vizDifferentAges(agesArr, numbersAgesArr, iterations) {
     widthHelper = width3
     heightHelper = height3
 
-
     //Erstellen des Divs zum Auswählen des Alters
     if(!smartphone[4].matches && bool == true) {
         if(smartphone[7].matches){
@@ -223,8 +211,6 @@ function vizDifferentAges(agesArr, numbersAgesArr, iterations) {
         mainDiv.style.alignItems = "center"
         mainDiv.id = "donutInputDiv"
 
-        
-
         agesArr = [viz3SelectAgesArray[j]]
         numbersAgesArr =  [Math.round(viz3SelectAgesArray2[j]/iterations*100)]
     
@@ -233,8 +219,6 @@ function vizDifferentAges(agesArr, numbersAgesArr, iterations) {
         container2.appendChild(mainDiv)
 
     }
-    
-
 
 }
 
@@ -269,8 +253,6 @@ function changeDonutValue(n) {
     
 }
 
-
-
 //Erstellt genau ein Div mit dementsprechendem Donut und Text anhand der übergebenen Parameter
 function displayDonut(agesArr, numbersAgesArr, mainDiv, j, width2, height2, helpArray, index) {
 
@@ -278,7 +260,6 @@ function displayDonut(agesArr, numbersAgesArr, mainDiv, j, width2, height2, help
         Länge des übergebenen Arrays und in Abhängigkeit der Displaygröße
         wird für jedes Alter ein solches Div erstellt. Anschließend wird
         der Titel für das Alter und das SVG-Element angehängt*/
-
 
         let header = document.createElement("div")
         header.className = "fontViz"
@@ -312,8 +293,6 @@ function displayDonut(agesArr, numbersAgesArr, mainDiv, j, width2, height2, help
         .value(function(d) {return d.value; })
         .sort(null);
         var data_ready = pie(d3.entries(helpArray))
- 
-
 
         var svg = d3.select(viz)
         
@@ -359,7 +338,6 @@ function displayDonut(agesArr, numbersAgesArr, mainDiv, j, width2, height2, help
             .innerRadius(0.8*radius)
             .outerRadius(radius)
             )
-
             .attr('fill', function(d){ 
                 if(d.data.key == 0) {
                     return '#1a9850'
@@ -367,7 +345,6 @@ function displayDonut(agesArr, numbersAgesArr, mainDiv, j, width2, height2, help
                     return '#d73027'
                 }
             })
-
 
             if (!(Math.round(numbersAgesArr[j]) > 91)) {
                 g
@@ -422,9 +399,6 @@ function displayDonut(agesArr, numbersAgesArr, mainDiv, j, width2, height2, help
             .outerRadius(radius)
             )
 
-            
-
-
             .attr('fill', function(d){ 
                 if(d.data.key == 0) {
                     return '#0B4022'
@@ -434,7 +408,6 @@ function displayDonut(agesArr, numbersAgesArr, mainDiv, j, width2, height2, help
             })
 
             if (!(Math.round(numbersAgesArr[j]) > 91)) {
-
                 g
                 .selectAll('whatever')
                 .data(data_ready)
@@ -468,7 +441,6 @@ function displayDonut(agesArr, numbersAgesArr, mainDiv, j, width2, height2, help
                 })
             }
             
-
         mainG.append("text")
         .attr("text-anchor", "middle")
         .attr("dominant-baseline", "middle")
@@ -486,9 +458,6 @@ function displayDonut(agesArr, numbersAgesArr, mainDiv, j, width2, height2, help
             }
         })
         .style("padding-top", "1rem")
-
-
-
 }
     
 
@@ -496,8 +465,7 @@ function displayDonut(agesArr, numbersAgesArr, mainDiv, j, width2, height2, help
 
 function vizHistogram(arr, deviation, pensionStart, pensionEnd, tolerance) {
 
-
-var paras = document.getElementsByClassName('tooltips');
+    var paras = document.getElementsByClassName('tooltips');
 
     while(paras[0] || paras[0] !=undefined) {
         paras[0].parentNode.removeChild(paras[0])
@@ -520,7 +488,6 @@ var paras = document.getElementsByClassName('tooltips');
     .attr("id", "viz2Histogram")
     .attr("class", "centerContent alignCenter")
 
-
     let container = document.getElementById("vizSlide")
     let changeVizIcons = container.lastElementChild
     let width2 = container.clientWidth - 2*changeVizIcons.clientWidth;
@@ -536,8 +503,6 @@ var paras = document.getElementsByClassName('tooltips');
     width = width2 - margin.left - margin.right,
     height = height2 - margin.top - margin.bottom;
 
-
-
     var max = d3.max(arr)
     var min = d3.min(arr)
 
@@ -550,23 +515,17 @@ var paras = document.getElementsByClassName('tooltips');
     .append("g")
     .attr('transform', 'translate('+ margin.left +', '+ margin.top +')');
     
-    
     var x = d3.scaleLinear()
         .domain([min-1,max+1])
         .range([0, width]);
 
-    
-
-    
     const xAxisTicks = x.ticks()
     .filter(tick => Number.isInteger(tick));
     
-
     var histogram = d3.histogram()
     .domain(x.domain())  
     .thresholds(xAxisTicks);
 
-    
     var bins = histogram(arr)
 
     var ymax = d3.max(bins, (d) => Math.max((d.length))/arr.length*100+5,100)
@@ -579,7 +538,6 @@ var paras = document.getElementsByClassName('tooltips');
     .style("font-family","'Montserrat', serif")
     .call(d3.axisLeft(y)
             .tickFormat(function(d) { return d + "%"; }));
-
 
     /*Code zur Farbzuordnung: Problem ist immer wieder, dass zu viel
     rot am Anfang bzw. zu viel grün am Ende zu einem Ungleichgewicht sorgen.
@@ -594,7 +552,6 @@ var paras = document.getElementsByClassName('tooltips');
     let bool = true
     
     
-
     for(let i = 0; i < bins.length; i++) {
         sum += bins[i].length
         if(bins[j].x1 >= pensionEnd) {
@@ -628,11 +585,8 @@ var paras = document.getElementsByClassName('tooltips');
         .range(['#d73027','#87A34A', '#1a9850'])
         .interpolate(d3.interpolateHcl)
 
-   
-
     var tooltip = d3.select("body").append("div").attr("class", "tooltip").style("left", "-1000px");
     
-
     svg.append("g")
         .attr("transform", "translate(0," + height + ")")
         .style("font-size", "1.2rem")
@@ -642,16 +596,12 @@ var paras = document.getElementsByClassName('tooltips');
         .tickFormat(d3.format('d'))
         );
 
-       
-    
     svg.append('g')
     .attr('class', 'grid')
     .call(d3.axisLeft()
         .scale(y)
         .tickSize(-width, 0)
         .tickFormat(''))
-
-
 
     svg.selectAll("rect")
     .data(bins)
@@ -683,7 +633,6 @@ var paras = document.getElementsByClassName('tooltips');
             }
             
     })
-
 
     .on("mouseover", function(){
           d3.select(this).transition()
@@ -737,9 +686,7 @@ var paras = document.getElementsByClassName('tooltips');
         .attr('y', height + helpMargin)
         .attr('text-anchor', 'middle')
         .text('Alter in Jahren')
-
-
-
+        
 }
 
 
