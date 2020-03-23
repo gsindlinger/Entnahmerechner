@@ -399,9 +399,9 @@ function changeRangeValue(idRangeName, plusMinus) {
 
 
   }else if (idRangeName == "rangeRente"){
-    if(parseInt(input.value)*12 >= parseInt(einmalbetrag.input.value)) {
+    if(parseInt(input.value)*12 > parseInt(einmalbetrag.input.value)) {
       window.alert("Die monatliche Entnahme darf nicht höher sein, als das Startkapital durch 12 Monate dividiert!")
-      input.value = einmalbetrag.input.value - step
+      input.value = parseInt(einmalbetrag.input.value) - step
     }
     output.innerText = numberWithPoints(input.value) + "€"
   }else if(idRangeName == "rangeStandardabweichung" && checkMuSigma.checked == true) {

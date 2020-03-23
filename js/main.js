@@ -100,7 +100,7 @@ function updateDisplay(shouldPreventUpdateValue) {
 
 
     }else if(input.id == "rangeRente") {
-      if(parseInt(input.value)*12 >= parseInt(einmalbetrag.input.value)) {
+      if(parseInt(input.value)*12 > parseInt(einmalbetrag.input.value)) {
         window.alert("Die monatliche Entnahme darf nicht höher sein, als das Startkapital durch 12 Monate dividiert!")
         input.value = einmalbetrag.input.value - step
       }
