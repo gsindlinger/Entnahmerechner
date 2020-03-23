@@ -199,6 +199,7 @@ function vorschlagUebernehmen(n) {
     case 1:
       bindings[1].input.value = 90
       bindings[1].output.innerText = 90
+      fillPercentageHeader(90)
       break
     case 2:
       bindings[2].input.value = 100000
