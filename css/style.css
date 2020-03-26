@@ -1047,7 +1047,7 @@ img  {
 }
 
 .tooltip {
-  position: absolute;
+  position: fixed;
   opacity: 0;
   min-width: 0.8rem;
   height: auto;
