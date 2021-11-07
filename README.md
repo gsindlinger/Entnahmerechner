@@ -2,6 +2,9 @@
 
 [![Open Web App](https://img.shields.io/badge/Open-Entnahmerechner-green)](https://gsindlinger.github.io/Entnahmerechner/)
 
+[![Download Thesis](https://img.shields.io/badge/Download--PDF-Thesis-blue)](https://github.com/gsindlinger/Entnahmerechner/raw/master/Abschlussarbeit.pdf)
+
+
 ![Overview Image](https://github.com/gsindlinger/Entnahmerechner/blob/master/overview.jpg)
 
 The pay-as-you-go pension system in Germany is facing considerable pressure from the demographic change. In addition to corporate pension plans, private pension plans will therefore gain enormous importance in the future. Money saved during the working phase should serve to maintain the desired standard of living in retirement.
@@ -13,6 +16,8 @@ Basically, assuming a given annuity period, those affected are usually intereste
 ## Usage
 
 The application was developed as a responsive web app with PWA support, hosted via Github pages. The badge above takes you directly to the website.
+
+The whole bachelor thesis can also be downloaded via the badge above.
 
 ## Technology
 
